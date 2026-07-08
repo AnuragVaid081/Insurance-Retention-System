@@ -411,4 +411,7 @@ def generate_channels(n_channels):
     
     return pd.DataFrame(channels)
 
+# df_test = generate_channels(50)
+# print(df_test)
+
 
