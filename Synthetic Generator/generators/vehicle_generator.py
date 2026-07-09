@@ -34,28 +34,28 @@ VEHICLE_CATALOG = {
             "type": "Hatchback",
             "fuel": ["Petrol", "CNG"],
             "engine_cc": 1197,
-            "idv": (400000, 800000)
+            "ex_showroom_price": (400000, 800000)
         },
 
         "Baleno": {
             "type": "Hatchback",
             "fuel": ["Petrol", "CNG"],
             "engine_cc": 1197,
-            "idv": (500000, 900000)
+            "ex_showroom_price": (500000, 900000)
         },
 
         "WagonR": {
             "type": "Hatchback",
             "fuel": ["Petrol", "CNG"],
             "engine_cc": 1197,
-            "idv": (350000, 750000)
+            "ex_showroom_price": (350000, 750000)
         },
 
         "Brezza": {
             "type": "SUV",
             "fuel": ["Petrol", "CNG"],
             "engine_cc": 1462,
-            "idv": (700000, 1200000)
+            "ex_showroom_price": (700000, 1200000)
         }
     },
 
@@ -66,28 +66,28 @@ VEHICLE_CATALOG = {
         "type": "SUV",
         "fuel": ["Petrol", "Diesel"],
         "engine_cc": 1497,
-        "idv": (900000, 1800000)
+        "ex_showroom_price": (900000, 1800000)
     },
 
         "Venue": {
             "type": "SUV",
             "fuel": ["Petrol", "Diesel"],
             "engine_cc": 1197,
-            "idv": (700000, 1400000)
+            "ex_showroom_price": (700000, 1400000)
     },
 
         "i20": {
             "type": "Hatchback",
             "fuel": ["Petrol"],
             "engine_cc": 1197,
-            "idv": (500000, 1000000)
+            "ex_showroom_price": (500000, 1000000)
     },
 
         "Verna": {
             "type": "Sedan",
             "fuel": ["Petrol"],
             "engine_cc": 1497,
-            "idv": (800000, 1500000)
+            "ex_showroom_price": (800000, 1500000)
         }
     },
 
@@ -98,35 +98,35 @@ VEHICLE_CATALOG = {
             "type": "SUV",
             "fuel": ["Petrol", "Diesel"],
             "engine_cc": 1199,
-            "idv": (700000, 1400000)
+            "ex_showroom_price": (700000, 1400000)
         },
 
         "Punch": {
             "type": "SUV",
             "fuel": ["Petrol", "CNG"],
             "engine_cc": 1199,
-            "idv": (600000, 1100000)
+            "ex_showroom_price": (600000, 1100000)
         },
 
         "Altroz": {
             "type": "Hatchback",
             "fuel": ["Petrol", "Diesel", "CNG"],
             "engine_cc": 1199,
-            "idv": (600000, 1000000)
+            "ex_showroom_price": (600000, 1000000)
         },
 
         "Tiago": {
             "type": "Hatchback",
             "fuel": ["Petrol", "CNG"],
             "engine_cc": 1199,
-         "idv": (450000, 850000)
+         "ex_showroom_price": (450000, 850000)
         },
 
         "Harrier": {
             "type": "SUV",
             "fuel": ["Diesel"],
             "engine_cc": 1956,
-            "idv": (1400000, 2600000)
+            "ex_showroom_price": (1400000, 2600000)
         }
 
     },
@@ -139,35 +139,35 @@ VEHICLE_CATALOG = {
             "type": "SUV",
             "fuel": ["Petrol", "Diesel"],
             "engine_cc": 2198,
-            "idv": (1500000, 2800000)
+            "ex_showroom_price": (1500000, 2800000)
         },
 
         "Scorpio Classic": {
             "type": "SUV",
             "fuel": ["Diesel"],
             "engine_cc": 2184,
-            "idv": (1100000, 1900000)
+            "ex_showroom_price": (1100000, 1900000)
         },
 
         "Thar": {
             "type": "SUV",
             "fuel": ["Petrol", "Diesel"],
             "engine_cc": 2184,
-            "idv": (1200000, 2200000)
+            "ex_showroom_price": (1200000, 2200000)
         },
 
         "XUV700": {
             "type": "SUV",
             "fuel": ["Petrol", "Diesel"],
             "engine_cc": 1999,
-            "idv": (1800000, 3500000)
+            "ex_showroom_price": (1800000, 3500000)
         },
 
         "Bolero": {
             "type": "SUV",
             "fuel": ["Diesel"],
             "engine_cc": 1493,
-            "idv": (700000, 1200000)
+            "ex_showroom_price": (700000, 1200000)
         }
     },
 
@@ -178,21 +178,21 @@ VEHICLE_CATALOG = {
             "type": "SUV",
             "fuel": ["Petrol", "Diesel"],
             "engine_cc": 1497,
-            "idv": (1000000, 2200000)
+            "ex_showroom_price": (1000000, 2200000)
         },
 
         "Sonet": {
             "type": "SUV",
             "fuel": ["Petrol", "Diesel"],
             "engine_cc": 1197,
-            "idv": (700000, 1500000)
+            "ex_showroom_price": (700000, 1500000)
         },
 
         "Carens": {
             "type": "MPV",
             "fuel": ["Petrol", "Diesel"],
             "engine_cc": 1497,
-            "idv": (1100000, 2200000)
+            "ex_showroom_price": (1100000, 2200000)
         }
     },
 
@@ -203,28 +203,28 @@ VEHICLE_CATALOG = {
             "type": "MPV",
             "fuel": ["Diesel"],
             "engine_cc": 2393,
-            "idv": (1600000, 2800000)
+            "ex_showroom_price": (1600000, 2800000)
         },
 
         "Innova Hycross": {
             "type": "MPV",
             "fuel": ["Petrol", "Hybrid"],
             "engine_cc": 1987,
-            "idv": (2200000, 3600000)
+            "ex_showroom_price": (2200000, 3600000)
         },
 
         "Fortuner": {
             "type": "SUV",
             "fuel": ["Diesel", "Petrol"],
             "engine_cc": 2755,
-            "idv": (3000000, 5500000)
+            "ex_showroom_price": (3000000, 5500000)
         },
 
         "Glanza": {
             "type": "Hatchback",
             "fuel": ["Petrol", "CNG"],
             "engine_cc": 1197,
-            "idv": (600000, 1000000)
+            "ex_showroom_price": (600000, 1000000)
         }
     },
 
@@ -236,21 +236,21 @@ VEHICLE_CATALOG = {
             "type": "Sedan",
             "fuel": ["Petrol"],
             "engine_cc": 1498,
-            "idv": (900000, 1800000)
+            "ex_showroom_price": (900000, 1800000)
         },
 
         "Amaze": {
             "type": "Sedan",
             "fuel": ["Petrol"],
             "engine_cc": 1199,
-            "idv": (600000, 1000000)
+            "ex_showroom_price": (600000, 1000000)
         },
 
         "Elevate": {
             "type": "SUV",
             "fuel": ["Petrol"],
             "engine_cc": 1498,
-            "idv": (1100000, 1900000)
+            "ex_showroom_price": (1100000, 1900000)
         }
     },
     
@@ -262,21 +262,21 @@ VEHICLE_CATALOG = {
             "type": "Hatchback",
             "fuel": ["Petrol"],
             "engine_cc": 999,
-            "idv": (300000, 600000)
+            "ex_showroom_price": (300000, 600000)
         },
 
         "Kiger": {
             "type": "SUV",
             "fuel": ["Petrol"],
             "engine_cc": 999,
-            "idv": (600000, 1100000)
+            "ex_showroom_price": (600000, 1100000)
         },
 
         "Triber": {
             "type": "MPV",
             "fuel": ["Petrol"],
             "engine_cc": 999,
-            "idv": (550000, 1000000)
+            "ex_showroom_price": (550000, 1000000)
         }
     },
    
@@ -293,6 +293,41 @@ MAKE_DISTRIBUTION = {
     "Toyota": 0.06,
     "Honda": 0.05,
     "Renault": 0.04
+}
+
+MANUFACTURING_YEAR_WEIGHTS = {
+
+    2025: 12,
+    2024: 15,
+    2023: 14,
+    2022: 12,
+    2021: 10,
+    2020: 9,
+    2019: 8,
+    2018: 7,
+    2017: 6,
+    2016: 5,
+    2015: 4,
+    2014: 3,
+    2013: 2,
+    2012: 2,
+    2011: 1,
+    2010: 1
+}
+
+DEPRECIATION_RATE = {
+
+    0: 0.05,   # < 1 year
+    1: 0.15,
+    2: 0.20,
+    3: 0.30,
+    4: 0.40,
+    5: 0.50,
+    6: 0.55,
+    7: 0.60,
+    8: 0.65,
+    9: 0.70,
+    10: 0.75
 }
 
 
@@ -360,3 +395,139 @@ def generate_registration_number(customer_area):
 #     print(rto)
 #     print()
 
+def generate_manufacturing_year():
+    return random.choices(
+        population = list(MANUFACTURING_YEAR_WEIGHTS.keys()),
+        weights = list(MANUFACTURING_YEAR_WEIGHTS.values()),
+        k = 1
+    )[0]
+
+CURRENT_YEAR = 2026
+
+def calculate_vehicle_age(manufacturing_age):
+    return CURRENT_YEAR - manufacturing_age
+
+
+def generate_idv(vehicle,vehicle_age):
+
+    base_price = random.randint(*vehicle["ex_showroom_price"])
+
+    depreciation = DEPRECIATION_RATE.get(vehicle_age,0.75)
+
+    idv = int(
+        base_price * (1-depreciation)
+    )
+
+    return idv
+
+def generate_vehicle(customer, vehicle_index):
+
+    # Generate Vehcile ID
+    vehicle_id = generate_vehicle_id(vehicle_index)
+
+    # Generate Make, Model and Vehicle Specifications
+    make, model, vehicle = generate_make_model() 
+
+    # Generate Registration number and RTO
+    registration_number, rto = generate_registration_number(
+        customer["Customer_Area"]
+    )
+   
+    # Manufacturing Year
+    manufacturing_year = generate_manufacturing_year()
+
+    # Vehicle Age
+    vehicle_age = calculate_vehicle_age(
+        manufacturing_year
+    )
+
+    # Fuel Type
+    fuel_type = random.choice(vehicle["fuel"])
+
+    #IDV
+    idv = generate_idv(vehicle, vehicle_age)
+
+    # Create Vehicle Record
+
+    vehcile_record = {
+        "Vehicle_ID": vehicle_id,
+
+        "Customer_ID": customer["Customer_ID"],
+
+        "Registration_Number": registration_number,
+
+        "RTO": rto,
+
+        "Make": make,
+
+        "Model": model,
+
+        "Vehicle_Type": vehicle["type"],
+
+        "Fuel_Type": fuel_type,
+
+        "Engine_CC": vehicle["engine_cc"],
+
+        "Manufacturing_Year": manufacturing_year,
+
+        "Vehicle_Age": vehicle_age,
+
+        "IDV": idv
+    }
+    return vehcile_record
+
+
+def generate_vehicle_count():
+
+    return random.choices(
+        population = list(VEHICLES_PER_CUSTOMER.keys()),
+        weights = list(VEHICLES_PER_CUSTOMER.values()),
+        k = 1,
+    )[0]
+
+def generate_vehicle_master():
+
+    vehicles = []
+
+    vehicle_index = 0
+
+    for _, customer in CUSTOMER_MASTER.iterrows():
+
+        vehicle_count = generate_vehicle_count()
+
+        for _ in range(vehicle_count):
+
+            vehicle = generate_vehicle(
+                customer,
+                vehicle_index
+            )
+
+            vehicles.append(vehicle)
+
+            vehicle_index +=1
+
+    df_vehicles = pd.DataFrame(vehicles)
+
+
+    output_dir = Path("Synthetic Generator/data")
+    output_dir.mkdir(exist_ok = True)
+
+    output_file = output_dir / "vehicle_master.csv"
+
+    df_vehicles.to_csv(
+        output_file,
+        index = False
+    )
+
+    print(
+        f"Saved {len(df_vehicles)} vehicles to {output_file}"
+    )
+
+    return df_vehicles
+
+df_vehicles = generate_vehicle_master()
+
+print(df_vehicles.head())
+
+print(df_vehicles.shape)
+   
