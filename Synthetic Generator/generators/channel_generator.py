@@ -4,6 +4,8 @@ from pathlib import Path
 import pandas as pd
 from faker import Faker
 
+from constants import AREA_INFO
+
 pd.set_option("display.max_columns", None)
 pd.set_option("display.max_rows", None)
 pd.set_option("display.max_colwidth", None)
@@ -47,74 +49,6 @@ ACTIVE_STATUS = {
 }
 
 # Dictionary of all of the different areas within Jammu and their direct mapping to their respective districts to prevent impossible combinations 
-
-AREA_TO_DISTRICT = {
-    # Jammu Urban
-    "Gandhi Nagar": "Jammu",
-    "Trikuta Nagar": "Jammu",
-    "Channi Himmat": "Jammu",
-    "Shastri Nagar": "Jammu",
-    "Bakshi Nagar": "Jammu",
-    "Talab Tillo": "Jammu",
-    "Janipur": "Jammu",
-    "Rehari": "Jammu",
-    "Canal Road": "Jammu",
-    "Jewel Chowk": "Jammu",
-    "Satwari": "Jammu",
-    "Narwal": "Jammu",
-
-    # Jammu Rural
-    "Akhnoor": "Jammu",
-    "Bishnah": "Jammu",
-    "R.S. Pura": "Jammu",
-    "Marh": "Jammu",
-    "Arnia": "Jammu",
-
-    # Samba
-    "Samba": "Samba",
-    "Vijaypur": "Samba",
-    "Bari Brahmana": "Samba",
-    "Ghagwal": "Samba",
-
-    # Kathua
-    "Kathua": "Kathua",
-    "Lakhanpur": "Kathua",
-    "Hiranagar": "Kathua",
-    "Dayalachak": "Kathua",
-    "Bani": "Kathua",
-    "Billawar": "Kathua",
-
-    # Udhampur
-    "Udhampur": "Udhampur",
-    "Chenani": "Udhampur",
-    "Ramnagar": "Udhampur",
-
-    # Reasi
-    "Reasi": "Reasi",
-    "Katra": "Reasi",
-
-    # Rajouri
-    "Rajouri": "Rajouri",
-    "Nowshera": "Rajouri",
-    "Sunderbani": "Rajouri",
-
-    # Poonch
-    "Poonch": "Poonch",
-    "Mendhar": "Poonch",
-    "Surankote": "Poonch",
-
-    # Ramban
-    "Ramban": "Ramban",
-    "Banihal": "Ramban",
-
-    # Doda
-    "Doda": "Doda",
-    "Bhaderwah": "Doda",
-
-    # Kishtwar
-    "Kishtwar": "Kishtwar",
-    "Padder": "Kishtwar"
-}
 
 # List of Districts
 
@@ -309,10 +243,10 @@ def generate_entity_name():
     
         while name in USED_ENTITY_NAMES:
          name = (
-             f"{random.choice(NAME_PREFIX)}",
-             f"{random.choice(NAME_MIDDLE)}",
+             f"{random.choice(NAME_PREFIX)}"
+             f"{random.choice(NAME_MIDDLE)}"
              f"{random.choice(NAME_SUFFIX)}"
-         )[0]
+         )
 
         USED_ENTITY_NAMES.add(name)
         
@@ -394,7 +328,7 @@ def generate_channels(n_channels):
 
         area = get_area(channel_type)
 
-        district = AREA_TO_DISTRICT[area]
+        district = AREA_INFO[area]["district"]
 
         channel = {
             "IMD_Code": generate_imd(i),
@@ -409,9 +343,24 @@ def generate_channels(n_channels):
 
         channels.append(channel)
     
-    return pd.DataFrame(channels)
+    df_channels = pd.DataFrame(channels)    
 
-# df_test = generate_channels(50)
-# print(df_test)
+    output_dir = Path("Synthetic Generator/data")
+    output_dir.mkdir(exist_ok= True)
+
+    output_file = output_dir / "channel_master.csv"
+
+    df_channels.to_csv(output_file,index = False)
+
+    print(f"Saved {len(df_channels)} channels to {output_file}")
+
+    return df_channels
+    
+
+
+# df_channels = generate_channels(500)
+
+
+
 
 

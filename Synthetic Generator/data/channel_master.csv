@@ -1,0 +1,501 @@
+IMD_Code,Entity_Name,Channel_Type,Area,District,Portfolio_Size,Year_Onboarded,Active_Status
+IMD10000,Mahindra Unity Insurance Solutions,Prime Broker,Gandhi Nagar,Jammu,221,2017,Active
+IMD10001,Elite Secure Insurance,Dealer,Narwal,Jammu,73,2019,Active
+IMD10002,Elite Unity Insurance Consultants,Prime Broker,Bakshi Nagar,Jammu,451,2020,Active
+IMD10003,Elite Apex Risk Advisors,POSP,Rajouri,Rajouri,39,2019,Active
+IMD10004,Khajuria Royal Insurance Hub,POSP,Janipur,Jammu,97,2020,Active
+IMD10005,Reliable Reliable Risk Advisors,Agency,Talab Tillo,Jammu,292,2025,Active
+IMD10006,Dogra Secure Insurance Solutions,POSP,Talab Tillo,Jammu,57,2017,Active
+IMD10007,Secure Royal Insurance Point,Dealer,Gandhi Nagar,Jammu,144,2021,Active
+IMD10008,Dogra Guardian Insurance Point,POSP,Doda,Doda,88,2019,Active
+IMD10009,Gupta Apex Insurance,POSP,Kishtwar,Kishtwar,49,2016,Active
+IMD10010,Jammu Trust Insurance Consultants,POSP,Gandhi Nagar,Jammu,70,2023,Active
+IMD10011,Mahindra Integrity Insurance Associates,POSP,Kathua,Kathua,94,2022,Active
+IMD10012,Royal Reliable Insurance,Bancassurance,Gandhi Nagar,Jammu,312,2018,Active
+IMD10013,Dogra Smart Insurance Associates,Agency,Janipur,Jammu,232,2023,Active
+IMD10014,Sharma Elite Risk Advisors,Bancassurance,Rajouri,Rajouri,548,2017,Active
+IMD10015,Mahindra Summit Insurance Point,POSP,Gandhi Nagar,Jammu,84,2017,Active
+IMD10016,Verma Capital Insurance Hub,POSP,Samba,Samba,40,2024,Active
+IMD10017,Jammu Global Insurance,Dealer,Udhampur,Udhampur,78,2021,Active
+IMD10018,Mahajan Unity Insurance Services,Agency,Trikuta Nagar,Jammu,101,2023,Active
+IMD10019,Gupta Capital Insurance Consultants,Bancassurance,Udhampur,Udhampur,762,2018,Active
+IMD10020,Verma Fortune Insurance Solutions,Dealer,Bari Brahmana,Samba,232,2020,Active
+IMD10021,Secure Elite Insurance Solutions,Prime Broker,Jewel Chowk,Jammu,265,2017,Active
+IMD10022,Gupta Prime Insurance Services,Prime Broker,Trikuta Nagar,Jammu,512,2016,Active
+IMD10023,Dogra Summit Insurance Solutions,Dealer,Samba,Samba,121,2023,Active
+IMD10024,Royal Unity Insurance Consultants,POSP,Doda,Doda,72,2019,Active
+IMD10025,Elite Vision Insurance,Prime Broker,Channi Himmat,Jammu,494,2017,Active
+IMD10026,Khajuria Unity Insurance Solutions,Agency,Udhampur,Udhampur,128,2024,Active
+IMD10027,Gupta Reliable Insurance Consultants,POSP,Rehari,Jammu,90,2017,Active
+IMD10028,Dogra Unity Insurance Point,Bancassurance,Rajouri,Rajouri,616,2023,Active
+IMD10029,Raina Smart Insurance,Dealer,Udhampur,Udhampur,149,2020,Active
+IMD10030,Royal Capital Insurance Solutions,Agency,Trikuta Nagar,Jammu,155,2019,Active
+IMD10031,Jammu Secure Insurance,Prime Broker,Canal Road,Jammu,449,2023,Active
+IMD10032,Dogra Shield Insurance Services,Dealer,Narwal,Jammu,202,2017,Active
+IMD10033,Gupta Integrity Insurance,POSP,Janipur,Jammu,99,2017,Active
+IMD10034,Mahindra Trust Insurance Hub,Prime Broker,Canal Road,Jammu,272,2020,Active
+IMD10035,Jammu Reliable Insurance,Prime Broker,Channi Himmat,Jammu,384,2025,Inactive
+IMD10036,Verma Summit Risk Advisors,Bancassurance,Gandhi Nagar,Jammu,335,2021,Active
+IMD10037,Raina Vision Risk Advisors,Dealer,Gandhi Nagar,Jammu,206,2024,Active
+IMD10038,Khajuria Capital Risk Advisors,Agency,Trikuta Nagar,Jammu,109,2017,Active
+IMD10039,Verma Apex Insurance Solutions,POSP,Rehari,Jammu,53,2024,Active
+IMD10040,Dogra Future Risk Advisors,Dealer,Samba,Samba,61,2016,Active
+IMD10041,Raina Vision Insurance Associates,POSP,Kishtwar,Kishtwar,91,2016,Active
+IMD10042,Gupta Fortune Insurance,Dealer,Kathua,Kathua,144,2025,Active
+IMD10043,North Secure Insurance Hub,POSP,Gandhi Nagar,Jammu,46,2019,Active
+IMD10044,Elite Guardian Insurance Point,POSP,R.S. Pura,Jammu,50,2018,Inactive
+IMD10045,Sharma Shield Insurance Hub,Agency,Rajouri,Rajouri,280,2022,Active
+IMD10046,Mahindra Shield Insurance Services,Dealer,Samba,Samba,147,2016,Active
+IMD10047,Secure Royal Risk Advisors,POSP,Rajouri,Rajouri,49,2019,Active
+IMD10048,Dogra Pioneer Insurance Hub,POSP,Rehari,Jammu,85,2022,Active
+IMD10049,RainaIntegrityRisk Advisors,Agency,Janipur,Jammu,89,2017,Active
+IMD10050,Elite Guardian Insurance Services,POSP,Kathua,Kathua,69,2025,Active
+IMD10051,Verma Royal Insurance Associates,POSP,Akhnoor,Jammu,28,2021,Active
+IMD10052,Trikuta Summit Risk Advisors,Prime Broker,Gandhi Nagar,Jammu,491,2022,Active
+IMD10053,Verma Future Insurance Associates,Prime Broker,Bakshi Nagar,Jammu,496,2018,Active
+IMD10054,Sharma Vertex Risk Advisors,POSP,R.S. Pura,Jammu,46,2022,Active
+IMD10055,Secure Vision Insurance Solutions,Prime Broker,Channi Himmat,Jammu,411,2023,Active
+IMD10056,Dogra Vertex Insurance Hub,Bancassurance,Samba,Samba,295,2019,Active
+IMD10057,Sharma Secure Insurance Solutions,POSP,Talab Tillo,Jammu,80,2025,Active
+IMD10058,Verma Smart Insurance Consultants,POSP,Akhnoor,Jammu,71,2019,Active
+IMD10059,Khajuria Future Insurance Solutions,Prime Broker,Udhampur,Udhampur,240,2024,Active
+IMD10060,Khajuria Vision Insurance Point,Prime Broker,Udhampur,Udhampur,560,2023,Active
+IMD10061,Secure Guardian Insurance Associates,Bancassurance,Samba,Samba,761,2023,Active
+IMD10062,Mahindra Unity Risk Advisors,Agency,Talab Tillo,Jammu,276,2024,Active
+IMD10063,Trikuta Unity Risk Advisors,POSP,Akhnoor,Jammu,62,2021,Active
+IMD10064,Reliable Capital Insurance Solutions,POSP,Janipur,Jammu,28,2022,Active
+IMD10065,SharmaIntegrityInsurance Associates,Prime Broker,Jewel Chowk,Jammu,394,2016,Active
+IMD10066,Elite Fortune Insurance Solutions,POSP,Satwari,Jammu,82,2019,Active
+IMD10067,Reliable Shield Insurance Consultants,Prime Broker,Jewel Chowk,Jammu,215,2025,Active
+IMD10068,Sharma Reliable Insurance Associates,Dealer,Bari Brahmana,Samba,84,2023,Active
+IMD10069,Secure Apex Insurance Hub,POSP,Rehari,Jammu,68,2020,Active
+IMD10070,Dogra Global Insurance,Agency,Trikuta Nagar,Jammu,271,2024,Active
+IMD10071,Dogra Secure Insurance,Bancassurance,Gandhi Nagar,Jammu,453,2019,Active
+IMD10072,Royal Elite Insurance Solutions,Prime Broker,Trikuta Nagar,Jammu,388,2020,Active
+IMD10073,Khajuria Shield Risk Advisors,POSP,Bishnah,Jammu,33,2025,Active
+IMD10074,Reliable Smart Insurance Solutions,POSP,Samba,Samba,29,2025,Active
+IMD10075,Trikuta Guardian Insurance Services,Prime Broker,Gandhi Nagar,Jammu,557,2025,Active
+IMD10076,North Reliable Insurance Hub,POSP,Akhnoor,Jammu,21,2022,Active
+IMD10077,Secure Capital Insurance Associates,POSP,Kishtwar,Kishtwar,42,2024,Active
+IMD10078,Royal Vision Insurance Associates,POSP,Rajouri,Rajouri,95,2020,Active
+IMD10079,Mahindra Vision Insurance Solutions,POSP,Doda,Doda,79,2025,Active
+IMD10080,Jammu Shield Insurance Consultants,POSP,Gandhi Nagar,Jammu,47,2021,Active
+IMD10081,Mahindra Fortune Insurance,POSP,Poonch,Poonch,86,2019,Active
+IMD10082,Gupta Global Insurance Consultants,Agency,Talab Tillo,Jammu,194,2016,Active
+IMD10083,Trikuta Integrity Insurance Hub,POSP,Samba,Samba,80,2024,Active
+IMD10084,Jammu Royal Insurance Consultants,POSP,Kathua,Kathua,54,2020,Active
+IMD10085,Khajuria Fortune Insurance Point,POSP,Talab Tillo,Jammu,44,2019,Active
+IMD10086,Trikuta Elite Insurance Solutions,POSP,Bishnah,Jammu,57,2019,Active
+IMD10087,Gupta Pioneer Insurance,POSP,Samba,Samba,26,2024,Active
+IMD10088,Royal Elite Insurance,Dealer,Kathua,Kathua,196,2020,Active
+IMD10089,Mahajan Pioneer Insurance Consultants,POSP,Talab Tillo,Jammu,34,2017,Active
+IMD10090,Mahajan Capital Insurance Point,POSP,Bishnah,Jammu,92,2020,Active
+IMD10091,Elite Guardian Insurance Solutions,POSP,R.S. Pura,Jammu,86,2022,Active
+IMD10092,Elite Vertex Insurance,POSP,Poonch,Poonch,98,2017,Active
+IMD10093,Dogra Shield Insurance Solutions,POSP,Talab Tillo,Jammu,42,2024,Active
+IMD10094,Royal Vertex Insurance,POSP,Akhnoor,Jammu,49,2020,Active
+IMD10095,Gupta Pioneer Insurance Solutions,Agency,Talab Tillo,Jammu,188,2017,Active
+IMD10096,Gupta Reliable Insurance,Prime Broker,Udhampur,Udhampur,234,2020,Active
+IMD10097,Secure Elite Insurance Consultants,Agency,Rajouri,Rajouri,256,2020,Active
+IMD10098,Royal Vision Insurance Services,Dealer,Bari Brahmana,Samba,203,2016,Active
+IMD10099,Sharma Reliable Insurance Solutions,Agency,Kathua,Kathua,252,2025,Active
+IMD10100,Mahindra Integrity Insurance,POSP,Kathua,Kathua,42,2023,Active
+IMD10101,Elite Global Insurance Services,POSP,Rehari,Jammu,80,2021,Active
+IMD10102,Raina Apex Insurance Associates,POSP,Janipur,Jammu,83,2020,Active
+IMD10103,Mahajan Vision Insurance Services,POSP,Kathua,Kathua,60,2020,Active
+IMD10104,Sharma Fortune Insurance Consultants,Bancassurance,Kathua,Kathua,623,2016,Active
+IMD10105,Secure Secure Insurance Solutions,POSP,Kathua,Kathua,54,2024,Active
+IMD10106,GuptaShieldRisk Advisors,POSP,Poonch,Poonch,90,2016,Active
+IMD10107,Khajuria Vision Insurance Services,POSP,Kishtwar,Kishtwar,39,2023,Active
+IMD10108,Elite Global Insurance Consultants,POSP,Samba,Samba,51,2023,Active
+IMD10109,Gupta Reliable Risk Advisors,POSP,Doda,Doda,73,2021,Active
+IMD10110,Trikuta Vertex Insurance Consultants,Prime Broker,Kathua,Kathua,593,2018,Active
+IMD10111,Reliable Vision Insurance Hub,Prime Broker,Channi Himmat,Jammu,595,2019,Inactive
+IMD10112,Elite Secure Insurance Hub,POSP,Satwari,Jammu,80,2022,Active
+IMD10113,Gupta Global Insurance,Prime Broker,Kathua,Kathua,214,2024,Active
+IMD10114,SharmaCapitalInsurance Associates,POSP,Janipur,Jammu,39,2017,Active
+IMD10115,Reliable Reliable Insurance Hub,Bancassurance,Kathua,Kathua,746,2022,Active
+IMD10116,Royal Fortune Insurance,Prime Broker,Udhampur,Udhampur,466,2017,Active
+IMD10117,Gupta Reliable Insurance Associates,Prime Broker,Channi Himmat,Jammu,200,2017,Active
+IMD10118,Mahajan Apex Insurance,Prime Broker,Udhampur,Udhampur,300,2021,Active
+IMD10119,Raina Shield Insurance Point,POSP,R.S. Pura,Jammu,30,2025,Active
+IMD10120,Gupta Unity Insurance Consultants,Prime Broker,Trikuta Nagar,Jammu,476,2020,Active
+IMD10121,Secure Vertex Insurance Point,Prime Broker,Udhampur,Udhampur,187,2023,Active
+IMD10122,Elite Pioneer Insurance Consultants,Bancassurance,Kathua,Kathua,509,2019,Inactive
+IMD10123,Reliable Integrity Insurance Hub,Dealer,Narwal,Jammu,197,2020,Inactive
+IMD10124,Reliable Pioneer Insurance,POSP,Kishtwar,Kishtwar,92,2016,Active
+IMD10125,Trikuta Unity Insurance Hub,Agency,Udhampur,Udhampur,136,2019,Active
+IMD10126,Gupta Elite Insurance,Prime Broker,Bari Brahmana,Samba,308,2023,Active
+IMD10127,Trikuta Apex Insurance Associates,POSP,Janipur,Jammu,42,2019,Active
+IMD10128,Mahindra Shield Risk Advisors,Prime Broker,Janipur,Jammu,572,2023,Active
+IMD10129,GuptaUnityInsurance Associates,POSP,Poonch,Poonch,91,2021,Active
+IMD10130,Khajuria Vision Insurance Hub,POSP,Rehari,Jammu,53,2025,Active
+IMD10131,JammuGuardianInsurance Solutions,Prime Broker,Jewel Chowk,Jammu,481,2017,Active
+IMD10132,Elite Elite Insurance Point,Prime Broker,Narwal,Jammu,173,2016,Active
+IMD10133,Gupta Smart Insurance Consultants,Prime Broker,Gandhi Nagar,Jammu,339,2024,Active
+IMD10134,Elite Elite Insurance Consultants,Agency,Gandhi Nagar,Jammu,237,2022,Active
+IMD10135,Verma Vision Insurance Consultants,POSP,Samba,Samba,50,2021,Active
+IMD10136,North Secure Insurance Associates,Prime Broker,Canal Road,Jammu,291,2019,Active
+IMD10137,Dogra Trust Insurance,Dealer,Samba,Samba,62,2021,Active
+IMD10138,Dogra Fortune Insurance Solutions,POSP,Bishnah,Jammu,95,2019,Active
+IMD10139,Sharma Pioneer Insurance Point,POSP,Kathua,Kathua,36,2024,Active
+IMD10140,Sharma Capital Insurance,POSP,Samba,Samba,65,2019,Active
+IMD10141,Gupta Future Insurance Services,POSP,Rehari,Jammu,28,2023,Active
+IMD10142,Secure Summit Insurance Solutions,POSP,Bishnah,Jammu,98,2016,Active
+IMD10143,Trikuta Vision Insurance,Dealer,Kathua,Kathua,65,2023,Active
+IMD10144,Secure Reliable Insurance Services,POSP,Janipur,Jammu,61,2025,Active
+IMD10145,Jammu Smart Risk Advisors,POSP,Bishnah,Jammu,78,2024,Active
+IMD10146,Verma Future Insurance Consultants,POSP,Samba,Samba,49,2022,Active
+IMD10147,Khajuria Apex Insurance Associates,Prime Broker,Jewel Chowk,Jammu,310,2020,Active
+IMD10148,Dogra Reliable Insurance Services,POSP,Doda,Doda,31,2022,Active
+IMD10149,Mahajan Integrity Insurance Hub,Agency,Udhampur,Udhampur,251,2017,Active
+IMD10150,Elite Secure Risk Advisors,Dealer,Udhampur,Udhampur,203,2020,Active
+IMD10151,Royal Unity Insurance Services,Prime Broker,Trikuta Nagar,Jammu,329,2024,Active
+IMD10152,Elite Fortune Insurance,Agency,Kathua,Kathua,235,2020,Active
+IMD10153,Jammu Royal Insurance,POSP,Kathua,Kathua,43,2018,Active
+IMD10154,ReliableFutureInsurance Consultants,POSP,Janipur,Jammu,63,2018,Active
+IMD10155,Dogra Secure Insurance Point,Agency,Udhampur,Udhampur,120,2025,Active
+IMD10156,ElitePioneerInsurance Solutions,POSP,Akhnoor,Jammu,85,2017,Active
+IMD10157,Royal Summit Risk Advisors,POSP,Samba,Samba,25,2019,Active
+IMD10158,Trikuta Trust Insurance Point,Prime Broker,Gandhi Nagar,Jammu,541,2020,Active
+IMD10159,Elite Shield Insurance Point,POSP,R.S. Pura,Jammu,68,2024,Active
+IMD10160,North Reliable Insurance Associates,Prime Broker,Kathua,Kathua,591,2016,Active
+IMD10161,Jammu Integrity Insurance Associates,Prime Broker,Gandhi Nagar,Jammu,443,2022,Active
+IMD10162,Sharma Apex Insurance Point,POSP,Janipur,Jammu,99,2023,Active
+IMD10163,Khajuria Unity Insurance Associates,Dealer,Narwal,Jammu,200,2022,Active
+IMD10164,Jammu Unity Insurance Hub,POSP,Rehari,Jammu,41,2017,Active
+IMD10165,North Royal Insurance Point,POSP,R.S. Pura,Jammu,50,2017,Active
+IMD10166,Dogra Shield Insurance Consultants,POSP,Bishnah,Jammu,79,2025,Active
+IMD10167,Jammu Apex Insurance Point,POSP,Doda,Doda,76,2017,Active
+IMD10168,Mahajan Royal Insurance Services,Prime Broker,Bari Brahmana,Samba,308,2023,Active
+IMD10169,Dogra Reliable Insurance Associates,POSP,Rajouri,Rajouri,79,2025,Active
+IMD10170,Secure Integrity Insurance Solutions,Agency,Rajouri,Rajouri,162,2025,Active
+IMD10171,Khajuria Apex Insurance Services,POSP,Gandhi Nagar,Jammu,84,2018,Active
+IMD10172,Raina Royal Insurance Hub,Agency,Poonch,Poonch,152,2022,Active
+IMD10173,Jammu Reliable Insurance Hub,POSP,Bishnah,Jammu,32,2024,Active
+IMD10174,Gupta Apex Insurance Services,POSP,Kathua,Kathua,94,2018,Active
+IMD10175,Reliable Capital Insurance Services,POSP,Samba,Samba,59,2024,Active
+IMD10176,Dogra Future Insurance Hub,Agency,Udhampur,Udhampur,84,2021,Active
+IMD10177,Royal Trust Insurance Solutions,Bancassurance,Kathua,Kathua,340,2018,Active
+IMD10178,Mahajan Apex Insurance Point,Agency,Gandhi Nagar,Jammu,232,2022,Active
+IMD10179,Raina Vision Insurance,POSP,Samba,Samba,72,2021,Active
+IMD10180,Trikuta Vision Insurance Solutions,POSP,Akhnoor,Jammu,88,2019,Active
+IMD10181,Verma Royal Insurance Consultants,Agency,Talab Tillo,Jammu,198,2020,Active
+IMD10182,Raina Trust Insurance Point,Prime Broker,Jewel Chowk,Jammu,596,2020,Active
+IMD10183,Khajuria Summit Insurance Services,Prime Broker,Jewel Chowk,Jammu,295,2017,Active
+IMD10184,GuptaVisionInsurance Hub,POSP,Poonch,Poonch,23,2022,Active
+IMD10185,Dogra Royal Insurance Solutions,Prime Broker,Trikuta Nagar,Jammu,164,2021,Active
+IMD10186,Gupta Capital Insurance,Agency,Kathua,Kathua,153,2023,Active
+IMD10187,Secure Guardian Insurance,POSP,Samba,Samba,30,2016,Active
+IMD10188,Elite Elite Risk Advisors,Agency,Talab Tillo,Jammu,140,2020,Active
+IMD10189,RoyalGuardianInsurance,POSP,Samba,Samba,100,2024,Active
+IMD10190,Sharma Guardian Insurance Hub,Agency,Trikuta Nagar,Jammu,141,2025,Active
+IMD10191,North Reliable Insurance,Prime Broker,Gandhi Nagar,Jammu,349,2023,Active
+IMD10192,Sharma Royal Insurance Services,POSP,Satwari,Jammu,64,2019,Active
+IMD10193,Jammu Capital Insurance,Prime Broker,Bari Brahmana,Samba,330,2024,Active
+IMD10194,Secure Global Insurance Point,Prime Broker,Kathua,Kathua,565,2018,Active
+IMD10195,Trikuta Trust Insurance,Agency,Talab Tillo,Jammu,282,2019,Active
+IMD10196,Reliable Fortune Insurance Consultants,POSP,Rehari,Jammu,52,2016,Active
+IMD10197,Mahajan Apex Risk Advisors,POSP,Satwari,Jammu,35,2021,Active
+IMD10198,Reliable Apex Insurance Point,POSP,Akhnoor,Jammu,83,2023,Active
+IMD10199,Dogra Future Insurance Services,Agency,Trikuta Nagar,Jammu,190,2025,Inactive
+IMD10200,Khajuria Reliable Insurance Hub,POSP,Rehari,Jammu,57,2020,Active
+IMD10201,Secure Royal Insurance Consultants,Agency,Gandhi Nagar,Jammu,90,2021,Active
+IMD10202,Mahajan Reliable Insurance Associates,POSP,Samba,Samba,66,2024,Active
+IMD10203,Gupta Guardian Insurance Consultants,Prime Broker,Udhampur,Udhampur,167,2018,Active
+IMD10204,Reliable Integrity Insurance,Agency,Janipur,Jammu,234,2018,Active
+IMD10205,Dogra Integrity Insurance Point,Dealer,Gandhi Nagar,Jammu,185,2021,Active
+IMD10206,Khajuria Prime Insurance Point,Prime Broker,Trikuta Nagar,Jammu,405,2024,Active
+IMD10207,TrikutaGlobalInsurance Solutions,Prime Broker,Channi Himmat,Jammu,212,2018,Active
+IMD10208,Secure Reliable Insurance Hub,Prime Broker,Udhampur,Udhampur,491,2021,Active
+IMD10209,Trikuta Shield Insurance Point,Prime Broker,Channi Himmat,Jammu,556,2021,Active
+IMD10210,SharmaRoyalInsurance Hub,POSP,Talab Tillo,Jammu,79,2024,Active
+IMD10211,Reliable Global Insurance Associates,Dealer,Narwal,Jammu,246,2022,Active
+IMD10212,Dogra Vision Insurance Consultants,POSP,Kishtwar,Kishtwar,86,2021,Active
+IMD10213,Raina Capital Insurance Associates,Agency,Talab Tillo,Jammu,208,2016,Active
+IMD10214,Raina Apex Insurance Solutions,Prime Broker,Channi Himmat,Jammu,327,2024,Active
+IMD10215,Mahindra Capital Risk Advisors,Agency,Trikuta Nagar,Jammu,237,2024,Active
+IMD10216,Gupta Shield Insurance Hub,Prime Broker,Bakshi Nagar,Jammu,581,2025,Active
+IMD10217,Mahindra Trust Insurance Associates,Dealer,Narwal,Jammu,208,2016,Active
+IMD10218,Trikuta Global Insurance Solutions,Prime Broker,Channi Himmat,Jammu,562,2022,Active
+IMD10219,Secure Future Insurance Consultants,POSP,Gandhi Nagar,Jammu,79,2019,Active
+IMD10220,Jammu Royal Insurance Associates,POSP,Poonch,Poonch,36,2021,Active
+IMD10221,Khajuria Pioneer Insurance Consultants,POSP,Talab Tillo,Jammu,51,2018,Active
+IMD10222,Elite Unity Insurance Point,POSP,Satwari,Jammu,61,2025,Active
+IMD10223,Secure Global Risk Advisors,POSP,Janipur,Jammu,83,2016,Active
+IMD10224,Gupta Trust Insurance Hub,POSP,Akhnoor,Jammu,26,2016,Active
+IMD10225,KhajuriaFutureInsurance Point,Prime Broker,Kathua,Kathua,285,2021,Active
+IMD10226,Verma Royal Risk Advisors,POSP,Satwari,Jammu,29,2022,Active
+IMD10227,Khajuria Capital Insurance Services,Agency,Trikuta Nagar,Jammu,180,2021,Active
+IMD10228,Gupta Trust Insurance Associates,POSP,Doda,Doda,84,2016,Active
+IMD10229,Royal Summit Insurance Consultants,POSP,Rehari,Jammu,39,2025,Active
+IMD10230,Jammu Shield Insurance Associates,POSP,Doda,Doda,98,2020,Active
+IMD10231,Royal Integrity Risk Advisors,Prime Broker,Canal Road,Jammu,393,2016,Active
+IMD10232,Trikuta Prime Insurance Consultants,Prime Broker,Rajouri,Rajouri,285,2025,Active
+IMD10233,Raina Summit Insurance Associates,Agency,Kathua,Kathua,117,2019,Active
+IMD10234,Sharma Vision Insurance Hub,Dealer,Narwal,Jammu,157,2018,Active
+IMD10235,Royal Secure Insurance Point,POSP,R.S. Pura,Jammu,86,2019,Active
+IMD10236,SecureFortuneInsurance Hub,Bancassurance,Udhampur,Udhampur,759,2021,Active
+IMD10237,Mahindra Guardian Insurance Consultants,Dealer,Kathua,Kathua,99,2019,Active
+IMD10238,Trikuta Vertex Insurance Solutions,POSP,Doda,Doda,82,2021,Active
+IMD10239,Mahindra Vertex Insurance Services,Prime Broker,Udhampur,Udhampur,443,2024,Active
+IMD10240,Gupta Vertex Insurance,Bancassurance,Rajouri,Rajouri,494,2017,Active
+IMD10241,MahindraFortuneRisk Advisors,POSP,Talab Tillo,Jammu,37,2017,Active
+IMD10242,Gupta Unity Insurance,Prime Broker,Trikuta Nagar,Jammu,201,2022,Active
+IMD10243,Gupta Prime Insurance Point,Prime Broker,Narwal,Jammu,358,2023,Active
+IMD10244,Jammu Vertex Insurance,POSP,Kishtwar,Kishtwar,31,2025,Active
+IMD10245,Mahajan Shield Insurance Associates,Agency,Udhampur,Udhampur,294,2018,Active
+IMD10246,Royal Shield Risk Advisors,POSP,Rajouri,Rajouri,24,2016,Active
+IMD10247,Jammu Vertex Insurance Consultants,Prime Broker,Udhampur,Udhampur,478,2024,Active
+IMD10248,Secure Pioneer Insurance Solutions,Dealer,Narwal,Jammu,78,2021,Active
+IMD10249,Raina Prime Insurance Hub,Prime Broker,Channi Himmat,Jammu,554,2020,Active
+IMD10250,Reliable Future Insurance Hub,Agency,Trikuta Nagar,Jammu,102,2022,Active
+IMD10251,Jammu Unity Insurance,POSP,Janipur,Jammu,53,2022,Active
+IMD10252,Trikuta Integrity Insurance,Agency,Poonch,Poonch,146,2021,Active
+IMD10253,Trikuta Shield Insurance Associates,POSP,Janipur,Jammu,84,2020,Active
+IMD10254,North Guardian Insurance Solutions,Prime Broker,Udhampur,Udhampur,262,2018,Active
+IMD10255,North Future Insurance Consultants,Prime Broker,Poonch,Poonch,537,2024,Active
+IMD10256,Dogra Summit Insurance Consultants,Agency,Samba,Samba,215,2021,Active
+IMD10257,Verma Integrity Insurance Point,Prime Broker,Gandhi Nagar,Jammu,234,2021,Active
+IMD10258,Royal Reliable Insurance Consultants,POSP,Samba,Samba,27,2023,Active
+IMD10259,Secure Vertex Insurance,POSP,Bishnah,Jammu,70,2020,Active
+IMD10260,Mahajan Future Insurance Hub,Agency,Kathua,Kathua,259,2017,Active
+IMD10261,Royal Secure Risk Advisors,POSP,Poonch,Poonch,72,2018,Active
+IMD10262,Elite Royal Insurance Associates,Agency,Poonch,Poonch,194,2022,Active
+IMD10263,Gupta Royal Insurance Services,Prime Broker,Narwal,Jammu,241,2024,Active
+IMD10264,Sharma Prime Risk Advisors,POSP,Kishtwar,Kishtwar,79,2024,Active
+IMD10265,MahindraTrustInsurance Services,POSP,Talab Tillo,Jammu,24,2022,Active
+IMD10266,Gupta Trust Insurance Services,Dealer,Udhampur,Udhampur,75,2025,Active
+IMD10267,Mahajan Unity Insurance,Prime Broker,Narwal,Jammu,355,2023,Active
+IMD10268,Mahajan Capital Risk Advisors,POSP,Poonch,Poonch,49,2025,Active
+IMD10269,Jammu Unity Risk Advisors,Prime Broker,Narwal,Jammu,598,2018,Inactive
+IMD10270,Mahindra Secure Insurance Point,Prime Broker,Jewel Chowk,Jammu,470,2022,Active
+IMD10271,Reliable Summit Insurance Hub,POSP,Satwari,Jammu,73,2022,Active
+IMD10272,Royal Unity Insurance Solutions,POSP,Kathua,Kathua,58,2018,Active
+IMD10273,Elite Fortune Insurance Point,Dealer,Bari Brahmana,Samba,149,2019,Active
+IMD10274,Secure Royal Insurance Services,POSP,Janipur,Jammu,88,2019,Active
+IMD10275,Mahajan Reliable Insurance Solutions,POSP,Bishnah,Jammu,95,2024,Active
+IMD10276,Trikuta Prime Insurance Solutions,POSP,Poonch,Poonch,44,2017,Active
+IMD10277,Verma Smart Insurance Solutions,Agency,Rajouri,Rajouri,221,2021,Active
+IMD10278,North Vertex Risk Advisors,POSP,R.S. Pura,Jammu,66,2024,Active
+IMD10279,Royal Apex Insurance Solutions,Prime Broker,Bari Brahmana,Samba,339,2021,Active
+IMD10280,Gupta Prime Risk Advisors,Prime Broker,Trikuta Nagar,Jammu,433,2025,Active
+IMD10281,Jammu Unity Insurance Associates,POSP,Janipur,Jammu,92,2019,Active
+IMD10282,Mahindra Global Insurance Consultants,Prime Broker,Narwal,Jammu,385,2018,Active
+IMD10283,Royal Shield Insurance,POSP,Janipur,Jammu,87,2016,Active
+IMD10284,Mahajan Prime Insurance Associates,POSP,Rajouri,Rajouri,37,2019,Active
+IMD10285,Secure Royal Insurance,POSP,Talab Tillo,Jammu,99,2025,Active
+IMD10286,Elite Prime Insurance,Prime Broker,Gandhi Nagar,Jammu,421,2020,Active
+IMD10287,Elite Shield Insurance Services,POSP,R.S. Pura,Jammu,32,2024,Active
+IMD10288,North Pioneer Insurance Associates,POSP,R.S. Pura,Jammu,30,2021,Active
+IMD10289,Gupta Vertex Insurance Services,Prime Broker,Trikuta Nagar,Jammu,484,2016,Active
+IMD10290,Mahajan Prime Insurance Point,POSP,R.S. Pura,Jammu,30,2023,Active
+IMD10291,Khajuria Summit Insurance,Prime Broker,Channi Himmat,Jammu,267,2019,Active
+IMD10292,Mahindra Secure Insurance Services,Prime Broker,Bakshi Nagar,Jammu,500,2020,Active
+IMD10293,Jammu Prime Insurance Solutions,Prime Broker,Gandhi Nagar,Jammu,450,2018,Active
+IMD10294,Dogra Vertex Insurance Point,Agency,Janipur,Jammu,224,2019,Active
+IMD10295,Jammu Smart Insurance Point,Agency,Samba,Samba,282,2017,Active
+IMD10296,Elite Unity Insurance Services,Bancassurance,Gandhi Nagar,Jammu,548,2025,Active
+IMD10297,Jammu Prime Risk Advisors,Bancassurance,Kathua,Kathua,661,2023,Active
+IMD10298,Raina Integrity Insurance Associates,Prime Broker,Jewel Chowk,Jammu,193,2025,Active
+IMD10299,Mahindra Capital Insurance Associates,POSP,Gandhi Nagar,Jammu,39,2022,Active
+IMD10300,Trikuta Vision Insurance Hub,POSP,Gandhi Nagar,Jammu,54,2017,Active
+IMD10301,Elite Elite Insurance,POSP,Akhnoor,Jammu,31,2021,Active
+IMD10302,Reliable Prime Risk Advisors,Prime Broker,Bari Brahmana,Samba,361,2022,Active
+IMD10303,Gupta Integrity Insurance Point,Agency,Talab Tillo,Jammu,255,2022,Active
+IMD10304,Gupta Reliable Insurance Point,POSP,Rehari,Jammu,75,2020,Active
+IMD10305,Mahindra Unity Insurance Consultants,Prime Broker,Gandhi Nagar,Jammu,454,2025,Active
+IMD10306,Reliable Apex Insurance Associates,POSP,Rehari,Jammu,62,2023,Active
+IMD10307,Gupta Vertex Insurance Hub,Agency,Udhampur,Udhampur,234,2019,Active
+IMD10308,GuptaApexInsurance Associates,POSP,Satwari,Jammu,55,2022,Active
+IMD10309,Raina Fortune Insurance,Dealer,Narwal,Jammu,236,2023,Active
+IMD10310,Dogra Future Insurance Consultants,POSP,Rajouri,Rajouri,37,2020,Active
+IMD10311,Reliable Reliable Insurance Consultants,Prime Broker,Bari Brahmana,Samba,456,2023,Active
+IMD10312,NorthFortuneInsurance Services,Prime Broker,Udhampur,Udhampur,205,2019,Active
+IMD10313,Mahajan Integrity Insurance Associates,POSP,Samba,Samba,62,2022,Active
+IMD10314,Gupta Vision Insurance Hub,POSP,Talab Tillo,Jammu,70,2023,Active
+IMD10315,North Prime Insurance Consultants,Prime Broker,Canal Road,Jammu,203,2020,Active
+IMD10316,Gupta Royal Risk Advisors,Bancassurance,Gandhi Nagar,Jammu,551,2023,Active
+IMD10317,Khajuria Vision Insurance Consultants,Prime Broker,Channi Himmat,Jammu,313,2017,Active
+IMD10318,Jammu Elite Insurance Point,Agency,Gandhi Nagar,Jammu,269,2019,Active
+IMD10319,Elite Vision Insurance Solutions,Prime Broker,Channi Himmat,Jammu,558,2022,Active
+IMD10320,Reliable Prime Insurance Solutions,POSP,Samba,Samba,77,2025,Active
+IMD10321,Mahindra Reliable Insurance Services,POSP,Talab Tillo,Jammu,88,2018,Active
+IMD10322,Royal Summit Insurance Hub,POSP,Janipur,Jammu,96,2022,Active
+IMD10323,Secure Guardian Insurance Point,Prime Broker,Channi Himmat,Jammu,566,2020,Active
+IMD10324,Jammu Elite Insurance Solutions,Prime Broker,Narwal,Jammu,306,2017,Active
+IMD10325,ReliableFutureInsurance Point,Prime Broker,Canal Road,Jammu,399,2024,Active
+IMD10326,Raina Global Risk Advisors,Prime Broker,Poonch,Poonch,221,2018,Active
+IMD10327,GuptaTrustInsurance Associates,Prime Broker,Gandhi Nagar,Jammu,437,2024,Active
+IMD10328,DograIntegrityInsurance,POSP,R.S. Pura,Jammu,48,2020,Active
+IMD10329,Secure Integrity Insurance Consultants,POSP,Rehari,Jammu,90,2024,Active
+IMD10330,North Fortune Insurance,POSP,Kathua,Kathua,76,2024,Active
+IMD10331,SecurePioneerInsurance Hub,POSP,Kathua,Kathua,31,2023,Active
+IMD10332,Verma Integrity Insurance Hub,POSP,Rajouri,Rajouri,98,2022,Active
+IMD10333,Verma Secure Insurance Hub,POSP,Talab Tillo,Jammu,88,2020,Active
+IMD10334,Trikuta Vertex Risk Advisors,POSP,Kishtwar,Kishtwar,85,2017,Active
+IMD10335,Mahajan Pioneer Insurance Point,Agency,Janipur,Jammu,259,2018,Active
+IMD10336,Reliable Global Insurance Point,Agency,Udhampur,Udhampur,227,2020,Active
+IMD10337,Dogra Smart Risk Advisors,POSP,Gandhi Nagar,Jammu,67,2023,Active
+IMD10338,Dogra Vision Insurance Hub,POSP,Gandhi Nagar,Jammu,28,2024,Active
+IMD10339,Royal Pioneer Insurance Hub,Bancassurance,Rajouri,Rajouri,490,2021,Active
+IMD10340,KhajuriaVisionInsurance,POSP,Poonch,Poonch,35,2018,Active
+IMD10341,Verma Capital Risk Advisors,POSP,Kishtwar,Kishtwar,40,2020,Active
+IMD10342,Raina Secure Insurance Associates,POSP,Janipur,Jammu,100,2020,Active
+IMD10343,Dogra Elite Insurance,Agency,Janipur,Jammu,134,2023,Active
+IMD10344,Secure Prime Insurance,Prime Broker,Canal Road,Jammu,506,2021,Active
+IMD10345,Gupta Global Insurance Services,Bancassurance,Udhampur,Udhampur,434,2022,Active
+IMD10346,North Vertex Insurance Point,Agency,Gandhi Nagar,Jammu,177,2018,Active
+IMD10347,Sharma Guardian Insurance Point,Prime Broker,Gandhi Nagar,Jammu,375,2021,Active
+IMD10348,Elite Guardian Insurance Consultants,Prime Broker,Trikuta Nagar,Jammu,590,2019,Active
+IMD10349,Reliable Royal Insurance Associates,POSP,Kathua,Kathua,60,2018,Active
+IMD10350,Trikuta Prime Risk Advisors,Prime Broker,Trikuta Nagar,Jammu,255,2024,Active
+IMD10351,Mahajan Unity Insurance Consultants,POSP,Satwari,Jammu,69,2017,Active
+IMD10352,Sharma Royal Insurance Hub,Prime Broker,Gandhi Nagar,Jammu,217,2022,Active
+IMD10353,Raina Global Insurance Services,Prime Broker,Jewel Chowk,Jammu,158,2025,Active
+IMD10354,Mahajan Smart Risk Advisors,POSP,Gandhi Nagar,Jammu,100,2024,Active
+IMD10355,Gupta Pioneer Insurance Services,POSP,Satwari,Jammu,59,2017,Active
+IMD10356,Jammu Smart Insurance Services,POSP,Rajouri,Rajouri,59,2022,Active
+IMD10357,SecureGuardianInsurance,Agency,Gandhi Nagar,Jammu,159,2018,Active
+IMD10358,Raina Global Insurance Hub,Agency,Samba,Samba,213,2024,Active
+IMD10359,SharmaApexInsurance Associates,Agency,Trikuta Nagar,Jammu,149,2024,Active
+IMD10360,Dogra Global Insurance Consultants,Agency,Kathua,Kathua,210,2021,Active
+IMD10361,Raina Pioneer Insurance Services,Dealer,Narwal,Jammu,196,2017,Active
+IMD10362,Sharma Unity Insurance,Prime Broker,Gandhi Nagar,Jammu,391,2021,Active
+IMD10363,Mahajan Fortune Insurance Associates,POSP,Doda,Doda,48,2021,Active
+IMD10364,Dogra Integrity Insurance Hub,Dealer,Gandhi Nagar,Jammu,80,2024,Active
+IMD10365,Mahajan Smart Insurance Services,POSP,Talab Tillo,Jammu,79,2020,Active
+IMD10366,Secure Prime Insurance Hub,POSP,Janipur,Jammu,45,2020,Active
+IMD10367,VermaFortuneInsurance Solutions,POSP,Bishnah,Jammu,39,2016,Active
+IMD10368,Sharma Apex Insurance,POSP,R.S. Pura,Jammu,68,2020,Active
+IMD10369,MahindraReliableInsurance,Prime Broker,Trikuta Nagar,Jammu,268,2024,Active
+IMD10370,Dogra Integrity Insurance Services,Dealer,Bari Brahmana,Samba,179,2018,Active
+IMD10371,Mahajan Future Insurance Point,POSP,Bishnah,Jammu,50,2020,Active
+IMD10372,Jammu Apex Insurance Consultants,POSP,Rajouri,Rajouri,54,2019,Active
+IMD10373,RainaVisionInsurance Consultants,POSP,Kathua,Kathua,60,2022,Active
+IMD10374,Secure Vertex Insurance Consultants,POSP,Kathua,Kathua,53,2017,Active
+IMD10375,Mahajan Trust Insurance Hub,Agency,Trikuta Nagar,Jammu,117,2017,Active
+IMD10376,Mahajan Vertex Risk Advisors,Bancassurance,Kathua,Kathua,378,2016,Active
+IMD10377,Gupta Elite Insurance Consultants,Dealer,Bari Brahmana,Samba,76,2018,Active
+IMD10378,Gupta Capital Insurance Solutions,POSP,Kathua,Kathua,71,2021,Active
+IMD10379,Mahindra Reliable Insurance,Dealer,Narwal,Jammu,66,2019,Active
+IMD10380,Jammu Elite Insurance,POSP,Janipur,Jammu,79,2016,Active
+IMD10381,Reliable Global Insurance,Prime Broker,Kathua,Kathua,345,2022,Active
+IMD10382,Mahindra Vision Insurance Point,POSP,Talab Tillo,Jammu,24,2025,Active
+IMD10383,Elite Fortune Insurance Consultants,POSP,Rehari,Jammu,27,2017,Active
+IMD10384,ReliableRoyalInsurance Consultants,POSP,Talab Tillo,Jammu,89,2023,Active
+IMD10385,Mahindra Shield Insurance,Prime Broker,Channi Himmat,Jammu,313,2025,Active
+IMD10386,Mahajan Global Insurance Hub,Dealer,Samba,Samba,246,2025,Inactive
+IMD10387,GuptaIntegrityInsurance Associates,Bancassurance,Gandhi Nagar,Jammu,563,2018,Active
+IMD10388,North Integrity Insurance,Prime Broker,Kathua,Kathua,510,2021,Active
+IMD10389,Verma Global Risk Advisors,Prime Broker,Bakshi Nagar,Jammu,239,2023,Active
+IMD10390,Sharma Summit Insurance Consultants,POSP,Bishnah,Jammu,20,2021,Active
+IMD10391,Raina Apex Insurance,POSP,Janipur,Jammu,22,2018,Active
+IMD10392,ReliableIntegrityInsurance Services,Dealer,Samba,Samba,136,2020,Active
+IMD10393,Elite Global Insurance Hub,Bancassurance,Samba,Samba,378,2024,Active
+IMD10394,ReliableVertexRisk Advisors,Dealer,Samba,Samba,82,2018,Active
+IMD10395,RainaGuardianInsurance Hub,Dealer,Udhampur,Udhampur,206,2019,Active
+IMD10396,Jammu Reliable Insurance Solutions,POSP,R.S. Pura,Jammu,64,2021,Active
+IMD10397,Jammu Vision Insurance,Dealer,Narwal,Jammu,117,2019,Active
+IMD10398,Khajuria Prime Insurance,POSP,Talab Tillo,Jammu,69,2023,Active
+IMD10399,Royal Smart Insurance Hub,Bancassurance,Poonch,Poonch,759,2022,Active
+IMD10400,Gupta Shield Insurance Consultants,Prime Broker,Kathua,Kathua,187,2016,Active
+IMD10401,Dogra Apex Insurance Point,POSP,Doda,Doda,68,2018,Active
+IMD10402,Dogra Apex Insurance Consultants,Prime Broker,Udhampur,Udhampur,510,2016,Active
+IMD10403,Elite Shield Insurance,Prime Broker,Bakshi Nagar,Jammu,201,2021,Active
+IMD10404,Mahindra Vertex Risk Advisors,POSP,Samba,Samba,50,2017,Active
+IMD10405,Gupta Secure Insurance Hub,Prime Broker,Kathua,Kathua,151,2022,Active
+IMD10406,Royal Trust Insurance Services,Agency,Kathua,Kathua,86,2019,Active
+IMD10407,Khajuria Vertex Insurance Associates,POSP,Janipur,Jammu,80,2023,Active
+IMD10408,Reliable Shield Insurance Hub,POSP,Samba,Samba,68,2021,Active
+IMD10409,MahajanCapitalInsurance Services,POSP,Akhnoor,Jammu,30,2021,Active
+IMD10410,ReliableSummitInsurance Associates,POSP,Kathua,Kathua,88,2023,Active
+IMD10411,Reliable Secure Insurance Point,POSP,Rehari,Jammu,35,2023,Active
+IMD10412,Verma Capital Insurance,Bancassurance,Poonch,Poonch,633,2017,Inactive
+IMD10413,Gupta Guardian Risk Advisors,POSP,Kishtwar,Kishtwar,60,2017,Active
+IMD10414,Mahindra Summit Insurance Consultants,Prime Broker,Bakshi Nagar,Jammu,597,2016,Active
+IMD10415,Elite Elite Insurance Associates,Prime Broker,Canal Road,Jammu,226,2018,Active
+IMD10416,Khajuria Elite Insurance Services,Prime Broker,Janipur,Jammu,552,2020,Active
+IMD10417,Mahindra Smart Insurance Consultants,Dealer,Samba,Samba,196,2025,Active
+IMD10418,Reliable Secure Insurance Associates,POSP,Satwari,Jammu,62,2019,Active
+IMD10419,North Prime Insurance Hub,Prime Broker,Channi Himmat,Jammu,568,2020,Active
+IMD10420,Khajuria Unity Insurance Point,Agency,Udhampur,Udhampur,156,2023,Active
+IMD10421,Dogra Trust Insurance Consultants,POSP,Kathua,Kathua,47,2022,Active
+IMD10422,Mahajan Summit Insurance Point,Agency,Udhampur,Udhampur,96,2020,Active
+IMD10423,Sharma Shield Insurance Solutions,POSP,Kathua,Kathua,45,2016,Active
+IMD10424,Verma Pioneer Insurance Hub,Prime Broker,Udhampur,Udhampur,571,2023,Active
+IMD10425,Sharma Unity Insurance Hub,Prime Broker,Gandhi Nagar,Jammu,400,2025,Active
+IMD10426,MahindraReliableRisk Advisors,Bancassurance,Udhampur,Udhampur,228,2022,Active
+IMD10427,Verma Unity Insurance Solutions,Dealer,Samba,Samba,223,2019,Active
+IMD10428,Sharma Global Insurance Point,POSP,Gandhi Nagar,Jammu,42,2025,Active
+IMD10429,Trikuta Pioneer Insurance Associates,POSP,Bishnah,Jammu,68,2021,Active
+IMD10430,Reliable Integrity Insurance Services,POSP,Rehari,Jammu,20,2024,Inactive
+IMD10431,Trikuta Vertex Insurance Services,Bancassurance,Rajouri,Rajouri,693,2017,Active
+IMD10432,Mahindra Pioneer Risk Advisors,POSP,Rehari,Jammu,44,2018,Active
+IMD10433,SharmaGlobalRisk Advisors,POSP,Gandhi Nagar,Jammu,53,2022,Active
+IMD10434,RoyalRoyalRisk Advisors,Agency,Kathua,Kathua,296,2018,Active
+IMD10435,Khajuria Global Insurance Point,Dealer,Narwal,Jammu,239,2020,Active
+IMD10436,NorthUnityRisk Advisors,Prime Broker,Udhampur,Udhampur,365,2021,Active
+IMD10437,Khajuria Global Insurance,Prime Broker,Canal Road,Jammu,593,2025,Active
+IMD10438,Verma Summit Insurance Services,Prime Broker,Canal Road,Jammu,594,2022,Active
+IMD10439,JammuFutureInsurance Consultants,POSP,Poonch,Poonch,38,2021,Active
+IMD10440,Jammu Shield Insurance Hub,POSP,Janipur,Jammu,27,2016,Active
+IMD10441,GuptaGuardianInsurance Associates,POSP,Kathua,Kathua,74,2022,Active
+IMD10442,Verma Royal Insurance,Prime Broker,Gandhi Nagar,Jammu,314,2024,Active
+IMD10443,Gupta Unity Insurance Hub,Prime Broker,Bakshi Nagar,Jammu,309,2018,Active
+IMD10444,Dogra Secure Risk Advisors,Prime Broker,Channi Himmat,Jammu,298,2023,Active
+IMD10445,Gupta Apex Insurance Consultants,Prime Broker,Channi Himmat,Jammu,333,2019,Active
+IMD10446,Sharma Unity Insurance Solutions,Dealer,Samba,Samba,236,2018,Active
+IMD10447,Khajuria Royal Insurance,POSP,R.S. Pura,Jammu,68,2020,Active
+IMD10448,Mahajan Elite Insurance,Prime Broker,Bakshi Nagar,Jammu,174,2017,Active
+IMD10449,SharmaVertexInsurance Associates,POSP,R.S. Pura,Jammu,32,2024,Active
+IMD10450,TrikutaEliteInsurance Services,Prime Broker,Gandhi Nagar,Jammu,404,2019,Active
+IMD10451,TrikutaShieldInsurance,Agency,Udhampur,Udhampur,220,2023,Active
+IMD10452,Gupta Prime Insurance,Prime Broker,Canal Road,Jammu,493,2017,Active
+IMD10453,Gupta Reliable Insurance Services,Agency,Samba,Samba,265,2017,Active
+IMD10454,Trikuta Pioneer Insurance Consultants,Prime Broker,Jewel Chowk,Jammu,175,2017,Active
+IMD10455,North Apex Insurance Associates,Dealer,Samba,Samba,239,2017,Active
+IMD10456,NorthVisionRisk Advisors,Agency,Gandhi Nagar,Jammu,267,2017,Active
+IMD10457,Reliable Vision Risk Advisors,POSP,Janipur,Jammu,69,2023,Active
+IMD10458,Khajuria Capital Insurance,Prime Broker,Bari Brahmana,Samba,582,2018,Active
+IMD10459,Secure Shield Insurance Associates,Dealer,Bari Brahmana,Samba,249,2021,Active
+IMD10460,KhajuriaFutureInsurance Consultants,Dealer,Samba,Samba,61,2017,Active
+IMD10461,EliteUnityInsurance Consultants,POSP,Samba,Samba,64,2022,Active
+IMD10462,RoyalGlobalInsurance Point,Agency,Rajouri,Rajouri,99,2023,Active
+IMD10463,Gupta Fortune Insurance Associates,POSP,Rehari,Jammu,71,2019,Active
+IMD10464,JammuEliteInsurance Consultants,POSP,Bishnah,Jammu,22,2017,Active
+IMD10465,Dogra Guardian Risk Advisors,POSP,R.S. Pura,Jammu,85,2024,Active
+IMD10466,North Secure Insurance Solutions,Prime Broker,Udhampur,Udhampur,582,2023,Active
+IMD10467,North Vision Insurance Services,Agency,Kathua,Kathua,104,2019,Active
+IMD10468,Trikuta Fortune Insurance Hub,POSP,Bishnah,Jammu,33,2016,Active
+IMD10469,VermaTrustInsurance Services,Prime Broker,Kathua,Kathua,586,2022,Active
+IMD10470,Jammu Elite Insurance Associates,Agency,Trikuta Nagar,Jammu,91,2025,Active
+IMD10471,MahajanFortuneInsurance Associates,Dealer,Bari Brahmana,Samba,199,2023,Active
+IMD10472,Raina Capital Insurance Services,Agency,Rajouri,Rajouri,179,2025,Active
+IMD10473,MahindraSmartInsurance Hub,POSP,Poonch,Poonch,57,2023,Active
+IMD10474,VermaTrustInsurance Solutions,POSP,Bishnah,Jammu,99,2020,Active
+IMD10475,Raina Summit Insurance Hub,Dealer,Narwal,Jammu,231,2017,Active
+IMD10476,Elite Fortune Risk Advisors,Prime Broker,Bakshi Nagar,Jammu,599,2022,Active
+IMD10477,Gupta Secure Insurance,Prime Broker,Gandhi Nagar,Jammu,252,2020,Active
+IMD10478,Mahindra Capital Insurance,POSP,Rehari,Jammu,57,2019,Active
+IMD10479,Khajuria Guardian Insurance Solutions,POSP,Rajouri,Rajouri,91,2022,Active
+IMD10480,Trikuta Secure Insurance Associates,Agency,Udhampur,Udhampur,179,2022,Active
+IMD10481,Mahajan Prime Risk Advisors,Bancassurance,Kathua,Kathua,407,2025,Active
+IMD10482,Gupta Royal Insurance Solutions,Dealer,Bari Brahmana,Samba,248,2019,Active
+IMD10483,Raina Shield Insurance Services,POSP,Samba,Samba,68,2016,Active
+IMD10484,Mahindra Prime Insurance Hub,Prime Broker,Gandhi Nagar,Jammu,388,2018,Active
+IMD10485,Trikuta Global Insurance Hub,Dealer,Bari Brahmana,Samba,68,2021,Active
+IMD10486,Raina Future Insurance Associates,Bancassurance,Udhampur,Udhampur,294,2021,Active
+IMD10487,North Vertex Insurance Solutions,POSP,Rehari,Jammu,99,2024,Active
+IMD10488,Sharma Elite Insurance Hub,Prime Broker,Bari Brahmana,Samba,378,2019,Active
+IMD10489,Mahajan Apex Insurance Associates,Prime Broker,Bakshi Nagar,Jammu,557,2017,Active
+IMD10490,North Summit Insurance Consultants,Prime Broker,Channi Himmat,Jammu,399,2016,Active
+IMD10491,Dogra Elite Insurance Point,Prime Broker,Channi Himmat,Jammu,545,2024,Active
+IMD10492,Verma Future Insurance Services,Prime Broker,Trikuta Nagar,Jammu,255,2024,Active
+IMD10493,Elite Reliable Insurance Point,Dealer,Kathua,Kathua,56,2023,Active
+IMD10494,GuptaPioneerInsurance Associates,POSP,Gandhi Nagar,Jammu,69,2023,Active
+IMD10495,Khajuria Fortune Insurance,POSP,Gandhi Nagar,Jammu,99,2017,Active
+IMD10496,Dogra Royal Insurance Services,Prime Broker,Narwal,Jammu,298,2020,Active
+IMD10497,Reliable Smart Insurance,POSP,Doda,Doda,80,2018,Active
+IMD10498,Trikuta Capital Risk Advisors,POSP,Satwari,Jammu,67,2016,Active
+IMD10499,Sharma Integrity Insurance Associates,Prime Broker,Gandhi Nagar,Jammu,425,2024,Active
