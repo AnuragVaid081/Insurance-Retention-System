@@ -507,7 +507,7 @@ def generate_vehicle(customer, vehicle_index):
 
         "Manufacturing_Year": manufacturing_year,
 
-        "Vehicle_First_Registation_Year": vehicle_first_registration_year,
+        "Vehicle_First_Registration_Date": vehicle_first_registration_year,
 
         "Vehicle_Age": vehicle_age,
 

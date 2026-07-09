@@ -5,6 +5,7 @@ from datetime import timedelta
 from datetime import datetime
 
 from constants import CURRENT_YEAR
+from constants import POLICY_STATUS
 
 from constants import *
 
@@ -42,13 +43,176 @@ def generate_policy_number(index):
 def generate_policy_id(index):
     return f"PID{10000 + index}"
 
-def assign_imd():
+# Makes sure that IMD assigned to the customer is in their vicinity
 
-    return CHANNEL_MASTER.sample(
+def assign_imd(customer): 
+
+    # Filter IMDs eligible to operate in the same district
+    eligible_imds = CHANNEL_MASTER[
+        CHANNEL_MASTER["District"] == customer["District"]
+    ]
+
+    if eligible_imds.empty:
+        eligible_imds = CHANNEL_MASTER
+
+    selected_imd = eligible_imds.sample(
         n = 1,
         weights = "Portfolio_Size"
     ).iloc[0]
 
-def generate_initial_rid(onboarding_year):
+    return selected_imd
 
-  start_date = onboarding_year
+# Function to generate the initial Risk Inspection Date (RID) 
+
+def generate_initial_rid(Vehicle_First_Registration_Date,Year_Onboarded):
+
+    earliest_possible_rid = max(Vehicle_First_Registration_Date,Year_Onboarded)
+
+    lastest_possible_rid = datetime(2025,12,31)
+
+    available_days = (lastest_possible_rid - earliest_possible_rid).days
+
+    if available_days <= 0:
+        return lastest_possible_rid
+    
+    random_offset = random.randint(0,available_days)
+
+    return (earliest_possible_rid + timedelta(days = random_offset))
+
+# Function to generate the Risk Expiration Date (RED)
+
+def generate_red(rid):
+    return rid + timedelta(days = 364)
+
+# Function to generate the policy with vehicle as its input
+
+def generate_initial_policy(vehicle,customer,policy_number,policy_id):
+   
+    imd = assign_imd(customer)
+
+    rid = generate_initial_rid(
+        pd.to_datetime(vehicle["Vehicle_First_Registration_Date"]),
+        pd.to_datetime(imd["Year_Onboarded"])
+        )
+    
+    red = generate_red(rid)
+
+    renewal_count = 0
+
+    ncb = 0
+
+    claim_count = 0
+    claim_amount = 0
+
+    policy_status = "Active"
+
+    premium = round(vehicle["IDV"] * random.uniform(0.018,0.032),2)
+
+    policy = {
+
+        "Policy_ID": policy_id,
+
+        "Policy_Number": policy_number,
+
+        "Customer_ID": customer["Customer_ID"],
+
+        "Vehicle_ID": vehicle["Vehicle_ID"],
+
+        "IMD_Code": imd["IMD_Code"],
+
+        "RID": rid,
+
+        "RED": red,
+
+        "Policy_Year": rid.year,
+
+        "Policy_Term": 365,
+
+        "Renewal_Count": renewal_count,
+
+        "Claim_Count": claim_count,
+
+        "Claim_Amount": claim_amount,
+
+        "Policy_Status": policy_status
+
+    }
+
+    return policy
+
+
+def generate_policy_history():
+
+    policies = []
+
+    policy_number_index = 0
+    policy_id_index = 0
+
+    for _, vehicle in VEHICLE_MASTER.iterrows():
+
+        customer = CUSTOMER_MASTER[
+            CUSTOMER_MASTER["Customer_ID"] == vehicle["Customer_ID" ]
+        ].iloc[0]
+
+        policy =  generate_initial_policy(vehicle,customer,generate_policy_number(policy_number_index),generate_policy_id(policy_id_index))
+
+        policies.append(policy)
+
+        policy_number_index += 1
+        policy_id_index += 1
+
+
+    df_policies = pd.DataFrame(policies)
+
+    output_dir = Path("Synthetic Generator/data")
+    output_dir.mkdir(exist_ok = True)
+
+    output_file = output_dir / "policy_history.csv"
+
+    df_policies.to_csv(output_file, index = False)
+
+    print(f"Saved {len(df_policies)} policies to {output_file}")
+
+    return df_policies
+
+
+# if __name__ == "__main__":
+
+#     df_policies = generate_policy_history()
+
+#     # Display settings
+#     pd.set_option("display.max_columns", None)
+#     pd.set_option("display.width", None)
+#     pd.set_option("display.max_colwidth", None)
+
+#     print("\nFirst 10 Policies:\n")
+#     print(df_policies.head(10).to_string(index=False))
+
+#     print("\nDataset Shape:", df_policies.shape)
+
+#     print("\nUnique Policy IDs:",
+#           df_policies["Policy_ID"].is_unique)
+
+#     print("Unique Policy Numbers:",
+#           df_policies["Policy_Number"].is_unique)
+
+#     print("Unique Vehicle IDs:",
+#           df_policies["Vehicle_ID"].nunique())
+
+#     print("Unique Customers:",
+#           df_policies["Customer_ID"].nunique())
+
+#     print("\nPolicy Status Distribution:\n")
+#     print(df_policies["Policy_Status"].value_counts())
+
+#     print("\nRID Range:")
+#     print(df_policies["RID"].min(), "to", df_policies["RID"].max())
+
+
+# if __name__ == "__main__":
+
+#     df_policies = generate_policy_history()
+
+#     print(df_policies.head())
+
+

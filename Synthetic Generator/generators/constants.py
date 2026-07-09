@@ -3,6 +3,14 @@ import pandas as pd
 
 CURRENT_YEAR = 2026
 
+POLICY_STATUS = [
+    "Active",
+    "Renewed",
+    "Lapsed",
+    "Cancelled",
+    "Expired"
+]
+
 AREA_INFO = {
 
     # ===================== Jammu Urban =====================

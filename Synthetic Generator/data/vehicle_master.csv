@@ -1,4 +1,4 @@
-Vehicle_ID,Customer_ID,Registration_Number,RTO,Make,Model,Vehicle_Type,Fuel_Type,Engine_CC,Manufacturing_Year,Vehicle_First_Registation_Year,Vehicle_Age,IDV
+Vehicle_ID,Customer_ID,Registration_Number,RTO,Make,Model,Vehicle_Type,Fuel_Type,Engine_CC,Manufacturing_Year,Vehicle_First_Registration_Date,Vehicle_Age,IDV
 VEH10000,CUST10000,JK08DY4555,JK08,Hyundai,Venue,SUV,Diesel,1197,2025,2025-09-30,1,895645
 VEH10001,CUST10001,JK02HY5549,JK02,Hyundai,Venue,SUV,Diesel,1197,2024,2025-05-02,2,924994
 VEH10002,CUST10002,JK02JC6296,JK02,Maruti Suzuki,Swift,Hatchback,Petrol,1197,2019,2019-12-21,7,268792
