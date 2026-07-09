@@ -1,6 +1,8 @@
 import pandas as pd
 
 
+CURRENT_YEAR = 2026
+
 AREA_INFO = {
 
     # ===================== Jammu Urban =====================

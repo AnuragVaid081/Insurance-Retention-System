@@ -4,6 +4,8 @@ from pathlib import Path
 import pandas as pd
 from faker import Faker
 
+from datetime import datetime
+
 from constants import AREA_INFO
 
 pd.set_option("display.max_columns", None)
@@ -36,9 +38,7 @@ PORTFOLIO_SIZE = {
     "Bancassurance" : (200,800)
 }
 
-# Range of years for which the channels have been onboarded
 
-ONBOARD_YEAR = (2016, 2025)
 
 # Activity Status
 # This describes the probability of a IMD recieving a new policy 
@@ -296,8 +296,24 @@ Generates the portfolio size logically with relation to each channel type with a
 
 # Function to randomly generate the onboarding year of each distributor ranging from 2016 - 2025
 
-def generate_year_onboarded():
-    return random.randint(*ONBOARD_YEAR)
+def generate_onboarding_date():
+
+    year = random.choices(
+        population = [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+        weights = [2,3,5,8,10,12,16,18,16,10],
+        k = 1,
+    )[0]
+
+    month = random.randint(1,12)
+
+    day = random.randint(1,28)
+
+    return datetime(year, month, day).strftime("%Y-%m-%d")
+
+
+
+# def generate_year_onboarded():
+#     return random.randint(*ONBOARD_YEAR)
 
 """
 Generates the onboarding year for the distributor with the insurrer
@@ -337,7 +353,7 @@ def generate_channels(n_channels):
             "Area": area,
             "District": district,
             "Portfolio_Size": generate_portfolio_size(channel_type),
-            "Year_Onboarded": generate_year_onboarded(),
+            "Year_Onboarded": generate_onboarding_date(),
             "Active_Status": generate_activation_status()
         }
 
@@ -358,7 +374,7 @@ def generate_channels(n_channels):
     
 
 
-# df_channels = generate_channels(500)
+df_channels = generate_channels(500)
 
 
 

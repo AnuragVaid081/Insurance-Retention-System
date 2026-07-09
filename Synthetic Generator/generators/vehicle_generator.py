@@ -5,12 +5,22 @@ import string
 import pandas as pd
 from faker import Faker
 
+from datetime import datetime, timedelta
+
 from constants import AREA_INFO
+from constants import CURRENT_YEAR
 
 fake = Faker("en_IN")
 
 random.seed(42)
 Faker.seed(42)
+
+
+pd.set_option("display.max_columns", None)
+pd.set_option("display.max_rows", None)
+pd.set_option("display.max_colwidth", None)
+pd.set_option("display.width", None)
+pd.set_option("display.expand_frame_repr", False)
 
 
 CUSTOMER_MASTER = pd.read_csv(Path("Synthetic Generator/data")/"customer_master.csv")
@@ -402,11 +412,33 @@ def generate_manufacturing_year():
         k = 1
     )[0]
 
-CURRENT_YEAR = 2026
+
+# Function to generate the first registration year of the car
+
+def generate_first_registration_year(manufacturing_year):
+
+    month = random.randint(1,12)
+
+    day = random.randint(1,28)
+
+    manufacturing_date = datetime(
+        manufacturing_year,
+        month,
+        day
+    )
+    registration_delay = random.randint(0,365)
+
+    first_registration_date = (
+        manufacturing_date + timedelta(days = registration_delay)
+    )
+    return first_registration_date
+
+# Fucntion to calculate the vehicle age
 
 def calculate_vehicle_age(manufacturing_age):
     return CURRENT_YEAR - manufacturing_age
 
+# Function to generate IDV for the vehicle
 
 def generate_idv(vehicle,vehicle_age):
 
@@ -419,6 +451,8 @@ def generate_idv(vehicle,vehicle_age):
     )
 
     return idv
+
+# Function to generate the vehicle with the help of helper functuions above
 
 def generate_vehicle(customer, vehicle_index):
 
@@ -440,6 +474,9 @@ def generate_vehicle(customer, vehicle_index):
     vehicle_age = calculate_vehicle_age(
         manufacturing_year
     )
+
+    vehicle_first_registration_year = generate_first_registration_year(manufacturing_year) 
+
 
     # Fuel Type
     fuel_type = random.choice(vehicle["fuel"])
@@ -469,6 +506,8 @@ def generate_vehicle(customer, vehicle_index):
         "Engine_CC": vehicle["engine_cc"],
 
         "Manufacturing_Year": manufacturing_year,
+
+        "Vehicle_First_Registation_Year": vehicle_first_registration_year,
 
         "Vehicle_Age": vehicle_age,
 
@@ -527,7 +566,24 @@ def generate_vehicle_master():
 
 df_vehicles = generate_vehicle_master()
 
-print(df_vehicles.head())
 
-print(df_vehicles.shape)
    
+# merged = df_vehicles.merge(
+#     CUSTOMER_MASTER,
+#     on="Customer_ID"
+# )
+
+# print(
+#     merged[
+#         ["Customer_Area",
+#          "RTO",
+#          "Registration_Number"]
+#     ].head()
+# )
+
+
+if __name__ == "__main__":
+
+    df_vehicles = generate_vehicle_master()
+
+    print(df_vehicles.head())
