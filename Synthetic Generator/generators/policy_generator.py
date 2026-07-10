@@ -120,6 +120,8 @@ def generate_initial_policy(vehicle,customer,policy_number,policy_id):
         "RID": rid,
 
         "RED": red,
+        
+        "IDV": vehicle["IDV"],
 
         "Policy_Tenure": 1,
 
