@@ -1,12 +1,20 @@
 from pathlib import Path
 import random
 import pandas as pd
+
 from datetime import timedelta
 from datetime import datetime
 from copy import deepcopy
 
 from constants import CURRENT_YEAR
 from constants import POLICY_STATUS
+
+from claim_generator import (
+    generate_claim_count,
+    generate_claim_dates,
+    generate_claim,
+    generate_claim_id,
+)
 
 from constants import *
 
@@ -120,7 +128,7 @@ def generate_initial_policy(vehicle,customer,policy_number,policy_id):
         "RID": rid,
 
         "RED": red,
-        
+
         "IDV": vehicle["IDV"],
 
         "Policy_Tenure": 1,
@@ -152,7 +160,7 @@ def generate_policy_chain(initial_policy):
         next_policy = deepcopy(current_policy)
 
         next_policy["RID"] = (
-            next_policy["RID"] + timedelta(days=365)
+            current_policy["RID"] + timedelta(days=365)
         )
 
         if next_policy ["RID"] > SIMULATION_DATE:
@@ -190,19 +198,24 @@ def generate_policy_history():
             CUSTOMER_MASTER["Customer_ID"] == vehicle["Customer_ID" ]
         ].iloc[0]
 
+        policy_number = generate_policy_number(policy_number_index)
+        policy_id = generate_policy_id(policy_id_index)
+
         initial_policy = generate_initial_policy(
-            vehicle,customer,generate_policy_number(policy_number_index),generate_policy_id(policy_id_index)
+            vehicle,customer,policy_number,policy_id
         )
 
         policy_chain = generate_policy_chain(initial_policy)
 
         for policy in policy_chain:
+            
             policy["Policy_ID"] = generate_policy_id(policy_id_index)
 
             policies.append(policy)
 
             policy_id_index += 1
-            policy_number_index += 1
+            
+        policy_number_index += 1
 
 
     df_policies = pd.DataFrame(policies)

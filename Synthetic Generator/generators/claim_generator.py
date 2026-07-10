@@ -128,6 +128,64 @@ def generate_claim(policy, claim_id, claim_date):
 
 # print(claim)
 
+# def update_policy_claim_summary(df_policies, df_claims):
+#     claim_summary = (
+
+#     df_claims
+
+#     .groupby("Policy_ID")
+
+#     .agg({
+
+#         "Claim_ID": "count",
+
+#         "Claim_Amount": "sum"
+
+#     })
+
+#     .rename(columns={
+
+#         "Claim_ID": "Claim_Count"
+
+#     })
+
+# )
+    
+#     df_policies = df_policies.merge(
+
+#     claim_summary,
+
+#     on="Policy_ID",
+
+#     how="left"
+
+# )
+    
+#     df_policies["Claim_Count"] = (
+
+#     df_policies["Claim_Count"]
+
+#     .fillna(0)
+
+#     .astype(int)
+
+# )
+#     df_policies["Claim_Amount"] = (
+
+#     df_policies["Claim_Amount"]
+
+#     .fillna(0)
+
+#     .round(2)
+
+# )
+#     policy_path = "Synthetic Generator/data/policy_history.csv"
+#     df_policies.to_csv(
+#     policy_path,
+#     index=False
+# )
+#     return df_policies
+
 
 def generate_claim_history():
 
@@ -158,10 +216,22 @@ def generate_claim_history():
 
     df_claims.to_csv(output_file, index = False)
 
+    policy_path = "Synthetic Generator/data/policy_history.csv"
+
+    df_policies = pd.read_csv(policy_path)
+
+    # df_policies = update_policy_claim_summary(
+    #     df_policies,
+    #     df_claims
+    # )
+    print("Updated policy_history.csv with the claim summary")
+
 
     print(f"Saved {len(df_claims)} claims to {output_file}")
 
     return df_claims
+
+
 
 
 # TEST BLOCK
