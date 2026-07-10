@@ -149,7 +149,7 @@ def generate_policy_chain(initial_policy):
 
         next_policy = deepcopy(current_policy)
 
-        next_policy(
+        next_policy["RID"] = (
             next_policy["RID"] + timedelta(days=365)
         )
 
@@ -189,8 +189,7 @@ def generate_policy_history():
         ].iloc[0]
 
         initial_policy = generate_initial_policy(
-            vehicle,customer,generate_policy_number(policy_number_index),
-            None                # Temporary PlaceHolder
+            vehicle,customer,generate_policy_number(policy_number_index),generate_policy_id(policy_id_index)
         )
 
         policy_chain = generate_policy_chain(initial_policy)
@@ -201,6 +200,8 @@ def generate_policy_history():
             policies.append(policy)
 
             policy_id_index += 1
+            policy_number_index += 1
+
 
     df_policies = pd.DataFrame(policies)
 
@@ -216,43 +217,43 @@ def generate_policy_history():
     return df_policies
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     df_policies = generate_policy_history()
+    df_policies = generate_policy_history()
 
-#     # Display settings
-#     pd.set_option("display.max_columns", None)
-#     pd.set_option("display.width", None)
-#     pd.set_option("display.max_colwidth", None)
+    # Display settings
+    pd.set_option("display.max_columns", None)
+    pd.set_option("display.width", None)
+    pd.set_option("display.max_colwidth", None)
 
-#     print("\nFirst 10 Policies:\n")
-#     print(df_policies.head(10).to_string(index=False))
+    print("\nFirst 10 Policies:\n")
+    print(df_policies.head(10).to_string(index=False))
 
-#     print("\nDataset Shape:", df_policies.shape)
+    print("\nDataset Shape:", df_policies.shape)
 
-#     print("\nUnique Policy IDs:",
-#           df_policies["Policy_ID"].is_unique)
+    print("\nUnique Policy IDs:",
+          df_policies["Policy_ID"].is_unique)
 
-#     print("Unique Policy Numbers:",
-#           df_policies["Policy_Number"].is_unique)
+    print("Unique Policy Numbers:",
+          df_policies["Policy_Number"].is_unique)
 
-#     print("Unique Vehicle IDs:",
-#           df_policies["Vehicle_ID"].nunique())
+    print("Unique Vehicle IDs:",
+          df_policies["Vehicle_ID"].nunique())
 
-#     print("Unique Customers:",
-#           df_policies["Customer_ID"].nunique())
+    print("Unique Customers:",
+          df_policies["Customer_ID"].nunique())
 
-#     print("\nPolicy Status Distribution:\n")
-#     print(df_policies["Policy_Status"].value_counts())
+    print("\nPolicy Status Distribution:\n")
+    print(df_policies["Policy_Status"].value_counts())
 
-#     print("\nRID Range:")
-#     print(df_policies["RID"].min(), "to", df_policies["RID"].max())
+    print("\nRID Range:")
+    print(df_policies["RID"].min(), "to", df_policies["RID"].max())
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     df_policies = generate_policy_history()
+    df_policies = generate_policy_history()
 
-#     print(df_policies.head())
+    print(df_policies.head())
 
 
