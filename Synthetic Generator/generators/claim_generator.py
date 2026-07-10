@@ -46,16 +46,30 @@ def generate_claim_count():
         k = 1
     )[0]
 
-def generate_claim_date(rid,red):
+def generate_claim_dates(rid, red, claim_count):
 
     rid = pd.to_datetime(rid)
     red = pd.to_datetime(red)
 
-    days = (red - rid).days
+    total_days = (red - rid).days
 
-    offset = random.randint(0,days)
+    if claim_count == 0:
+        return []
+    
+    #Cannot have more unique dates than the ones in the policy period
+    claim_count = min(claim_count, total_days + 1)
 
-    return rid + timedelta(days = offset)
+    random_offsets = sorted(
+        random.sample(
+            range(total_days + 1),
+            claim_count
+        )
+    )          
+
+    return [
+        rid + timedelta(days =offset)
+        for offset in random_offsets
+    ]
 
 def generate_claim_severity():
 
@@ -85,7 +99,7 @@ def generate_claim_amount(idv, severity):
 
 #     print(severity, amount)
 
-def generate_claim(policy, claim_id):
+def generate_claim(policy, claim_id, claim_date):
 
     severity = generate_claim_severity()
 
@@ -95,7 +109,7 @@ def generate_claim(policy, claim_id):
 
         "Policy_ID": policy["Policy_ID"],
 
-        "Claim_Date": generate_claim_date(policy["RID"],policy["RED"]),
+        "Claim_Date": claim_date,
 
         "Claim_Severity": severity,
 
@@ -125,11 +139,11 @@ def generate_claim_history():
 
         claim_count = generate_claim_count()
 
-        for _ in range(claim_count):
+        claim_dates = generate_claim_dates(policy["RID"], policy["RED"],claim_count)
 
-            claim = generate_claim(
-                policy , generate_claim_id(claim_index)
-            )
+        for claim_date in claim_dates:
+            
+            claim = generate_claim(policy,generate_claim_id(claim_index),claim_date)
 
             claims.append(claim)
 
@@ -156,9 +170,12 @@ if __name__ == "__main__":
 
     df_claims = generate_claim_history()
 
+    # Display Settings
     pd.set_option("display.max_columns", None)
     pd.set_option("display.width", None)
+    pd.set_option("display.max_colwidth", None)
 
+    print("\nFirst 10 Claims:\n")
     print(df_claims.head(10).to_string(index=False))
 
     print("\nDataset Shape:", df_claims.shape)
@@ -166,11 +183,46 @@ if __name__ == "__main__":
     print("\nUnique Claim IDs:",
           df_claims["Claim_ID"].is_unique)
 
-    print("\nPolicies With Claims:",
+    print("Policies With Claims:",
           df_claims["Policy_ID"].nunique())
 
-    print("\nClaim Severity Distribution:\n")
+    print("\nClaim Count by Severity:\n")
     print(df_claims["Claim_Severity"].value_counts())
 
+    # ---------------------------
+    # Validation Checks
+    # ---------------------------
 
-print(df_claims["Claim_ID"].is_unique)
+    merged = df_claims.merge(
+        POLICY_HISTORY[
+            ["Policy_ID", "RID", "RED"]
+        ],
+        on="Policy_ID"
+    )
+
+    merged["Claim_Date"] = pd.to_datetime(merged["Claim_Date"])
+    merged["RID"] = pd.to_datetime(merged["RID"])
+    merged["RED"] = pd.to_datetime(merged["RED"])
+
+    print(
+        "\nAll Claim Dates Valid:",
+        (
+            (merged["Claim_Date"] >= merged["RID"]) &
+            (merged["Claim_Date"] <= merged["RED"])
+        ).all()
+    )
+
+    duplicate_dates = (
+        df_claims
+        .groupby(["Policy_ID", "Claim_Date"])
+        .size()
+        .max()
+    )
+
+    print(
+        "Maximum Claims On Same Date For One Policy:",
+        duplicate_dates
+    )
+
+
+# print(df_claims["Claim_ID"].is_unique)
