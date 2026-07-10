@@ -3,11 +3,15 @@ import random
 import pandas as pd
 from datetime import timedelta
 from datetime import datetime
+from copy import deepcopy
 
 from constants import CURRENT_YEAR
 from constants import POLICY_STATUS
 
 from constants import *
+
+
+SIMULATION_DATE = datetime(2026, 7, 1)
 
 CHANNEL_MASTER = pd.read_csv(
     Path("Synthetic Generator/data") / "channel_master.csv"
@@ -97,13 +101,6 @@ def generate_initial_policy(vehicle,customer,policy_number,policy_id):
     
     red = generate_red(rid)
 
-    renewal_count = 0
-
-    ncb = 0
-
-    claim_count = 0
-    claim_amount = 0
-
     policy_status = "Active"
 
     premium = round(vehicle["IDV"] * random.uniform(0.018,0.032),2)
@@ -124,15 +121,9 @@ def generate_initial_policy(vehicle,customer,policy_number,policy_id):
 
         "RED": red,
 
-        "Policy_Year": rid.year,
+        "Policy_Tenure": 1,
 
         "Policy_Term": 365,
-
-        "Renewal_Count": renewal_count,
-
-        "Claim_Count": claim_count,
-
-        "Claim_Amount": claim_amount,
 
         "Policy_Status": policy_status
 
@@ -140,6 +131,49 @@ def generate_initial_policy(vehicle,customer,policy_number,policy_id):
 
     return policy
 
+
+def should_renew(policy):                       # WILL BE UPDATED LATER
+
+    return True
+
+
+def generate_policy_chain(initial_policy):
+
+    policies = []
+
+    current_policy = deepcopy(initial_policy)
+
+    policies.append(current_policy)
+
+    while True:
+
+        next_policy = deepcopy(current_policy)
+
+        next_policy(
+            next_policy["RID"] + timedelta(days=365)
+        )
+
+        if next_policy ["RID"] > SIMULATION_DATE:
+            break
+
+        if not should_renew(current_policy):
+            break
+
+        next_policy["RED"] = (
+            current_policy["RED"] + timedelta(days=365)
+        )
+
+        next_policy["Policy_Tenure"] += 1
+        
+        next_policy["Policy_Status"] = "Active"
+
+        policies.append(next_policy)
+
+        current_policy = next_policy
+
+    return policies
+        
+    
 
 def generate_policy_history():
 
@@ -154,13 +188,19 @@ def generate_policy_history():
             CUSTOMER_MASTER["Customer_ID"] == vehicle["Customer_ID" ]
         ].iloc[0]
 
-        policy =  generate_initial_policy(vehicle,customer,generate_policy_number(policy_number_index),generate_policy_id(policy_id_index))
+        initial_policy = generate_initial_policy(
+            vehicle,customer,generate_policy_number(policy_number_index),
+            None                # Temporary PlaceHolder
+        )
 
-        policies.append(policy)
+        policy_chain = generate_policy_chain(initial_policy)
 
-        policy_number_index += 1
-        policy_id_index += 1
+        for policy in policy_chain:
+            policy["Policy_ID"] = generate_policy_id(policy_id_index)
 
+            policies.append(policy)
+
+            policy_id_index += 1
 
     df_policies = pd.DataFrame(policies)
 
