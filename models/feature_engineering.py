@@ -139,9 +139,18 @@ def build_model_dataset():
     dataset["IDV"]
     ).round(4)
 
-    print(dataset[["RID", "Year_Onboarded", "Years_With_Channel"]].head(20))
+    dataset = dataset.drop(
+    columns=[
+        "Year_Onboarded",
+        "Manufacturing_Year",
+        "Vehicle_Age_At_Renewal",
+        "District",
+        "RTO"
+        ],
+    errors="ignore"
+)
 
-    print(dataset["Year_Onboarded"].unique())
+    print(dataset[["RID", "Years_With_Channel"]].head(20))
 
     print(dataset["Years_With_Channel"].describe())
 
