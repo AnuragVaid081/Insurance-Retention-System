@@ -10,8 +10,7 @@ def load_css():
 
         #MainMenu {visibility:hidden;}
         footer {visibility:hidden;}
-        header {visibility:hidden;}
-
+        
         /* Main page */
 
         .stApp{

@@ -262,58 +262,9 @@ st.dataframe(
 
     recent,
 
-    width= "stretch",
+    width = "stretch",
 
     hide_index=True
 
 )
 
-# ==========================================
-# Recent Policies
-# ==========================================
-
-st.subheader("Recent Policies")
-
-recent = (
-
-    df
-
-    [
-
-        [
-
-            "Policy_Number",
-
-            "Make",
-
-            "Model",
-
-            "Premium",
-
-            "Renewed"
-
-        ]
-
-    ]
-
-    .sort_values(
-
-        "Policy_Number",
-
-        ascending=False
-
-    )
-
-    .head(20)
-
-)
-
-st.dataframe(
-
-    recent,
-
-    width= "stretch",
-
-    hide_index=True
-
-)

@@ -25,6 +25,8 @@ with st.sidebar:
 
     st.caption("Version 1.0")
 
+st.sidebar.title("Navigation")
+
 st.title("📊 Renewal Intelligence Dashboard")
 
 st.markdown(
