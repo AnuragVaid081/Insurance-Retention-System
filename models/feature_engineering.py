@@ -17,6 +17,21 @@ def build_model_dataset():
 
     dataset = pd.read_csv(INPUT_PATH)
     
+    dataset["RID"] = pd.to_datetime(dataset["RID"])
+    dataset["RED"] = pd.to_datetime(dataset["RED"])
+
+    dataset["Manufacturing_Year"] = pd.to_numeric(
+    dataset["Manufacturing_Year"],
+    errors="coerce"
+)
+
+    dataset["Year_Onboarded"] = pd.to_datetime(
+    dataset["Year_Onboarded"]
+)
+    
+
+
+    dataset = dataset.fillna(0)
     # ==========================================
     # Rename Columns
     # ==========================================
@@ -67,10 +82,72 @@ def build_model_dataset():
             "Active_Status",
 
             # Channel Area
-            "Area"
+            "Area",
+
+            # Policy term (is same for everyone i.e 1 year)
+            "Policy_Term"
         ],
         errors= "ignore"
     )
+
+    dataset = dataset.sort_values(["Policy_Number","Policy_Tenure"])
+
+    dataset["Previous_Premium"] = (dataset.groupby("Policy_Number")["Premium"].shift(1))
+
+    dataset["Premium_Change"] = (
+        dataset["Premium"] - dataset["Previous_Premium"]
+    ).round(4)
+
+    dataset["Premium_Change_Percentage"] = (
+        dataset["Premium_Change"] / dataset["Previous_Premium"]
+    )*100
+
+    dataset["Premium_Change_Percentage"] = (
+        dataset["Premium_Change_Percentage"].round(4).fillna(0)
+    )
+
+    dataset["Previous_NCB"] = (
+        dataset
+        .groupby("Policy_Number")["NCB"]
+        .shift(1)
+        .fillna(0)
+    )
+
+    dataset["Previous_Claim_Count"] = (
+        dataset
+        .groupby("Policy_Number")["Claim_Count"]
+        .shift(1)
+        .fillna(0)
+    )
+
+    dataset["RID"] = pd.to_datetime(dataset["RID"])
+
+    dataset["Vehicle_Age_At_Renewal"] = (
+        dataset["RID"].dt.year - dataset["Manufacturing_Year"]
+    )
+
+    dataset["Years_With_Channel"] = (
+        dataset["RID"].dt.year - dataset["Year_Onboarded"].dt.year
+    )
+
+    dataset["Years_With_Channel"] = (
+        dataset["Years_With_Channel"].clip(lower=0)
+    )
+
+    dataset["Premium_to_IDV_Ratio"] = (
+    dataset["Premium"] /
+    dataset["IDV"]
+    ).round(4)
+
+    print(dataset[["RID", "Year_Onboarded", "Years_With_Channel"]].head(20))
+
+    print(dataset["Year_Onboarded"].unique())
+
+    print(dataset["Years_With_Channel"].describe())
+
+    dataset["Previous_Premium"] = dataset["Previous_Premium"].fillna(0)
+
+    dataset["Premium_Change"] = dataset["Premium_Change"].fillna(0)
 
     # ==========================================
     # Save
@@ -86,13 +163,15 @@ def build_model_dataset():
     return dataset
 
 
-# if __name__ == "__main__":
 
-#     df = build_model_dataset()
 
-#     pd.set_option("display.max_columns", None)
-#     pd.set_option("display.width", None)
+if __name__ == "__main__":
 
-#     print(df.head())
+    df = build_model_dataset()
+
+    pd.set_option("display.max_columns", None)
+    pd.set_option("display.width", None)
+
+    print(df.head())
 
 
