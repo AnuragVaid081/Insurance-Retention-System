@@ -306,3 +306,22 @@ AREA_INFO = {
     }
 
 }
+
+
+NCB_STEPS = [
+    0,
+    20,
+    25,
+    35,
+    45,
+    50
+]
+
+BASE_PREMIUM_RATE = 0.03
+
+CLAIM_LOADING = {
+    0: 1.00,
+    1: 1.10,
+    2: 1.20,
+    3: 1.30
+}
