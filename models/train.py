@@ -40,7 +40,8 @@ def train_model():
             "Policy_Number",
             "RID",
             "RED",
-            "Vehicle_First_Registration_Date"
+            "Vehicle_First_Registration_Date",
+            "Portfolio_Size"    
         ],
         errors= "ignore"
     )
@@ -75,8 +76,8 @@ def train_model():
     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size= 0.20, random_state= 42, stratify= y)
 
     models = {
-        "Logistic Regression": LogisticRegression(max_iter= 1000),
-        "Decision Tree": DecisionTreeClassifier(random_state = 42),
+        #"Logistic Regression": LogisticRegression(max_iter= 1000),
+        #"Decision Tree": DecisionTreeClassifier(random_state = 42),
         "Random Forest": RandomForestClassifier(
             n_estimators = 200,
             random_state = 42
@@ -94,6 +95,8 @@ def train_model():
        
         pipeline.fit(X_train,y_train)
 
+        X_processed = pipeline.named_steps["preprocessor"].transform(X_train)
+
         predictions = pipeline.predict(X_test)
 
         feature_names = pipeline.named_steps["preprocessor"].get_feature_names_out()
@@ -110,6 +113,40 @@ def train_model():
             pipeline,
             MODEL_DIR / filename
     )
+        
+        joblib.dump(
+            X_processed,
+            MODEL_DIR / "background_processed.pkl"
+)
+        joblib.dump(
+            pipeline.named_steps["preprocessor"],
+            MODEL_DIR / "preprocessor.pkl"
+        )
+
+        joblib.dump(
+            pipeline.named_steps["model"],
+            MODEL_DIR / "random_forest_model.pkl"
+        )
+                
+        feature_names = (
+            pipeline.named_steps["preprocessor"]
+            .get_feature_names_out()
+        )
+
+        importances = (
+            pipeline.named_steps["model"]
+            .feature_importances_
+        )
+
+        importance_df = (
+            pd.DataFrame({
+                "Feature": feature_names,
+                "Importance": importances
+            })
+            .sort_values("Importance", ascending=False)
+        )
+
+        print(importance_df.head(20))
 
         print("\nAccuracy")
 

@@ -16,6 +16,7 @@ sys.path.insert(0, str(ROOT_DIR))
 
 from dashborad_styles import *
 from services.prediction_service import predict_monthly_renewals
+from services.shap_service import explain_prediction
 
 if "results" not in st.session_state:
     st.session_state.results = None
@@ -220,6 +221,45 @@ if st.button(
         hide_index=True
 
     )
+
+    # ======================================================
+    # SHAP explainaibility
+    # ======================================================
+
+    st.divider()
+
+    st.subheader("🔍 AI Prediction Explanation")
+
+    selected_policy = st.selectbox(
+
+    "Select Policy",
+
+    filtered_results["Policy_Number"]
+
+)
+    selected_row = (
+
+    filtered_results[
+        filtered_results["Policy_Number"]
+        ==
+        selected_policy
+    ]
+
+    .iloc[0]
+
+)
+    explanation = explain_prediction(
+    selected_row
+)
+    st.dataframe(
+
+    explanation,
+
+    use_container_width=True,
+
+    hide_index=True
+
+)
 
     # ======================================================
     # Download

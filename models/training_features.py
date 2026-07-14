@@ -16,8 +16,6 @@ MODEL_FEATURES = [
 
     "Years_With_Channel",
 
-    "Portfolio_Size",
-
     "Make",
 
     "Model",
