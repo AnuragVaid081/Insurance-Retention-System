@@ -17,6 +17,14 @@ sys.path.insert(0, str(ROOT_DIR))
 from dashborad_styles import *
 from services.prediction_service import predict_monthly_renewals
 
+if "results" not in st.session_state:
+    st.session_state.results = None
+
+if "missing_policies" not in st.session_state:
+    st.session_state.missing_policies = []
+
+
+
 load_css()
 
 # ==========================================================
@@ -99,23 +107,23 @@ if st.button(
 
     with st.spinner("Generating predictions..."):
 
-        results, missing_policies = predict_monthly_renewals(
-            renewal_sheet
-        )
+        st.session_state.results, st.session_state.missing_policies = (
+    predict_monthly_renewals(renewal_sheet)
+)
 
     # ======================================================
     # Missing Policies
     # ======================================================
 
-    if missing_policies:
+    if st.session_state.missing_policies:
 
         st.warning(
-            f"{len(missing_policies)} policies could not be matched with the master database."
+            f"{len(st.session_state.missing_policies)} policies could not be matched with the master database."
         )
 
         with st.expander("View Missing Policies"):
 
-            st.write(missing_policies)
+            st.write(st.session_state.missing_policies)
 
     # ======================================================
     # KPI Cards
@@ -125,24 +133,24 @@ if st.button(
 
     col1.metric(
         "Policies Processed",
-        len(results)
+        len(st.session_state.results)
     )
 
     col2.metric(
         "Missing Policies",
-        len(missing_policies)
+        len(st.session_state.missing_policies)
     )
 
     col3.metric(
         "High Priority",
         (
-            results["Priority"] == "🔴 High"
+            st.session_state.results["Priority"] == "🔴 High"
         ).sum()
     )
 
     col4.metric(
         "Average Renewal Probability",
-        f"{results['Renewal_Probability'].mean():.1f}%"
+        f"{st.session_state.results['Renewal_Probability'].mean():.1f}%"
     )
 
     st.divider()
@@ -163,7 +171,7 @@ if st.button(
         ]
     )
 
-    filtered_results = results.copy()
+    filtered_results = st.session_state.results.copy()
 
     if priority != "All":
 
@@ -178,6 +186,8 @@ if st.button(
     display_columns = [
 
         "Policy_Number",
+
+        "IMD_Code",
 
         "Customer_Area",
 

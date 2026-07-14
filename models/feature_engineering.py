@@ -67,7 +67,6 @@ def build_model_dataset():
             "Policy_ID",
             "Customer_ID_x",
             "Vehicle_ID",
-            "IMD_Code",
 
             # Personal Information
             "Polciy_Holder_Name",
