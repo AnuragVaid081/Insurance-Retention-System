@@ -92,20 +92,6 @@ def build_model_dataset():
 
     dataset = dataset.sort_values(["Policy_Number","Policy_Tenure"])
 
-    dataset["Previous_Premium"] = (dataset.groupby("Policy_Number")["Premium"].shift(1))
-
-    dataset["Premium_Change"] = (
-        dataset["Premium"] - dataset["Previous_Premium"]
-    ).round(4)
-
-    dataset["Premium_Change_Percentage"] = (
-        dataset["Premium_Change"] / dataset["Previous_Premium"]
-    )*100
-
-    dataset["Premium_Change_Percentage"] = (
-        dataset["Premium_Change_Percentage"].round(4).fillna(0)
-    )
-
     dataset["Previous_NCB"] = (
         dataset
         .groupby("Policy_Number")["NCB"]
@@ -145,7 +131,10 @@ def build_model_dataset():
         "Manufacturing_Year",
         "Vehicle_Age_At_Renewal",
         "District",
-        "RTO"
+        "RTO",
+        "Previous_Premium",
+        "Premium_Change",
+        "Premium_Change_Percentage"
         ],
     errors="ignore"
 )
@@ -153,10 +142,6 @@ def build_model_dataset():
     print(dataset[["RID", "Years_With_Channel"]].head(20))
 
     print(dataset["Years_With_Channel"].describe())
-
-    dataset["Previous_Premium"] = dataset["Previous_Premium"].fillna(0)
-
-    dataset["Premium_Change"] = dataset["Premium_Change"].fillna(0)
 
     # ==========================================
     # Save

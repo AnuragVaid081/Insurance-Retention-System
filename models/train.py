@@ -3,6 +3,8 @@ from pathlib import Path
 import joblib
 import pandas as pd
 
+from training_features import MODEL_FEATURES
+
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
@@ -43,7 +45,7 @@ def train_model():
         errors= "ignore"
     )
 
-    X = dataset.drop(columns=["Renewed"])
+    X = dataset[MODEL_FEATURES]
 
     y = dataset["Renewed"]
 
