@@ -18,11 +18,17 @@ from dashborad_styles import *
 from services.prediction_service import predict_monthly_renewals
 from services.shap_service import explain_prediction
 
+if "shap_cache" not in st.session_state:
+    st.session_state.shap_cache = {}
+
 if "results" not in st.session_state:
     st.session_state.results = None
 
 if "missing_policies" not in st.session_state:
     st.session_state.missing_policies = []
+
+if "renewal_sheet" not in st.session_state:
+    st.session_state.renewal_sheet = None
 
 
 
@@ -51,7 +57,13 @@ if uploaded_file is None:
     st.info("Please upload the monthly renewal sheet.")
     st.stop()
 
-renewal_sheet = pd.read_excel(uploaded_file)
+if uploaded_file is not None:
+
+    st.session_state.renewal_sheet = pd.read_excel(
+        uploaded_file
+    )
+
+renewal_sheet = st.session_state.renewal_sheet
 
 # ==========================================================
 # Required Columns
@@ -108,9 +120,16 @@ if st.button(
 
     with st.spinner("Generating predictions..."):
 
-        st.session_state.results, st.session_state.missing_policies = (
-    predict_monthly_renewals(renewal_sheet)
-)
+        (
+
+            st.session_state.results,
+            st.session_state.missing_policies
+        ) = predict_monthly_renewals(
+            renewal_sheet
+        )
+
+if st.session_state.results is not None:
+
 
     # ======================================================
     # Missing Policies
@@ -156,110 +175,157 @@ if st.button(
 
     st.divider()
 
-    # ======================================================
-    # Priority Filter
-    # ======================================================
+    left, right = st.columns([5,2])
 
-    priority = st.selectbox(
+    with left:
 
-        "Filter by Priority",
+        filter_col, search_col = st.columns([1,2])
 
-        [
-            "All",
-            "🔴 High",
-            "🟡 Medium",
-            "🟢 Low"
+        with filter_col:
+
+            priority = st.selectbox(
+                "Filter by Priority",
+                [
+                    "All",
+                    "🔴 High",
+                    "🟡 Medium",
+                    "🟢 Low"
+                ]
+            )
+
+        with search_col:
+
+            search = st.text_input(
+                "🔎 Search Policy Number"
+            )
+
+        filtered_results = st.session_state.results.copy()
+
+        if priority != "All":
+
+            filtered_results = filtered_results[
+                filtered_results["Priority"] == priority
+            ]
+
+        if search:
+
+            filtered_results = filtered_results[
+                filtered_results["Policy_Number"]
+                .astype(str)
+                .str.contains(
+                    search,
+                    case=False
+                )
+            ]
+
+        display_columns = [
+
+            "Policy_Number",
+
+            "IMD_Code",
+
+            "Customer_Area",
+
+            "Channel_Type",
+
+            "Make",
+
+            "Model",
+
+            "Premium",
+
+            "NCB",
+
+            "Claim_Count",
+
+            "Renewal_Probability",
+
+            "Priority"
+
         ]
-    )
 
-    filtered_results = st.session_state.results.copy()
+        st.dataframe(
 
-    if priority != "All":
+            filtered_results[display_columns],
 
-        filtered_results = filtered_results[
-            filtered_results["Priority"] == priority
-        ]
+            use_container_width=True,
 
-    # ======================================================
-    # Display Results
-    # ======================================================
+            hide_index=True
 
-    display_columns = [
-
-        "Policy_Number",
-
-        "IMD_Code",
-
-        "Customer_Area",
-
-        "Channel_Type",
-
-        "Make",
-
-        "Model",
-
-        "Premium",
-
-        "NCB",
-
-        "Claim_Count",
-
-        "Renewal_Probability",
-
-        "Priority"
-
-    ]
-
-    st.dataframe(
-
-        filtered_results[
-            display_columns
-        ],
-
-        use_container_width=True,
-
-        hide_index=True
-
-    )
+        )
 
     # ======================================================
     # SHAP explainaibility
     # ======================================================
 
-    st.divider()
+    with right:
 
-    st.subheader("🔍 AI Prediction Explanation")
-
-    selected_policy = st.selectbox(
-
-    "Select Policy",
-
-    filtered_results["Policy_Number"]
-
+        st.markdown(
+            "<h3 style='margin-top:0px;'>🔍 AI Explanation</h3>",
+            unsafe_allow_html=True
 )
-    selected_row = (
 
-    filtered_results[
-        filtered_results["Policy_Number"]
-        ==
-        selected_policy
-    ]
+        if not filtered_results.empty:
 
-    .iloc[0]
+            selected_policy = st.selectbox(
 
-)
-    explanation = explain_prediction(
-    selected_row
-)
-    st.dataframe(
+                "Select Policy",
 
-    explanation,
+                filtered_results["Policy_Number"]
 
-    use_container_width=True,
+            )
 
-    hide_index=True
+            selected_row = filtered_results[
+                filtered_results["Policy_Number"]
+                ==
+                selected_policy
+            ].iloc[0]
 
-)
+            if selected_policy not in st.session_state.shap_cache:
+
+                st.session_state.shap_cache[selected_policy] = (
+                    explain_prediction(selected_row)
+                )
+
+            explanation = (
+                st.session_state.shap_cache[selected_policy]
+            )
+
+            positive = explanation[
+                explanation["Contribution"] > 0
+                ].head(5)
+
+            negative = explanation[
+                explanation["Contribution"] < 0
+                ].head(5)
+            
+            st.markdown("#### 🟢 Increased Renewal Probability")
+
+            st.dataframe(
+
+                positive,
+
+                hide_index=True,
+
+                use_container_width=True,
+
+                height = 520
+
+            )
+
+            st.markdown("#### 🔴 Reduced Renewal Probability")
+
+            st.dataframe(
+                negative,
+                hide_index=True,
+                use_container_width=True,
+
+                height = 520
+            )
+
+        else:
+
+            st.info("No policies found.")
 
     # ======================================================
     # Download
