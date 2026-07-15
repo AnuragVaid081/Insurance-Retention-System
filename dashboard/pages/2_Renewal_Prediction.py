@@ -1,6 +1,8 @@
 from pathlib import Path
 import sys
 
+
+import plotly.express as px
 import pandas as pd
 import streamlit as st
 
@@ -291,36 +293,143 @@ if st.session_state.results is not None:
                 st.session_state.shap_cache[selected_policy]
             )
 
-            positive = explanation[
-                explanation["Contribution"] > 0
-                ].head(5)
+            # positive = explanation[
+            #     explanation["Contribution"] > 0
+            #     ].head(5)
 
-            negative = explanation[
-                explanation["Contribution"] < 0
-                ].head(5)
+            # negative = explanation[
+            #     explanation["Contribution"] < 0
+            #     ].head(5)
+
+            positive = (
+                explanation[
+                    explanation["Contribution"] > 0
+                ]
+                .sort_values("Contribution", ascending=False)
+                .head(5)
+            )
+
+            negative = (
+                explanation[
+                    explanation["Contribution"] < 0
+                ]
+                .copy()
+            )
+
+            negative["Contribution"] = negative["Contribution"].abs()
+
+            negative = (
+                negative
+                .sort_values("Contribution", ascending=False)
+                .head(5)
+            )
             
-            st.markdown("#### 🟢 Increased Renewal Probability")
+            # st.markdown("#### 🟢 Increased Renewal Probability")
 
-            st.dataframe(
+            # st.dataframe(
+
+            #     positive,
+
+            #     hide_index=True,
+
+            #     use_container_width=True
+
+            # )
+
+            # st.markdown("#### 🔴 Reduced Renewal Probability")
+
+            # st.dataframe(
+            #     negative,
+            #     hide_index=True,
+            #     use_container_width=True
+            # )
+
+            st.markdown("#### 🟢 Factors Increasing Renewal")
+
+            fig_positive = px.bar(
 
                 positive,
 
-                hide_index=True,
+                x="Contribution",
 
-                use_container_width=True,
+                y="Feature",
 
-                height = 520
+                orientation="h",
+
+                text="Contribution"
 
             )
 
-            st.markdown("#### 🔴 Reduced Renewal Probability")
+            fig_positive.update_layout(
 
-            st.dataframe(
+                height=260,
+
+                margin=dict(
+                    l=10,
+                    r=10,
+                    t=10,
+                    b=10
+                ),
+
+                yaxis=dict(
+                    categoryorder="total ascending"
+                )
+
+            )
+
+            
+
+            fig_positive.update_traces(
+                texttemplate = "%{x:.3f}",
+                textposition = "outside"
+            )
+
+            st.plotly_chart(
+                fig_positive,
+                use_container_width=True
+            )
+
+            st.markdown("#### 🔴 Factors Reducing Renewal")
+
+            fig_negative = px.bar(
+
                 negative,
-                hide_index=True,
-                use_container_width=True,
 
-                height = 520
+                x="Contribution",
+
+                y="Feature",
+
+                orientation="h",
+
+                text="Contribution"
+
+            )
+
+            fig_negative.update_layout(
+
+                height=260,
+
+                margin=dict(
+                    l=10,
+                    r=10,
+                    t=10,
+                    b=10
+                ),
+
+                yaxis=dict(
+                    categoryorder="total ascending"
+                )
+
+            )
+
+            fig_negative.update_traces(
+                texttemplate = "%{x:.3f}",
+                textposition = "outside"
+            )
+
+            st.plotly_chart(
+                fig_negative,
+                use_container_width=True
             )
 
         else:

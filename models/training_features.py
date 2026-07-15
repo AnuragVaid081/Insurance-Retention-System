@@ -22,8 +22,6 @@ MODEL_FEATURES = [
 
     "Vehicle_Type",
 
-    "Fuel_Type",
-
     "Customer_Area",
 
     "Channel_Type"
