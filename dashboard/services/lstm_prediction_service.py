@@ -155,6 +155,8 @@ def predict_monthly_renewals_lstm(renewal_sheet):
 
             "IMD_Code": display_policy.iloc[0]["IMD_Code"],
 
+            "Policy_Tenure": display_policy.iloc[0]["Policy_Tenure"],
+
             "Customer_Area": display_policy.iloc[0]["Customer_Area"],
 
             "Channel_Type": display_policy.iloc[0]["Channel_Type"],

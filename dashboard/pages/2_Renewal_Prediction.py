@@ -231,6 +231,7 @@ if st.session_state.results is not None:
             )
 
         filtered_results = st.session_state.results.copy()
+        
 
         if priority != "All":
 
@@ -254,6 +255,8 @@ if st.session_state.results is not None:
             "Policy_Number",
 
             "IMD_Code",
+
+            "Policy_Tenure",
 
             "Customer_Area",
 

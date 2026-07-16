@@ -101,6 +101,8 @@ def build_prediction_dataset(
         prediction_rows
     )
 
+    print("Prediction DF Columns:")
+    print(prediction_df.columns.tolist())
     return prediction_df, missing_policies
 
 # ==========================================================
