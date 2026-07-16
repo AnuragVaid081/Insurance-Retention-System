@@ -16,9 +16,13 @@ ROOT_DIR = DASHBOARD_DIR.parent
 sys.path.insert(0, str(DASHBOARD_DIR))
 sys.path.insert(0, str(ROOT_DIR))
 
+
 from dashborad_styles import *
 from services.prediction_service import predict_monthly_renewals
 from services.shap_service import explain_prediction
+from services.lstm_prediction_service import (
+    predict_monthly_renewals_lstm
+)
 
 if "shap_cache" not in st.session_state:
     st.session_state.shap_cache = {}
@@ -46,6 +50,21 @@ st.caption(
     "Upload the monthly renewal sheet received from management."
 )
 
+model_type = st.radio(
+
+    "Prediction Model",
+
+    [
+
+        "Random Forest",
+
+        "LSTM"
+
+    ],
+
+    horizontal=True
+
+)
 # ==========================================================
 # Upload
 # ==========================================================
@@ -120,13 +139,23 @@ if st.button(
     use_container_width=True
 ):
 
-    with st.spinner("Generating predictions..."):
+  with st.spinner("Generating predictions..."):
+
+    if model_type == "Random Forest":
 
         (
-
             st.session_state.results,
             st.session_state.missing_policies
         ) = predict_monthly_renewals(
+            renewal_sheet
+        )
+
+    else:
+
+        (
+            st.session_state.results,
+            st.session_state.missing_policies
+        ) = predict_monthly_renewals_lstm(
             renewal_sheet
         )
 
@@ -255,186 +284,188 @@ if st.session_state.results is not None:
             hide_index=True
 
         )
-
+    
     # ======================================================
     # SHAP explainaibility
     # ======================================================
 
-    with right:
+    if model_type == "Random Forest":
 
-        st.markdown(
-            "<h3 style='margin-top:0px;'>🔍 AI Explanation</h3>",
-            unsafe_allow_html=True
-)
+        with right:
 
-        if not filtered_results.empty:
+            st.markdown(
+                "<h3 style='margin-top:0px;'>🔍 AI Explanation</h3>",
+                unsafe_allow_html=True
+    )
 
-            selected_policy = st.selectbox(
+            if not filtered_results.empty:
 
-                "Select Policy",
+                selected_policy = st.selectbox(
 
-                filtered_results["Policy_Number"]
+                    "Select Policy",
 
-            )
+                    filtered_results["Policy_Number"]
 
-            selected_row = filtered_results[
-                filtered_results["Policy_Number"]
-                ==
-                selected_policy
-            ].iloc[0]
-
-            if selected_policy not in st.session_state.shap_cache:
-
-                st.session_state.shap_cache[selected_policy] = (
-                    explain_prediction(selected_row)
                 )
 
-            explanation = (
-                st.session_state.shap_cache[selected_policy]
-            )
+                selected_row = filtered_results[
+                    filtered_results["Policy_Number"]
+                    ==
+                    selected_policy
+                ].iloc[0]
 
-            # positive = explanation[
-            #     explanation["Contribution"] > 0
-            #     ].head(5)
+                if selected_policy not in st.session_state.shap_cache:
 
-            # negative = explanation[
-            #     explanation["Contribution"] < 0
-            #     ].head(5)
+                    st.session_state.shap_cache[selected_policy] = (
+                        explain_prediction(selected_row)
+                    )
 
-            positive = (
-                explanation[
-                    explanation["Contribution"] > 0
-                ]
-                .sort_values("Contribution", ascending=False)
-                .head(5)
-            )
-
-            negative = (
-                explanation[
-                    explanation["Contribution"] < 0
-                ]
-                .copy()
-            )
-
-            negative["Contribution"] = negative["Contribution"].abs()
-
-            negative = (
-                negative
-                .sort_values("Contribution", ascending=False)
-                .head(5)
-            )
-            
-            # st.markdown("#### 🟢 Increased Renewal Probability")
-
-            # st.dataframe(
-
-            #     positive,
-
-            #     hide_index=True,
-
-            #     use_container_width=True
-
-            # )
-
-            # st.markdown("#### 🔴 Reduced Renewal Probability")
-
-            # st.dataframe(
-            #     negative,
-            #     hide_index=True,
-            #     use_container_width=True
-            # )
-
-            st.markdown("#### 🟢 Factors Increasing Renewal")
-
-            fig_positive = px.bar(
-
-                positive,
-
-                x="Contribution",
-
-                y="Feature",
-
-                orientation="h",
-
-                text="Contribution"
-
-            )
-
-            fig_positive.update_layout(
-
-                height=260,
-
-                margin=dict(
-                    l=10,
-                    r=10,
-                    t=10,
-                    b=10
-                ),
-
-                yaxis=dict(
-                    categoryorder="total ascending"
+                explanation = (
+                    st.session_state.shap_cache[selected_policy]
                 )
 
-            )
+                # positive = explanation[
+                #     explanation["Contribution"] > 0
+                #     ].head(5)
 
-            
+                # negative = explanation[
+                #     explanation["Contribution"] < 0
+                #     ].head(5)
 
-            fig_positive.update_traces(
-                texttemplate = "%{x:.3f}",
-                textposition = "outside"
-            )
-
-            st.plotly_chart(
-                fig_positive,
-                use_container_width=True
-            )
-
-            st.markdown("#### 🔴 Factors Reducing Renewal")
-
-            fig_negative = px.bar(
-
-                negative,
-
-                x="Contribution",
-
-                y="Feature",
-
-                orientation="h",
-
-                text="Contribution"
-
-            )
-
-            fig_negative.update_layout(
-
-                height=260,
-
-                margin=dict(
-                    l=10,
-                    r=10,
-                    t=10,
-                    b=10
-                ),
-
-                yaxis=dict(
-                    categoryorder="total ascending"
+                positive = (
+                    explanation[
+                        explanation["Contribution"] > 0
+                    ]
+                    .sort_values("Contribution", ascending=False)
+                    .head(5)
                 )
 
-            )
+                negative = (
+                    explanation[
+                        explanation["Contribution"] < 0
+                    ]
+                    .copy()
+                )
 
-            fig_negative.update_traces(
-                texttemplate = "%{x:.3f}",
-                textposition = "outside"
-            )
+                negative["Contribution"] = negative["Contribution"].abs()
 
-            st.plotly_chart(
-                fig_negative,
-                use_container_width=True
-            )
+                negative = (
+                    negative
+                    .sort_values("Contribution", ascending=False)
+                    .head(5)
+                )
+                
+                # st.markdown("#### 🟢 Increased Renewal Probability")
 
-        else:
+                # st.dataframe(
 
-            st.info("No policies found.")
+                #     positive,
+
+                #     hide_index=True,
+
+                #     use_container_width=True
+
+                # )
+
+                # st.markdown("#### 🔴 Reduced Renewal Probability")
+
+                # st.dataframe(
+                #     negative,
+                #     hide_index=True,
+                #     use_container_width=True
+                # )
+
+                st.markdown("#### 🟢 Factors Increasing Renewal")
+
+                fig_positive = px.bar(
+
+                    positive,
+
+                    x="Contribution",
+
+                    y="Feature",
+
+                    orientation="h",
+
+                    text="Contribution"
+
+                )
+
+                fig_positive.update_layout(
+
+                    height=260,
+
+                    margin=dict(
+                        l=10,
+                        r=10,
+                        t=10,
+                        b=10
+                    ),
+
+                    yaxis=dict(
+                        categoryorder="total ascending"
+                    )
+
+                )
+
+                
+
+                fig_positive.update_traces(
+                    texttemplate = "%{x:.3f}",
+                    textposition = "outside"
+                )
+
+                st.plotly_chart(
+                    fig_positive,
+                    use_container_width=True
+                )
+
+                st.markdown("#### 🔴 Factors Reducing Renewal")
+
+                fig_negative = px.bar(
+
+                    negative,
+
+                    x="Contribution",
+
+                    y="Feature",
+
+                    orientation="h",
+
+                    text="Contribution"
+
+                )
+
+                fig_negative.update_layout(
+
+                    height=260,
+
+                    margin=dict(
+                        l=10,
+                        r=10,
+                        t=10,
+                        b=10
+                    ),
+
+                    yaxis=dict(
+                        categoryorder="total ascending"
+                    )
+
+                )
+
+                fig_negative.update_traces(
+                    texttemplate = "%{x:.3f}",
+                    textposition = "outside"
+                )
+
+                st.plotly_chart(
+                    fig_negative,
+                    use_container_width=True
+                )
+
+            else:
+
+                st.info("No policies found.")
 
     # ======================================================
     # Download

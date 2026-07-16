@@ -12,7 +12,6 @@ sys.path.insert(0,str(DASHBOARD_DIR))
 
 from utils import load_data
 
-import styles
 
 load_css()
 
