@@ -62,7 +62,7 @@ with col4:
 
     st.metric(
         "💰 Avg Premium",
-        f"₹{average_premium:,.0f}"
+        f"₹{average_premium/1000:,.0f}K"
     )
 
     # ==========================================
