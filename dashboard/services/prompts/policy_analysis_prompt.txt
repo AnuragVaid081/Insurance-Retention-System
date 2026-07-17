@@ -1,0 +1,45 @@
+Policy Number:
+{policy_number}
+
+Customer ID:
+{customer_id}
+
+Base Renewal Probability:
+{base_probability}%
+
+Current Policy:
+{current_policy}
+
+------------------------------------------------
+
+Historical Insights
+
+{historical_insights}
+
+------------------------------------------------
+
+Relationship Manager Remarks
+
+{remarks}
+
+------------------------------------------------
+
+Tasks
+
+1. Explain why the predictive model produced the base probability.
+
+2. Analyse each RM remark individually.
+
+3. Explain whether the remark introduces information unavailable to the predictive model.
+
+4. For every remark, determine:
+
+- Impact (Positive / Negative / Neutral)
+- Adjustment
+- Confidence
+- Reasoning
+- Evidence from the remark
+
+5. Recommend an action for the renewal manager.
+
+Return ONLY valid JSON.
