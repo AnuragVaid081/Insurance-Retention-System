@@ -23,7 +23,7 @@ pd.set_option("display.width", None)
 pd.set_option("display.expand_frame_repr", False)
 
 
-CUSTOMER_MASTER = pd.read_csv(Path("Synthetic Generator/data")/"customer_master.csv")
+CUSTOMER_MASTER = pd.read_csv(Path("Synthetic_Generator/data")/"customer_master.csv")
 
 VEHICLES_PER_CUSTOMER = {
     1: 0.78,
@@ -548,7 +548,7 @@ def generate_vehicle_master():
     df_vehicles = pd.DataFrame(vehicles)
 
 
-    output_dir = Path("Synthetic Generator/data")
+    output_dir = Path("Synthetic_Generator/data")
     output_dir.mkdir(exist_ok = True)
 
     output_file = output_dir / "vehicle_master.csv"

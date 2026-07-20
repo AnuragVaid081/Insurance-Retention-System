@@ -1,12 +1,19 @@
 from pathlib import Path
 import pandas as pd
+import random
+
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT))
+import Synthetic_Generator.generators.constants
 
 # ==========================
 # Load Datasets
 # ==========================
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = PROJECT_ROOT / "Synthetic Generator" / "data"
+DATA_DIR = PROJECT_ROOT / "Synthetic_Generator" / "data"
 
 
 CHANNEL_MASTER = pd.read_csv(DATA_DIR / "channel_master.csv")
@@ -63,6 +70,20 @@ for policy_number, group in dataset.groupby("Policy_Number"):
 
     dataset.loc[renewed_rows,"Renewed"] = 1
 
+
+    def assign_remark(row):
+        if row["Renewed"] == 1:
+            return random.choice(Synthetic_Generator.generators.constants.POSITIVE_REMARKS)
+
+        if row["Claim_Count"] > 2:
+            return "Claim experience poor"
+
+        if row["Premium"] > 25000:
+            return "Premium too high"
+
+        return random.choice(Synthetic_Generator.generators.constants.NEGATIVE_REMARKS)
+
+    dataset["Last_Remark"] = dataset.apply(assign_remark, axis=1)
 
 # ==========================
 # Sort Dataset 

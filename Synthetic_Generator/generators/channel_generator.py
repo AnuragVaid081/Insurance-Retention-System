@@ -361,7 +361,7 @@ def generate_channels(n_channels):
     
     df_channels = pd.DataFrame(channels)    
 
-    output_dir = Path("Synthetic Generator/data")
+    output_dir = Path("Synthetic_Generator/data")
     output_dir.mkdir(exist_ok= True)
 
     output_file = output_dir / "channel_master.csv"

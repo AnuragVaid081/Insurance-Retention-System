@@ -3,9 +3,9 @@ import pandas as pd
 
 from constants import NCB_STEPS
 
-POLICY_PATH = Path("Synthetic Generator/data/policy_history.csv")
+POLICY_PATH = Path("Synthetic_Generator/data/policy_history.csv")
 
-CLAIM_PATH = Path("Synthetic Generator/data/claim_history.csv")
+CLAIM_PATH = Path("Synthetic_Generator/data/claim_history.csv")
 
 POLICY_HISTORY = pd.read_csv(POLICY_PATH)
 

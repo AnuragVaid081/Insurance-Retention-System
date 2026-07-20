@@ -5,7 +5,7 @@ import streamlit as st
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 DATA_PATH = (
-    PROJECT_ROOT / "Synthetic Generator" / "data" / "model_dataset.csv"
+    PROJECT_ROOT / "Synthetic_Generator" / "data" / "model_dataset.csv"
 )
 
 @st.cache_data

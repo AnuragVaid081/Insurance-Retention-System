@@ -325,3 +325,42 @@ CLAIM_LOADING = {
     2: 1.20,
     3: 1.30
 }
+
+
+# REMARK GENERATOR CONSTANTS
+
+
+POSITIVE_REMARKS = [
+    "Customer confirmed renewal",
+    "Premium accepted",
+    "Waiting for payment",
+    "Payment expected today",
+    "Renewal in progress",
+    "Documents shared",
+    "Long-term customer",
+    "Customer satisfied",
+]
+
+NEUTRAL_REMARKS = [
+    "Call after salary",
+    "Requested callback",
+    "Busy, call later",
+    "Follow-up pending",
+    "Waiting for response",
+    "Quote shared",
+    "Agent to follow up",
+    "Out of station",
+]
+
+NEGATIVE_REMARKS = [
+    "Vehicle sold",
+    "Comparing with ICICI",
+    "Comparing competitor quotes",
+    "Premium too high",
+    "Customer not interested",
+    "Renewed with competitor",
+    "Payment delayed",
+    "No response after follow-up",
+    "Claim experience poor",
+    "Agent lost customer",
+]

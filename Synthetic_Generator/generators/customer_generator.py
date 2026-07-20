@@ -76,7 +76,7 @@ def generate_customers(n_customers):
         customers.append(customer)
     df_customers = pd.DataFrame(customers)
 
-    output_dir = Path("Synthetic Generator/data")
+    output_dir = Path("Synthetic_Generator/data")
     output_dir.mkdir(exist_ok = True)
 
     output_file = output_dir / "customer_master.csv"

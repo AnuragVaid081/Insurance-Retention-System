@@ -24,7 +24,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-DATA_DIR = PROJECT_ROOT / "Synthetic Generator" / "data"
+DATA_DIR = PROJECT_ROOT / "Synthetic_Generator" / "data"
 
 MODEL_DIR = PROJECT_ROOT / "models" / "saved_models"
 

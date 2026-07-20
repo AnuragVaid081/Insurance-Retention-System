@@ -6,7 +6,7 @@ from constants import (
     CLAIM_LOADING
 ) 
 
-POLCIY_PATH = Path("Synthetic Generator/data/policy_history.csv")
+POLCIY_PATH = Path("Synthetic_Generator/data/policy_history.csv")
 
 def calculate_premium(row):
 

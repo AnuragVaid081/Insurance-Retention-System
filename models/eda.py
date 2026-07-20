@@ -3,7 +3,7 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-DATA_DIR = PROJECT_ROOT / "Synthetic Generator" / "data"
+DATA_DIR = PROJECT_ROOT / "Synthetic_Generator" / "data"
 
 dataset = pd.read_csv(
     DATA_DIR / "model_dataset.csv"

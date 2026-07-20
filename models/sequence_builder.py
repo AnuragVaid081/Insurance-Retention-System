@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 DATASET = (
     ROOT
-    / "Synthetic Generator"
+    / "Synthetic_Generator"
     / "data"
     / "model_dataset.csv"
 )

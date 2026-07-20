@@ -220,7 +220,7 @@ def generate_policy_history():
 
     df_policies = pd.DataFrame(policies)
 
-    output_dir = Path("Synthetic Generator/data")
+    output_dir = Path("Synthetic_Generator/data")
     output_dir.mkdir(exist_ok = True)
 
     output_file = output_dir / "policy_history.csv"
