@@ -26,11 +26,13 @@ Relationship Manager Remarks
 
 Tasks
 
-1. Explain why the predictive model produced the base probability.
+1. Explain the base probability ONLY using the supplied historical insights and current policy information.
+Do not invent additional reasons.
 
-2. Analyse each RM remark individually.
+2. Analyse every remark independently before considering the next remark.
 
-3. Explain whether the remark introduces information unavailable to the predictive model.
+3. The adjustment represents ONLY the contribution of that individual remark.
+Do not consider previous or subsequent remarks when assigning the adjustment.
 
 4. For every remark, determine:
 
@@ -40,6 +42,54 @@ Tasks
 - Reasoning
 - Evidence from the remark
 
-5. Recommend an action for the renewal manager.
+5. Reasoning should explain why the adjustment was assigned.
+Do not repeat the remark verbatim.
 
-Return ONLY valid JSON.
+6. Recommend an action for the renewal manager.
+
+------------------------------------------------
+
+Return ONLY valid JSON matching EXACTLY the following schema.
+
+{{
+  "prediction_explanation": {{
+    "summary": "string",
+    "supporting_factors": [
+      "string"
+    ],
+    "risk_factors": [
+      "string"
+    ]
+  }},
+
+  "remark_adjustments": [
+    {{
+      "remark_index": 0,
+      "impact": "Positive | Negative | Neutral",
+      "adjustment": 0,
+      "confidence": "Low | Medium | High",
+      "reasoning": "string",
+      "evidence": [
+        "string"
+      ]
+    }}
+  ],
+
+  "overall_summary": "string",
+
+  "recommendation": {{
+    "priority": "Low | Medium | High",
+    "action": "string"
+  }}
+}}
+
+Rules:
+
+- Return ONLY valid JSON.
+- Do not include markdown.
+- Do not wrap the JSON in ``` blocks.
+- Do not return any additional text.
+- The adjustment for each remark must be an integer.
+- The adjustment must be between -15 and 15.
+- The evidence must be exact phrases copied from the supplied remark.
+- The remark_index must correspond to the chronological order of the supplied remarks starting from 0.

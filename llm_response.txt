@@ -1,0 +1,51 @@
+{
+  "prediction_explanation": {
+    "summary": "The customer has a history of consistent renewals, no claims in recent years, and is part of a high-retention segment.",
+    "supporting_factors": [
+      "Customer has renewed consecutively for four years."
+    ],
+    "risk_factors": [
+      "Customer comparing premium with ICICI Lombard."
+    ]
+  },
+
+  "remark_adjustments": [
+    {
+      "remark_index": 0,
+      "impact": "Negative",
+      "adjustment": -5,
+      "confidence": "High",
+      "reasoning": "The customer is currently comparing their premium with another insurer, which indicates dissatisfaction and potential churn risk.",
+      "evidence": [
+        "Customer is comparing premium with ICICI Lombard."
+      ]
+    },
+    {
+      "remark_index": 1,
+      "impact": "Positive",
+      "adjustment": 5,
+      "confidence": "High",
+      "reasoning": "The customer has a history of consistent renewals, which suggests loyalty and satisfaction.",
+      "evidence": [
+        "Customer has renewed with us for the last four years."
+      ]
+    },
+    {
+      "remark_index": 2,
+      "impact": "Neutral",
+      "adjustment": 0,
+      "confidence": "Medium",
+      "reasoning": "The customer requested a callback after salary credit, which is neutral as it could be due to various reasons.",
+      "evidence": [
+        "Requested callback after salary credit."
+      ]
+    }
+  ],
+
+  "overall_summary": "The customer has a strong history of renewals and no claims, but is currently comparing premiums with another insurer. This indicates potential churn risk despite the positive historical data.",
+
+  "recommendation": {
+    "priority": "Medium",
+    "action": "Follow up with the customer to address their concerns about premium comparisons and ensure they understand the value provided by our company."
+  }
+}

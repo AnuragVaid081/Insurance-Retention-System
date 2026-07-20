@@ -106,10 +106,10 @@ class PolicyAnalysisResponse:
     """
 
     # Explanation of the base probability 
-    prediciton_explanation : PredictionExplanation
+    prediction_explanation : PredictionExplanation
 
     # Analysis of each RM remark
-    remark_adjustment : List[RemarkAdjustment] = field(default_factory=list)
+    remark_adjustments : List[RemarkAdjustment] = field(default_factory=list)
 
     # Overall reasoning combining the prediction and remarks
     overall_summary : str = ""

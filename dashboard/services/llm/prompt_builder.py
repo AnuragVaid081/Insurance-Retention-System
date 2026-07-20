@@ -2,8 +2,8 @@ import json
 
 from pathlib import Path
 
-from .schemas import PolicyContext
-from .schemas import Remark
+from schemas import PolicyContext
+from schemas import Remark
 
 
 class PromptBuilder:
@@ -11,7 +11,7 @@ class PromptBuilder:
     Builds prompts for the LLM using prompt templates and the supplied policy context
     """
 
-    PROMPT_DIR = Path("prompts")
+    PROMPT_DIR = Path("dashboard/services/prompts")
 
 
     @staticmethod
@@ -20,11 +20,12 @@ class PromptBuilder:
         Convert the policy dictionary into readable JSON String.
         """
 
-        return json.dump(
+        return json.dumps(
             policy,
             indent= 4,
             ensure_ascii=False,
-            default=str
+            default=str,
+             
         )
 
     @classmethod

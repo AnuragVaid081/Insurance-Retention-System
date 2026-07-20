@@ -4,10 +4,11 @@ import time
 
 import requests
 
-from .config import LLMConfig
-from .prompt_builder import PromptBuilder
-from .schemas import PolicyContext
-from .exceptions import (
+from config import LLMConfig
+from prompt_builder import PromptBuilder
+from schemas import PolicyContext
+from response_parser import ResponseParser
+from exceptions import (
     LLMConnectionError,
     LLMTimeoutError,
     LLMResponseError
@@ -50,7 +51,12 @@ class LLMService:
 
         logger.info("Prompt built successfully")
 
-        return self._send_request(payload)
+        response = self._send_request(payload)
+
+        return ResponseParser.parse(
+            response["message"]["content"],
+            context
+        )
 
         
 
@@ -108,7 +114,7 @@ class LLMService:
                     LLMConfig.MAX_RETRIES
                 )
 
-                response = response.post(
+                response = requests.post(
                     url = url,
                     json = payload,
                     timeout = LLMConfig.TIMEOUT
@@ -123,7 +129,7 @@ class LLMService:
                         "Missing 'message' field in Ollama response"
                     )
                 
-                if "content" not in response_json:
+                if "content" not in response_json["message"]:
                     raise LLMResponseError(
                         "Missing 'content' field in Ollama response"
                     )
