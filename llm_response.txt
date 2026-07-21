@@ -1,51 +1,31 @@
 {
   "prediction_explanation": {
-    "summary": "The customer has a history of consistent renewals, no claims in recent years, and is part of a high-retention segment.",
+    "summary": "The base probability is based on historical insights such as the customer confirming renewal and no claims or NCB in the previous policy period.",
     "supporting_factors": [
-      "Customer has renewed consecutively for four years."
+      "Customer confirmed renewal",
+      "No claim history",
+      "No NCB"
     ],
-    "risk_factors": [
-      "Customer comparing premium with ICICI Lombard."
-    ]
+    "risk_factors": []
   },
 
   "remark_adjustments": [
     {
       "remark_index": 0,
-      "impact": "Negative",
-      "adjustment": -5,
-      "confidence": "High",
-      "reasoning": "The customer is currently comparing their premium with another insurer, which indicates dissatisfaction and potential churn risk.",
-      "evidence": [
-        "Customer is comparing premium with ICICI Lombard."
-      ]
-    },
-    {
-      "remark_index": 1,
       "impact": "Positive",
       "adjustment": 5,
       "confidence": "High",
-      "reasoning": "The customer has a history of consistent renewals, which suggests loyalty and satisfaction.",
+      "reasoning": "The customer confirmed renewal, indicating a strong commitment to the policy.",
       "evidence": [
-        "Customer has renewed with us for the last four years."
-      ]
-    },
-    {
-      "remark_index": 2,
-      "impact": "Neutral",
-      "adjustment": 0,
-      "confidence": "Medium",
-      "reasoning": "The customer requested a callback after salary credit, which is neutral as it could be due to various reasons.",
-      "evidence": [
-        "Requested callback after salary credit."
+        "Customer confirmed renewal"
       ]
     }
   ],
 
-  "overall_summary": "The customer has a strong history of renewals and no claims, but is currently comparing premiums with another insurer. This indicates potential churn risk despite the positive historical data.",
+  "overall_summary": "The base probability is moderately adjusted upwards due to the positive remark of customer confirming renewal. There are no negative or neutral factors affecting the prediction.",
 
   "recommendation": {
-    "priority": "Medium",
-    "action": "Follow up with the customer to address their concerns about premium comparisons and ensure they understand the value provided by our company."
+    "priority": "Low",
+    "action": "Monitor the policy for any future changes in customer behavior."
   }
 }

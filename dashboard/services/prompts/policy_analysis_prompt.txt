@@ -1,8 +1,6 @@
 Policy Number:
 {policy_number}
 
-Customer ID:
-{customer_id}
 
 Base Renewal Probability:
 {base_probability}%
@@ -12,8 +10,7 @@ Current Policy:
 
 ------------------------------------------------
 
-Historical Insights
-
+Historical:
 {historical_insights}
 
 ------------------------------------------------
@@ -46,6 +43,7 @@ Do not consider previous or subsequent remarks when assigning the adjustment.
 Do not repeat the remark verbatim.
 
 6. Recommend an action for the renewal manager.
+
 
 ------------------------------------------------
 

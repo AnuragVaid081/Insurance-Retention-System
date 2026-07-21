@@ -2,12 +2,19 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from datetime import datetime
 
+import time
 import sys
 
 
+from services.llm.llm_service import LLMService
+from services.llm.schemas import PolicyAnalysisResponse
+
 
 from tensorflow.keras.models import load_model
+
+LLM_CACHE : dict[str,PolicyAnalysisResponse] = {}
 
 
 # ==========================================================
@@ -22,7 +29,7 @@ MODEL_DIR = ROOT / "saved_models"
 
 DATASET = (
     ROOT
-    / "Synthetic Generator"
+    / "Synthetic_Generator"
     / "data"
     / "model_dataset.csv"
 )
@@ -96,6 +103,8 @@ def predict_monthly_renewals_lstm(renewal_sheet):
 
     missing_policies = []
 
+    service = LLMService()
+
     for _, renewal in renewal_sheet.iterrows():
 
         policy_number = renewal["Policy_Number"]
@@ -108,6 +117,7 @@ def predict_monthly_renewals_lstm(renewal_sheet):
             MODEL_DATA["Policy_Number"] == policy_number
         ]
 
+        sorted_display_policy = display_policy.sort_values("Policy_Tenure")
 
         if display_policy.empty:
 
@@ -155,7 +165,7 @@ def predict_monthly_renewals_lstm(renewal_sheet):
 
             "IMD_Code": display_policy.iloc[0]["IMD_Code"],
 
-            "Policy_Tenure": display_policy.iloc[0]["Policy_Tenure"],
+            "Policy_Tenure": sorted_display_policy.iloc[-1]["Policy_Tenure"],
 
             "Customer_Area": display_policy.iloc[0]["Customer_Area"],
 

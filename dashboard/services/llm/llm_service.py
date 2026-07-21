@@ -4,11 +4,11 @@ import time
 
 import requests
 
-from config import LLMConfig
-from prompt_builder import PromptBuilder
-from schemas import PolicyContext
-from response_parser import ResponseParser
-from exceptions import (
+from .config import LLMConfig
+from .prompt_builder import PromptBuilder
+from .schemas import PolicyContext
+from .response_parser import ResponseParser
+from .exceptions import (
     LLMConnectionError,
     LLMTimeoutError,
     LLMResponseError

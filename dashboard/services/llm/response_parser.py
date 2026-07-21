@@ -1,9 +1,9 @@
 import json
 import logging
 
-from config import LLMConfig
-from exceptions import LLMResponseError
-from schemas import(
+from .config import LLMConfig
+from .exceptions import LLMResponseError
+from .schemas import(
     PolicyContext,
     PolicyAnalysisResponse,
     PredictionExplanation,

@@ -23,6 +23,8 @@ from services.shap_service import explain_prediction
 from services.lstm_prediction_service import (
     predict_monthly_renewals_lstm
 )
+from services.llm.analyze_selected_policy import analyze_selected_policy
+from services.lstm_prediction_service import LLM_CACHE
 
 if "shap_cache" not in st.session_state:
     st.session_state.shap_cache = {}
@@ -469,6 +471,90 @@ if st.session_state.results is not None:
             else:
 
                 st.info("No policies found.")
+
+    elif model_type == "LSTM":
+
+        selected_policy = st.selectbox(
+            "Select a Policy to Analyze",
+            filtered_results["Policy_Number"]
+        )
+
+        selected_row = filtered_results[filtered_results["Policy_Number"] == selected_policy].iloc[0]
+
+        base_probability = selected_row["Renewal_Probability"]
+
+        if st.button("Explain Selected Policy"):
+            
+            st.session_state.analysis_result = analyze_selected_policy(
+                selected_policy,
+                base_probability
+            )
+        
+            analysis = st.session_state.analysis_result["Analysis"]
+
+            adjustment = st.session_state.analysis_result["Adjustment"]
+
+            final_probability = st.session_state.analysis_result["Final_Probability"]
+
+            col1, col2, col3 = st.columns(3)
+
+            col1.metric(
+                "Base Probability",
+                f"{base_probability:.2f}%"
+            )
+
+            col2.metric(
+                "Adjustment",
+                f"{adjustment}"
+            )
+
+            col3.metric(
+                "Final Probability",
+                f"{final_probability:.2f}%"
+            )
+
+            st.subheader("AI Explanation")
+
+            st.write(
+                analysis.prediction_explanation.summary
+            )
+
+            left,right = st.columns(2)
+
+            with left:
+                
+                st.markdown("### Supporting Factors")
+
+                for factor in analysis.prediction_explanation.supporting_factors:
+                    st.success(factor)
+
+            with right:
+                
+                st.markdown("### Risk Factors")
+                
+                for factor in analysis.prediction_explanation.risk_factors:
+                    st.warning(factor)
+
+            st.subheader("Remark Analysis")
+
+            for remark in analysis.remark_adjustments:
+
+                with st.expander(remark.remark):
+
+                    st.write(f"Imapct : {remark.impact}")
+
+                    st.write(f"Adjustment : {remark.adjustment}")
+
+                    st.write(f"Confidence : {remark.confidence}")
+
+                    st.write(remark.reasoning)
+
+            
+            st.subheader("Recommendation")
+
+            st.info(
+                analysis.recommendation.action
+            )
 
     # ======================================================
     # Download

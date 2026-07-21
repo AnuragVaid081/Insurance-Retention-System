@@ -34,7 +34,9 @@ Treat the following as NEUTRAL unless accompanied by other signals:
 - Call disconnected.
 - Asked to call later.
 
-
+Do NOT invent or reinterpret positive
+features as neutral or negative simply
+to populate the risk_factors field.
 
 Rules:
 

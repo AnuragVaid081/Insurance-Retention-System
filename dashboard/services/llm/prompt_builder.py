@@ -2,8 +2,8 @@ import json
 
 from pathlib import Path
 
-from schemas import PolicyContext
-from schemas import Remark
+from .schemas import PolicyContext
+from .schemas import Remark
 
 
 class PromptBuilder:
@@ -94,7 +94,7 @@ class PromptBuilder:
         user_prompt = template.format(
 
             policy_number = context.policy_number,
-            customer_id = context.customer_id,
+            # customer_id = context.customer_id,
             base_probability = f"{context.base_probability:.2f}",
             current_policy = cls._format_policy(context.current_policy),
             historical_insights = cls._format_list(context.historical_insights),

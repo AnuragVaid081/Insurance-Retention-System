@@ -23,7 +23,7 @@ class PolicyContext:
     """
 
     policy_number: str
-    customer_id: str
+    # customer_id: str
 
     # Base probability by LSTM
     base_probability : float
@@ -31,7 +31,7 @@ class PolicyContext:
     # Structured Policy Information
     current_policy : dict
 
-    # Insights extracted from customer history
+    # # Insights extracted from customer history
     historical_insights: List[str]
 
     # RM remarks in chronological order
