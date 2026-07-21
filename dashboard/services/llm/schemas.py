@@ -116,3 +116,5 @@ class PolicyAnalysisResponse:
 
     # Suggested action for the renewal manager
     recommendation : Recommendation = None
+
+

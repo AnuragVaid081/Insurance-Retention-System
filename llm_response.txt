@@ -1,31 +1,32 @@
 {
   "prediction_explanation": {
-    "summary": "The base probability is based on historical insights such as the customer confirming renewal and no claims or NCB in the previous policy period.",
+    "summary": "The base probability is influenced by a single remark indicating that the customer is waiting for payment, which suggests no immediate issues but also no strong commitment.",
     "supporting_factors": [
-      "Customer confirmed renewal",
-      "No claim history",
-      "No NCB"
+      "No previous claims in the current policy period",
+      "Vehicle age and IDV suggest moderate risk"
     ],
-    "risk_factors": []
+    "risk_factors": [
+      "Waiting for payment could indicate potential non-renewal if payment is not made."
+    ]
   },
 
   "remark_adjustments": [
     {
       "remark_index": 0,
-      "impact": "Positive",
-      "adjustment": 5,
-      "confidence": "High",
-      "reasoning": "The customer confirmed renewal, indicating a strong commitment to the policy.",
+      "impact": "Neutral",
+      "adjustment": 0,
+      "confidence": "Medium",
+      "reasoning": "The customer is currently waiting for payment, which does not indicate a strong positive or negative sentiment towards the renewal.",
       "evidence": [
-        "Customer confirmed renewal"
+        "Waiting for payment"
       ]
     }
   ],
 
-  "overall_summary": "The base probability is moderately adjusted upwards due to the positive remark of customer confirming renewal. There are no negative or neutral factors affecting the prediction.",
-
+  "overall_summary": "The current policy shows no significant issues but also lacks clear indicators of commitment to renew. The customer's willingness to wait for payment suggests they are not actively seeking alternatives, yet there is a slight risk if the payment is delayed further.",
+  
   "recommendation": {
-    "priority": "Low",
-    "action": "Monitor the policy for any future changes in customer behavior."
+    "priority": "Medium",
+    "action": "Monitor the payment status and follow up with the customer to ensure timely renewal."
   }
 }

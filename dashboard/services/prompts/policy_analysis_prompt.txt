@@ -10,7 +10,7 @@ Current Policy:
 
 ------------------------------------------------
 
-Historical:
+Historical Insights:
 {historical_insights}
 
 ------------------------------------------------
@@ -23,10 +23,10 @@ Relationship Manager Remarks
 
 Tasks
 
-1. Explain the base probability ONLY using the supplied historical insights and current policy information.
-Do not invent additional reasons.
+1. Explain the base probability using only current policy information.
+Do not invent additional reasons or state that this is calculated from remarks
 
-2. Analyse every remark independently before considering the next remark.
+2. Analyse every historical insight independently before considering the latest remark.
 
 3. The adjustment represents ONLY the contribution of that individual remark.
 Do not consider previous or subsequent remarks when assigning the adjustment.
