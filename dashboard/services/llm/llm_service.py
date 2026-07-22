@@ -13,6 +13,7 @@ from .exceptions import (
     LLMTimeoutError,
     LLMResponseError
 )
+from .schemas import ChannelContext
 
 logger = logging.getLogger(__name__)
 
@@ -167,3 +168,24 @@ class LLMService:
             time.sleep(LLMConfig.RETRY_DELAY)
 
         raise LLMConnectionError("Maximum retry attempts exceeded.")
+    
+
+    @staticmethod
+    def analyze_channel(prompt):
+
+        payload = {
+            "model": "qwen2.5:7b",
+            "prompt": prompt,
+            "stream": False
+        }
+
+        response = requests.post(
+            url = LLMConfig.BASE_URL,
+            json = payload
+        )
+
+        response.raise_for_status()
+
+        channel_analysis = json.loads(response.json()["response"])
+        
+        return channel_analysis

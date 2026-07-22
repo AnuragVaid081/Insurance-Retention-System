@@ -6,6 +6,8 @@ import sys
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import requests
+
 
 # ==========================================================
 # Project Imports
@@ -17,6 +19,7 @@ ROOT_DIR = DASHBOARD_DIR.parent
 sys.path.insert(0, str(DASHBOARD_DIR))
 sys.path.insert(0, str(ROOT_DIR))
 
+from dashboard.services.llm.analyze_channel import analyze_channel
 
 load_css()
 
@@ -26,7 +29,7 @@ load_css()
 
 DATASET = (
     ROOT_DIR
-    / "Synthetic Generator"
+    / "Synthetic_Generator"
     / "data"
     / "model_dataset.csv"
 )
@@ -305,7 +308,7 @@ for channel in sorted(df["Channel_Type"].unique()):
 
     imd_summary["Renewal_Rate"] *= 100
 
-        # ======================================================
+    # ======================================================
     # Top & Bottom IMDs
     # ======================================================
 
@@ -514,6 +517,122 @@ for channel in sorted(df["Channel_Type"].unique()):
         hide_index=True
 
     )
+    
+    # ======================================================
+    # LLM analysis
+    # ======================================================
+
+    imd_profiles = []
+
+    for _, row in imd_summary.iterrows():
+        
+        imd_code = row["IMD_Code"]
+
+        imd_df = channel_df[channel_df["IMD_Code"] == imd_code]
+
+        remarks =  imd_df["Last_Remark"].dropna().astype(str).tolist()
+
+        remark_history = "\n".join(f"- {remark}" for remark in remarks)
+
+        imd_profiles.append(
+            
+            f"""
+        
+        IMD Code: {imd_code}
+
+        Portfolio Size: {int(row["Portfolio_Size"])}
+
+        Renewal Rate: {row["Renewal_Rate"]}
+
+        Average Premium: ₹{row["Average_Premium"]}
+
+        Average NCB: {row["Average_NCB"]}
+
+        Average Policy Tenure: {row["Average_Tenure"]}
+
+        Total Claims: {int(row["Total_Claims"])}
+
+        Remark History:
+
+        {remark_history}
+
+        ----------------------------------------
+        """
+
+        )
+
+        prompt = f"""
+        
+        You are a senior insurance renewal strategy consultant for an Indian motor insurance company.
+
+        Below is the complete performance summary of every IMD (Insurance Marketing Department) operating in the Jammu branch.
+
+        Your task is to analyse the branch and explain the differences in renewal performance between IMDs.
+
+        For every IMD:
+
+        • Explain why its renewal rate is high or low.
+
+        • Compare it with other IMDs.
+
+        • Identify behavioural patterns.
+
+        • Analyse remark history.
+
+        • Explain possible reasons for customer retention or churn.
+
+        • Identify recurring operational issues.
+
+        • Highlight best-performing IMDs.
+
+        • Highlight struggling IMDs.
+
+        Finally provide:
+
+        1. Executive Summary (Do not List every statistic from the content just summarise them to your best understanding.)
+
+        2. Common Success Factors
+
+        3. Common Failure Factors
+
+        4. Remark Pattern Analysis
+
+        5. Recommendations for Renewal Managers
+
+        IMPORTANT:
+
+        Do not invent facts.
+
+        DO NOT FORGET TO PROVIDE ALL 5 FIGURES ASKED ABOVE.
+
+        Remarks such as "Payment expected today" are not bad remarks, they only require follow ups.
+
+        All claim amounts should be denoted in Rupees.
+
+        All percentages should be between 0 to 100, apply decimals correctly
+
+        Only draw conclusions from the supplied data.
+
+        Branch Data:
+
+        {''.join(imd_profiles)}
+        """
+
+    if st.button("🤖 AI Channel Analysis",key= f"ai_analysis_{channel}", use_container_width=True):
+        with st.spinner("Analyzing channel performance..."):
+            channel_analysis = requests.post(
+                "http://localhost:11434/api/generate",
+                json={
+                    "model": "qwen2.5:7b",
+                    "prompt": prompt,
+                    "stream": False
+                },
+                timeout = 300
+            )
+            channel_analysis.raise_for_status()
+
+            channel_analysis = channel_analysis.json()["response"]
+            st.markdown(channel_analysis)
 
     csv = display.to_csv(
 

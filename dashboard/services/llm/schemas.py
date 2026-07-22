@@ -117,4 +117,16 @@ class PolicyAnalysisResponse:
     # Suggested action for the renewal manager
     recommendation : Recommendation = None
 
+@dataclass
+class ChannelContext:
 
+    imd_code: str
+
+    policy_count: int
+
+    policy_histories: list[dict]
+
+    historical_insights: dict
+
+
+    
