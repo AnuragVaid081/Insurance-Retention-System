@@ -16,7 +16,7 @@ This project was developed during my Research Internship at **Go Digit General I
 
 ### Interactive Dashboard
 - Branch-level renewal analytics
-- IMD (Insurance Marketing Department) performance dashboard
+- IMD (Insurance Mediation Directive) performance dashboard
 - Renewal trends
 - Premium analysis
 - Claim analysis
@@ -58,7 +58,7 @@ This project was developed during my Research Internship at **Go Digit General I
 - Streamlit
 - Plotly
 
-### AI
+### LLM
 - Ollama
 - Qwen2.5
 
