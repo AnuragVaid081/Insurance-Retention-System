@@ -26,3 +26,7 @@ data/external/
 # OS Files
 .DS_Store
 Thumbs.db
+
+# Syntthetic Datasets
+Synthetic_Generator/data
+
