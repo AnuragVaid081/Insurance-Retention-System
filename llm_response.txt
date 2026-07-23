@@ -1,32 +1,30 @@
 {
   "prediction_explanation": {
-    "summary": "The base probability is influenced by a single remark indicating that the customer is waiting for payment, which suggests no immediate issues but also no strong commitment.",
+    "summary": "The base probability is derived primarily from the customer confirming renewal and having a low claim history, which are positive factors.",
     "supporting_factors": [
-      "No previous claims in the current policy period",
-      "Vehicle age and IDV suggest moderate risk"
+      "Customer confirmed renewal",
+      "No claims in the current policy period"
     ],
-    "risk_factors": [
-      "Waiting for payment could indicate potential non-renewal if payment is not made."
-    ]
+    "risk_factors": []
   },
 
   "remark_adjustments": [
     {
       "remark_index": 0,
-      "impact": "Neutral",
-      "adjustment": 0,
-      "confidence": "Medium",
-      "reasoning": "The customer is currently waiting for payment, which does not indicate a strong positive or negative sentiment towards the renewal.",
+      "impact": "Positive",
+      "adjustment": 5,
+      "confidence": "High",
+      "reasoning": "The customer confirmed renewal, indicating a strong commitment to the policy.",
       "evidence": [
-        "Waiting for payment"
+        "Customer confirmed renewal"
       ]
     }
   ],
 
-  "overall_summary": "The current policy shows no significant issues but also lacks clear indicators of commitment to renew. The customer's willingness to wait for payment suggests they are not actively seeking alternatives, yet there is a slight risk if the payment is delayed further.",
-  
+  "overall_summary": "The base probability is moderately adjusted upwards due to positive remarks from the customer confirming their intention to renew and no claims during the current policy period. There are no negative or neutral factors affecting this decision based on the provided information.",
+
   "recommendation": {
-    "priority": "Medium",
-    "action": "Monitor the payment status and follow up with the customer to ensure timely renewal."
+    "priority": "Low",
+    "action": "Continue monitoring but no immediate action required."
   }
 }
