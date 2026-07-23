@@ -38,6 +38,8 @@ Do NOT invent or reinterpret positive
 features as neutral or negative simply
 to populate the risk_factors field.
 
+Apart from vehicle age, do not use any other factor to adjust or explain the predictions
+
 Rules:
 
 1. Use ONLY the information supplied.
@@ -47,4 +49,5 @@ Rules:
 5. Remarks may justify increasing or decreasing the renewal probability.
 6. Do not contradict the supplied policy data.
 7. Keep explanations concise and business-focused.
-8. Return only valid JSON.
+8. Do not put neutral factors into risk factors
+9. Return only valid JSON.

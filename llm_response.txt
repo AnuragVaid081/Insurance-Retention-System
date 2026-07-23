@@ -1,33 +1,34 @@
 {
   "prediction_explanation": {
-    "summary": "The base probability is derived primarily from the policy tenure, vehicle age, and channel type.",
+    "summary": "The base probability is 48.20% based on policy tenure, premium, NCB, and other factors.",
     "supporting_factors": [
-      "Policy tenure of 1 year",
-      "Vehicle age of 16 years",
-      "Bancassurance channel"
+      "Policy Tenure: 1 year",
+      "Premium: 10967.06",
+      "NCB: 0",
+      "Vehicle Age: 5 years"
     ],
     "risk_factors": [
-      "No claims history"
+      "No response after follow-up"
     ]
   },
 
   "remark_adjustments": [
     {
       "remark_index": 0,
-      "impact": "Neutral",
-      "adjustment": 0,
-      "confidence": "Low",
-      "reasoning": "The remark does not provide any specific information that would impact the renewal decision.",
+      "impact": "Negative",
+      "adjustment": -3,
+      "confidence": "Medium",
+      "reasoning": "The customer has not responded to multiple follow-ups, indicating a potential risk of non-renewal.",
       "evidence": [
-        "Payment expected today"
+        "No response after follow-up"
       ]
     }
   ],
 
-  "overall_summary": "The base probability is moderately low due to the lack of claims history and other factors. The latest remark does not significantly affect this assessment.",
+  "overall_summary": "The base probability is moderately adjusted downwards due to the lack of response from the customer despite multiple follow-ups. This suggests a higher risk of non-renewal.",
 
   "recommendation": {
-    "priority": "Low",
-    "action": "Monitor the customer's payment status closely."
+    "priority": "Medium",
+    "action": "Follow up with the customer and offer any necessary assistance or discounts to encourage renewal."
   }
 }

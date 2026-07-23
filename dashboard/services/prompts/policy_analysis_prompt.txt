@@ -1,27 +1,4 @@
-Policy Number:
-{policy_number}
-
-
-Base Renewal Probability:
-{base_probability}%
-
-Current Policy:
-{current_policy}
-
-------------------------------------------------
-
-Historical Insights:
-{historical_insights}
-
-------------------------------------------------
-
-Relationship Manager Remarks
-
-{remarks}
-
-------------------------------------------------
-
-Tasks
+Tasks:
 
 1. Explain the base probability using only current policy information.
 Do not invent additional reasons or state that this is calculated from remarks
@@ -44,6 +21,49 @@ Do not repeat the remark verbatim.
 
 6. Recommend an action for the renewal manager.
 
+7.The model used the following features to predict the renewal probabaility:
+
+[
+  "Policy_Tenure",
+
+    "Premium",
+
+    "Claim_Count",
+
+    "Total_Claim_Amount",
+
+    "NCB",
+
+    "Previous_NCB",
+
+    "Vehicle_Age",
+
+    "Years_With_Channel",
+
+]
+
+------------------------------------------------
+
+Policy Number:
+{policy_number}
+
+
+Base Renewal Probability:
+{base_probability}%
+
+Current Policy:
+{current_policy}
+
+------------------------------------------------
+
+Historical Insights:
+{historical_insights}
+
+------------------------------------------------
+
+Relationship Manager Remarks
+
+{remarks}
 
 ------------------------------------------------
 

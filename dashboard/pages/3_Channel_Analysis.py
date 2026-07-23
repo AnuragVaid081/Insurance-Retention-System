@@ -627,7 +627,11 @@ for channel in sorted(df["Channel_Type"].unique()):
                 json={
                     "model": "qwen2.5:7b",
                     "prompt": prompt,
-                    "stream": False
+                    "stream": False,
+                    "options": {
+                        "temperature": 0.1,
+                        "top_p": 0.8
+                    }
                 },
                 timeout = 300
             )
