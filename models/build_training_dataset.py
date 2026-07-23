@@ -24,6 +24,8 @@ VEHICLE_MASTER = pd.read_csv(DATA_DIR / "vehicle_master.csv")
 
 POLICY_HISTORY = pd.read_csv(DATA_DIR / "policy_history.csv")
 
+CLAIM_HISTORY = pd.read_csv(DATA_DIR / "claim_history.csv")
+
 
 # ==========================
 # Merge Policy + Customer
@@ -34,7 +36,7 @@ dataset = POLICY_HISTORY.merge(
     CUSTOMER_MASTER,
     on = "Customer_ID",
     how= "left",
-)
+).drop("Claim_Count",axis = 1)
 
 # ==========================
 # Merge Vehicle
@@ -54,6 +56,12 @@ dataset = dataset.merge(
     CHANNEL_MASTER,
     on = "IMD_Code",
     how = "left",
+)
+
+dataset = dataset.merge(
+    CLAIM_HISTORY,
+    on = "Policy_ID",
+    how = "left"
 )
 
 # ==========================

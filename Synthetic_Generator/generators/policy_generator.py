@@ -22,15 +22,15 @@ from constants import *
 SIMULATION_DATE = datetime(2026, 7, 1)
 
 CHANNEL_MASTER = pd.read_csv(
-    Path("Synthetic Generator/data") / "channel_master.csv"
+    Path("../data") / "channel_master.csv"
 )
 
 CUSTOMER_MASTER = pd.read_csv(
-    Path("Synthetic Generator/data") / "customer_master.csv"
+    Path("../data") / "customer_master.csv"
 )
 
 VEHICLE_MASTER = pd.read_csv(
-    Path("Synthetic Generator/data") / "vehicle_master.csv"
+    Path("../data") / "vehicle_master.csv"
 )
 
 
@@ -135,7 +135,9 @@ def generate_initial_policy(vehicle,customer,policy_number,policy_id):
 
         "Policy_Term": 365,
 
-        "Policy_Status": policy_status
+        "Policy_Status": policy_status,
+
+        "Premium": premium
 
     }
 
@@ -220,7 +222,7 @@ def generate_policy_history():
 
     df_policies = pd.DataFrame(policies)
 
-    output_dir = Path("Synthetic_Generator/data")
+    output_dir = Path("../data")
     output_dir.mkdir(exist_ok = True)
 
     output_file = output_dir / "policy_history.csv"

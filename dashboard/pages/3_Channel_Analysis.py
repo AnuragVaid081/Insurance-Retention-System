@@ -609,7 +609,9 @@ for channel in sorted(df["Channel_Type"].unique()):
 
         All claim amounts should be denoted in Rupees.
 
-        All percentages should be between 0 to 100, apply decimals correctly
+        All percentages should be between 0 to 100, apply decimals correctly.
+
+        All numerical metrics to be rounded off to 2 decimal places.
 
         Only draw conclusions from the supplied data.
 

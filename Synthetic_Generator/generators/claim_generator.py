@@ -6,7 +6,7 @@ import pandas as pd
 from constants import *
 
 
-POLICY_HISTORY = pd.read_csv("Synthetic_Generator/data/policy_history.csv")
+POLICY_HISTORY = pd.read_csv(Path("../data/policy_history.csv"))
 
 CLAIM_COUNT_DISTRIBUTION = {
     0: 82,
@@ -115,6 +115,8 @@ def generate_claim(policy, claim_id, claim_date):
 
         "Claim_Amount": generate_claim_amount(policy["IDV"],severity),
 
+        "Claim_Count": generate_claim_count()
+
     }
     return claim
 
@@ -209,14 +211,14 @@ def generate_claim_history():
 
     df_claims = pd.DataFrame(claims)
 
-    output_dir = Path("Synthetic_Generator/data")
+    output_dir = Path("../data")
     output_dir.mkdir(exist_ok= True)
 
     output_file = output_dir / "claim_history.csv"
 
     df_claims.to_csv(output_file, index = False)
 
-    policy_path = "Synthetic_Generator/data/policy_history.csv"
+    policy_path = "../data/policy_history.csv"
 
     df_policies = pd.read_csv(policy_path)
 

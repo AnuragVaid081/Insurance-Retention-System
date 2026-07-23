@@ -3,9 +3,9 @@ import pandas as pd
 
 from constants import NCB_STEPS
 
-POLICY_PATH = Path("Synthetic_Generator/data/policy_history.csv")
+POLICY_PATH = Path("../data/policy_history.csv")
 
-CLAIM_PATH = Path("Synthetic_Generator/data/claim_history.csv")
+CLAIM_PATH = Path("../data/claim_history.csv")
 
 POLICY_HISTORY = pd.read_csv(POLICY_PATH)
 
@@ -59,18 +59,18 @@ def update_ncb():
     print("Updated policy_history.csv with updated NCB values.")
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     update_ncb()
+    update_ncb()
 
-#     df = pd.read_csv(POLICY_PATH)
+    df = pd.read_csv(POLICY_PATH)
 
-#     print(df[
-#         [
-#             "Policy_Number",
-#             "Policy_Tenure",
-#             "Claim_Count",
-#             "NCB"
-#         ]
-#     ].head(30))
+    print(df[
+        [
+            "Policy_Number",
+            "Policy_Tenure",
+            "Claim_Count",
+            "NCB"
+        ]
+    ].head(30))
         

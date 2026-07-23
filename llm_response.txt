@@ -1,30 +1,33 @@
 {
   "prediction_explanation": {
-    "summary": "The base probability is derived primarily from the customer confirming renewal and having a low claim history, which are positive factors.",
+    "summary": "The base probability is derived primarily from the policy tenure, vehicle age, and channel type.",
     "supporting_factors": [
-      "Customer confirmed renewal",
-      "No claims in the current policy period"
+      "Policy tenure of 1 year",
+      "Vehicle age of 16 years",
+      "Bancassurance channel"
     ],
-    "risk_factors": []
+    "risk_factors": [
+      "No claims history"
+    ]
   },
 
   "remark_adjustments": [
     {
       "remark_index": 0,
-      "impact": "Positive",
-      "adjustment": 5,
-      "confidence": "High",
-      "reasoning": "The customer confirmed renewal, indicating a strong commitment to the policy.",
+      "impact": "Neutral",
+      "adjustment": 0,
+      "confidence": "Low",
+      "reasoning": "The remark does not provide any specific information that would impact the renewal decision.",
       "evidence": [
-        "Customer confirmed renewal"
+        "Payment expected today"
       ]
     }
   ],
 
-  "overall_summary": "The base probability is moderately adjusted upwards due to positive remarks from the customer confirming their intention to renew and no claims during the current policy period. There are no negative or neutral factors affecting this decision based on the provided information.",
+  "overall_summary": "The base probability is moderately low due to the lack of claims history and other factors. The latest remark does not significantly affect this assessment.",
 
   "recommendation": {
     "priority": "Low",
-    "action": "Continue monitoring but no immediate action required."
+    "action": "Monitor the customer's payment status closely."
   }
 }
