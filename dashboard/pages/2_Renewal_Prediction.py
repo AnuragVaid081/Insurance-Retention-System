@@ -208,13 +208,10 @@ if st.session_state.results is not None:
 
     st.divider()
 
-    left, right = st.columns([5,2])
 
-    with left:
+    filter_col, search_col = st.columns([1,2])
 
-        filter_col, search_col = st.columns([1,2])
-
-        with filter_col:
+    with filter_col:
 
             priority = st.selectbox(
                 "Filter by Priority",
@@ -226,22 +223,22 @@ if st.session_state.results is not None:
                 ]
             )
 
-        with search_col:
+    with search_col:
 
             search = st.text_input(
                 "🔎 Search Policy Number"
             )
 
-        filtered_results = st.session_state.results.copy()
+    filtered_results = st.session_state.results.copy()
         
 
-        if priority != "All":
+    if priority != "All":
 
             filtered_results = filtered_results[
                 filtered_results["Priority"] == priority
             ]
 
-        if search:
+    if search:
 
             filtered_results = filtered_results[
                 filtered_results["Policy_Number"]
@@ -252,7 +249,7 @@ if st.session_state.results is not None:
                 )
             ]
 
-        display_columns = [
+    display_columns = [
 
             "Policy_Number",
 
@@ -280,7 +277,7 @@ if st.session_state.results is not None:
 
         ]
 
-        st.dataframe(
+    st.dataframe(
 
             filtered_results[display_columns],
 
@@ -296,14 +293,14 @@ if st.session_state.results is not None:
 
     if model_type == "Random Forest":
 
-        with right:
+        
 
-            st.markdown(
+        st.markdown(
                 "<h3 style='margin-top:0px;'>🔍 AI Explanation</h3>",
                 unsafe_allow_html=True
     )
 
-            if not filtered_results.empty:
+        if not filtered_results.empty:
 
                 selected_policy = st.selectbox(
 
@@ -468,7 +465,7 @@ if st.session_state.results is not None:
                     use_container_width=True
                 )
 
-            else:
+        else:
 
                 st.info("No policies found.")
 
