@@ -38,7 +38,6 @@ Use the navigation panel on the left to explore:
 - 📈 Portfolio Overview
 - 🎯 Renewal Predictions
 - 🏢 Channel Analysis
-- 🤖 Model Insights
 """
 )
 

@@ -31,3 +31,8 @@ Thumbs.db
 Synthetic_Generator/data
 
 llm_response.txt
+
+
+dashboard/postgres
+
+dashboard/mcp_configuration/db.py

@@ -2,16 +2,272 @@ from dashborad_styles import load_css
 
 from pathlib import Path
 import sys
+import markdown
+import re
 
+from docx import Document
+from docx.shared import Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from io import BytesIO
+
+import streamlit.components.v1 as components
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 import requests
+import asyncio
+from mcp_configuration.agent import InsuranceAgent
 
+def add_formatted_text(paragraph, text):
+
+    # Split around bold Markdown
+    parts = re.split(
+        r"(\*\*.*?\*\*)",
+        text
+    )
+
+    for part in parts:
+
+        if not part:
+            continue
+
+        if part.startswith("**") and part.endswith("**"):
+
+            run = paragraph.add_run(
+                part[2:-2]
+            )
+
+            run.bold = True
+
+        else:
+
+            paragraph.add_run(part)
+
+def markdown_to_word(markdown_text):
+    doc = Document()
+
+    # Default font
+    style = doc.styles["Normal"]
+    style.font.name = "Segoe UI"
+    style.font.size = Pt(10)
+
+    lines = markdown_text.splitlines()
+
+    i = 0
+
+    while i < len(lines):
+
+        line = lines[i].strip()
+
+        # Skip empty lines
+        if not line:
+            i += 1
+            continue
+
+        # --------------------------------
+        # Headings
+        # --------------------------------
+
+        heading_match = re.match(r"^(#{1,6})\s+(.*)$", line)
+
+        if heading_match:
+            level = len(heading_match.group(1))
+            text = re.sub(r"\*\*(.*?)\*\*", r"\1", heading_match.group(2))
+
+            paragraph = doc.add_heading(
+                text,
+                level=min(level, 6)
+            )
+
+            i += 1
+            continue
+
+        # --------------------------------
+        # Markdown table
+        # --------------------------------
+
+        if (
+            line.startswith("|")
+            and i + 1 < len(lines)
+            and "|" in lines[i + 1]
+            and re.match(r"^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$", lines[i + 1])
+        ):
+
+            headers = [
+                cell.strip()
+                for cell in line.strip("|").split("|")
+            ]
+
+            i += 2  # Skip header + separator
+
+            rows = []
+
+            while i < len(lines) and lines[i].strip().startswith("|"):
+
+                row = [
+                    cell.strip()
+                    for cell in lines[i].strip("|").split("|")
+                ]
+
+                rows.append(row)
+                i += 1
+
+            table = doc.add_table(
+                rows=1,
+                cols=len(headers)
+            )
+
+            table.style = "Table Grid"
+
+            # Header
+            for j, header in enumerate(headers):
+                cell = table.rows[0].cells[j]
+                cell.text = re.sub(
+                    r"\*\*(.*?)\*\*",
+                    r"\1",
+                    header
+                )
+
+                for run in cell.paragraphs[0].runs:
+                    run.bold = True
+
+            # Rows
+            for row in rows:
+
+                cells = table.add_row().cells
+
+                for j, value in enumerate(row):
+
+                    if j < len(cells):
+                        cells[j].text = re.sub(
+                            r"\*\*(.*?)\*\*",
+                            r"\1",
+                            value
+                        )
+
+            doc.add_paragraph()
+
+            continue
+
+        # --------------------------------
+        # Bullet points
+        # --------------------------------
+
+        if re.match(r"^[-*]\s+", line):
+
+            text = re.sub(
+                r"^[-*]\s+",
+                "",
+                line
+            )
+
+            paragraph = doc.add_paragraph(
+                style="List Bullet"
+            )
+
+            add_formatted_text(paragraph, text)
+
+            i += 1
+            continue
+
+        # --------------------------------
+        # Numbered list
+        # --------------------------------
+
+        if re.match(r"^\d+\.\s+", line):
+
+            text = re.sub(
+                r"^\d+\.\s+",
+                "",
+                line
+            )
+
+            paragraph = doc.add_paragraph(
+                style="List Number"
+            )
+
+            add_formatted_text(paragraph, text)
+
+            i += 1
+            continue
+
+        # --------------------------------
+        # Horizontal rule
+        # --------------------------------
+
+        if re.match(r"^-{3,}$", line):
+
+            paragraph = doc.add_paragraph()
+            paragraph.paragraph_format.space_after = Pt(2)
+
+            i += 1
+            continue
+
+        # --------------------------------
+        # Normal paragraph
+        # --------------------------------
+
+        paragraph = doc.add_paragraph()
+
+        add_formatted_text(
+            paragraph,
+            line
+        )
+
+        i += 1
+
+    # Save to memory
+    output = BytesIO()
+
+    doc.save(output)
+
+    output.seek(0)
+
+    return output
+
+
+
+def clean_markdown_tables(text: str) -> str:
+    lines = text.splitlines()
+    cleaned = []
+
+    in_table = False
+
+    for line in lines:
+        stripped = line.rstrip()
+
+        # Table row
+        if stripped.startswith("|") and stripped.endswith("|"):
+
+            # Ensure a blank line before the table
+            if not in_table and cleaned and cleaned[-1] != "":
+                cleaned.append("")
+
+            in_table = True
+            cleaned.append(stripped)
+            continue
+
+        # Remove blank lines inside a table
+        if in_table and stripped == "":
+            continue
+
+        # Leaving a table
+        if in_table:
+            in_table = False
+            cleaned.append("")
+
+        cleaned.append(line)
+
+    return "\n".join(cleaned)
 
 # ==========================================================
 # Project Imports
 # ==========================================================
+
+if "agent" not in st.session_state:
+    st.session_state.agent = InsuranceAgent()
+
+agent = st.session_state.agent
 
 DASHBOARD_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = DASHBOARD_DIR.parent
@@ -31,7 +287,7 @@ DATASET = (
     ROOT_DIR
     / "Synthetic_Generator"
     / "data"
-    / "model_dataset.csv"
+    / "April_month_renewals_sheet.csv"
 )
 
 
@@ -42,6 +298,8 @@ def load_data():
 
 
 df = load_data()
+
+
 
 # ==========================================================
 # Page
@@ -60,7 +318,7 @@ st.caption(
 
 st.header("Executive Overview")
 
-kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+kpi1, kpi2, kpi3 = st.columns(3)
 
 kpi1.metric(
 
@@ -74,7 +332,8 @@ kpi2.metric(
 
     "Total IMDs",
 
-    df["IMD_Code"].nunique()
+    # df["IMD_Code"].nunique()
+    df["New_IMD_Code"].nunique()
 
 )
 
@@ -82,17 +341,18 @@ kpi3.metric(
 
     "Overall Renewal Rate",
 
-    f"{df['Renewed'].mean()*100:.1f}%"
+    # f"{df['Renewed'].mean()*100:.1f}%"
+    f"{(df['STATUS'] == 'Renewed').mean()*100:.1f}%"
 
 )
 
-kpi4.metric(
+# kpi4.metric(
 
-    "Average Premium",
+#     "Average Premium",
 
-    f"₹ {df['Premium'].mean()/1000:,.1f}K"
+#     f"₹ {df['Premium'].mean()/1000:,.1f}K"
 
-)
+# )
 
 st.divider()
 
@@ -100,17 +360,17 @@ channel_summary = (
 
     df
 
-    .groupby("Channel_Type")
+    .groupby("IMD_Channel")
 
     .agg(
 
         Policies=("Policy_Number", "count"),
 
-        Renewal_Rate=("Renewed", "mean"),
+        Renewal_Rate=("STATUS", lambda s: (s == "Renewed").mean() * 100),
 
-        Average_Premium=("Premium", "mean"),
+        # Average_Premium=("Premium", "mean"),
 
-        Average_Claims=("Claim_Count", "mean")
+        # Average_Claims=("Claim_Count", "mean")
 
     )
 
@@ -118,7 +378,7 @@ channel_summary = (
 
 )
 
-channel_summary["Renewal_Rate"] *= 100
+# channel_summary["Renewal_Rate"] *= 100
 
 left, right = st.columns([2, 1])
 
@@ -134,7 +394,7 @@ with left:
 
         x="Renewal_Rate",
 
-        y="Channel_Type",
+        y="IMD_Channel",
 
         orientation="h",
 
@@ -177,7 +437,7 @@ with right:
 
         values="Policies",
 
-        names="Channel_Type",
+        names="IMD_Channel",
 
         hole=0.5
 
@@ -200,15 +460,15 @@ display["Renewal_Rate"] = (
     .round(1)
 )
 
-display["Average_Premium"] = (
-    display["Average_Premium"]
-    .round(0)
-)
+# display["Average_Premium"] = (
+#     display["Average_Premium"]
+#     .round(0)
+# )
 
-display["Average_Claims"] = (
-    display["Average_Claims"]
-    .round(2)
-)
+# display["Average_Claims"] = (
+#     display["Average_Claims"]
+#     .round(2)
+# )
 
 st.dataframe(
 
@@ -222,24 +482,27 @@ st.dataframe(
 
 st.divider()
 
+df["Renewal_flag"] = (
+    df["Renewal_flag"].str.extract(r"(\d+)")[0].astype(int)
+)
 
 # ==========================================================
 # Individual Channel Analysis
 # ==========================================================
 
-for channel in sorted(df["Channel_Type"].unique()):
+for channel in sorted(df["IMD_Channel"].unique()):
 
     st.header(f"📌 {channel} Performance")
 
     channel_df = df[
-        df["Channel_Type"] == channel
+        df["IMD_Channel"] == channel
     ].copy()
 
     # ======================================================
     # Channel KPIs
     # ======================================================
 
-    kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+    kpi1, kpi2, kpi3  = st.columns(3)
 
     kpi1.metric(
 
@@ -253,7 +516,7 @@ for channel in sorted(df["Channel_Type"].unique()):
 
         "IMDs",
 
-        channel_df["IMD_Code"].nunique()
+        channel_df["New_IMD_Code"].nunique()
 
     )
 
@@ -261,17 +524,17 @@ for channel in sorted(df["Channel_Type"].unique()):
 
         "Renewal Rate",
 
-        f"{channel_df['Renewed'].mean()*100:.1f}%"
+        f"{(df['STATUS'] == 'Renewed').mean()*100:.1f}%"
 
     )
 
-    kpi4.metric(
+    # kpi4.metric(
 
-        "Average Premium",
+    #     "Average Premium",
 
-        f"₹ {channel_df['Premium'].mean()/1000:,.1f}K"
+    #     f"₹ {channel_df['Premium'].mean()/1000:,.1f}K"
 
-    )
+    # )
 
     st.divider()
 
@@ -284,21 +547,23 @@ for channel in sorted(df["Channel_Type"].unique()):
 
         channel_df
 
-        .groupby("IMD_Code")
+        .groupby("New_IMD_Code")
 
         .agg(
 
             Portfolio_Size=("Policy_Number", "count"),
 
-            Renewal_Rate=("Renewed", "mean"),
+            Renewal_Rate = ("STATUS", lambda s: (s == "Renewed").mean() * 100),
 
-            Average_Premium=("Premium", "mean"),
+            # Average_Premium=("Premium", "mean"),
 
-            Total_Claims=("Claim_Count", "sum"),
+            # Total_Claims=("Claim_Count", "sum"),
 
-            Average_NCB=("NCB", "mean"),
+            # Average_NCB=("NCB", "mean"),
 
-            Average_Tenure=("Policy_Tenure", "mean")
+            Average_Vehicle_Age = ("TBR_Veh_Age", "mean"),
+
+            Average_Tenure=("Renewal_flag", "mean")
 
         )
 
@@ -306,11 +571,13 @@ for channel in sorted(df["Channel_Type"].unique()):
 
     )
 
-    imd_summary["Renewal_Rate"] *= 100
+    # imd_summary["Renewal_Rate"] *= 100
 
     # ======================================================
     # Top & Bottom IMDs
     # ======================================================
+
+    imd_summary["New_IMD_Code"] = imd_summary["New_IMD_Code"].astype(str)
 
     left, right = st.columns(2)
 
@@ -340,7 +607,7 @@ for channel in sorted(df["Channel_Type"].unique()):
 
             x="Renewal_Rate",
 
-            y="IMD_Code",
+            y= "New_IMD_Code",
 
             orientation="h",
 
@@ -396,7 +663,7 @@ for channel in sorted(df["Channel_Type"].unique()):
 
             x="Renewal_Rate",
 
-            y="IMD_Code",
+            y= "New_IMD_Code",
 
             orientation="h",
 
@@ -446,7 +713,7 @@ for channel in sorted(df["Channel_Type"].unique()):
 
         size="Portfolio_Size",
 
-        hover_name="IMD_Code",
+        hover_name="New_IMD_Code",
 
         color="Renewal_Rate",
 
@@ -492,13 +759,13 @@ for channel in sorted(df["Channel_Type"].unique()):
 
     )
 
-    display["Average_Premium"] = (
+    # display["Average_Premium"] = (
 
-        display["Average_Premium"]
+    #     display["Average_Premium"]
 
-        .round(0)
+    #     .round(0)
 
-    )
+    # )
 
     display["Average_Tenure"] = (
 
@@ -526,11 +793,11 @@ for channel in sorted(df["Channel_Type"].unique()):
 
     for _, row in imd_summary.iterrows():
         
-        imd_code = row["IMD_Code"]
+        imd_code = row["New_IMD_Code"]
 
-        imd_df = channel_df[channel_df["IMD_Code"] == imd_code]
+        imd_df = channel_df[channel_df["New_IMD_Code"] == imd_code]
 
-        remarks =  imd_df["Last_Remark"].dropna().astype(str).tolist()
+        remarks =  imd_df["REMARKS"].dropna().astype(str).tolist()
 
         remark_history = "\n".join(f"- {remark}" for remark in remarks)
 
@@ -544,13 +811,9 @@ for channel in sorted(df["Channel_Type"].unique()):
 
         Renewal Rate: {row["Renewal_Rate"]}
 
-        Average Premium: ₹{row["Average_Premium"]}
-
-        Average NCB: {row["Average_NCB"]}
+        Average Vehicle Age: {row["Average_Vehicle_Age"]}
 
         Average Policy Tenure: {row["Average_Tenure"]}
-
-        Total Claims: {int(row["Total_Claims"])}
 
         Remark History:
 
@@ -562,103 +825,323 @@ for channel in sorted(df["Channel_Type"].unique()):
         )
 
         prompt = f"""
-        
-        You are a senior insurance renewal strategy consultant for an Indian motor insurance company.
+ # ROLE
 
-        Below is the complete performance summary of every IMD (Insurance Marketing Department) operating in the Jammu branch.
+You are a Senior Motor Insurance Renewal Strategy Consultant preparing an executive operational audit for senior regional management.
 
-        Your task is to analyse the branch and explain the differences in renewal performance between IMDs.
+The investigation workflow is controlled entirely by the application.
 
-        For every IMD:
+The Current Investigation is the ONLY source of truth.
 
-        • Explain why its renewal rate is high or low.
+Never add, infer or fabricate information beyond it.
 
-        • Compare it with other IMDs.
+Never output HTML.
 
-        • Identify behavioural patterns.
+---
 
-        • Analyse remark history.
+# EXECUTION MODES
 
-        • Explain possible reasons for customer retention or churn.
+The application determines the execution mode.
 
-        • Identify recurring operational issues.
+## Investigation Mode
 
-        • Highlight best-performing IMDs.
+- Return ONLY the requested analytical tool call.
+- Do not generate narrative text.
+- Do not explain your actions.
 
-        • Highlight struggling IMDs.
+## Report Generation Mode
 
-        Finally provide:
+- Generate the executive report using ONLY the Current Investigation.
+- Do not call analytical tools.
 
-        1. Executive Summary (Do not List every statistic from the content just summarise them to your best understanding.)
+---
 
-        2. Common Success Factors
+# REPORT STYLE
 
-        3. Common Failure Factors
+Write like a McKinsey, Deloitte, EY or BCG consulting report.
 
-        4. Remark Pattern Analysis
+The report should be:
 
-        5. Recommendations for Renewal Managers
+- Executive-focused
+- Concise
+- Evidence-backed
+- Business-oriented
 
-        IMPORTANT:
+Always explain the business implication rather than merely restating statistics.
 
-        Do not invent facts.
+---
 
-        DO NOT FORGET TO PROVIDE ALL 5 FIGURES ASKED ABOVE.
+# REPORT LENGTH
 
-        Remarks such as "Payment expected today" are not bad remarks, they only require follow ups.
+Target report length: **900–1200 words**.
 
-        All claim amounts should be denoted in Rupees.
+Prioritize brevity over exhaustive explanation.
 
-        All percentages should be between 0 to 100, apply decimals correctly.
+Keep paragraphs short.
 
-        All numerical metrics to be rounded off to 2 decimal places.
+Avoid repetition.
 
-        Only draw conclusions from the supplied data.
+If statistics are already presented in a table, do not repeat the same numbers in the narrative.
 
-        Branch Data:
+---
 
-        {''.join(imd_profiles)}
-        """
+# REPORT STRUCTURE
+
+# Executive Summary
+
+Maximum **6 one-sentence bullet points**.
+
+Each bullet should summarise:
+
+- Key Observation
+- Supporting Evidence
+- Business Impact
+
+---
+
+# Portfolio Assessment
+
+Present ONE branch-level summary table.
+
+| Metric | Value |
+
+Include available branch statistics such as:
+
+- Overall Renewal Rate
+- Lost Percentage
+- Follow-up Percentage
+- Total IMDs Considered
+- Average Portfolio Size
+- Average Vehicle Age
+- Average Policy Tenure
+
+Follow the table with ONE short interpretation paragraph.
+
+---
+
+# IMD Performance Assessment
+
+Group IMDs into:
+
+## High Performing IMDs
+
+## Average Performing IMDs
+
+## Low Performing IMDs
+
+For EACH category provide a table.
+
+| IMD Code | Portfolio Size | Renewal Rate (%) | Vehicle Age Profile |
+
+Include EVERY IMD contained in the Current Investigation.
+
+After each table provide a maximum of THREE concise bullet points highlighting common characteristics.
+
+---
+
+# Lost Business Analysis
+
+Present EVERY loss category whose percentage is greater than zero.
+
+Use ONE consolidated table.
+
+| Loss Category | Percentage | Representative Remarks | Business Interpretation | Controllability |
+
+Where:
+
+- Business Interpretation = one concise sentence.
+- Controllability = Controllable / Partially Controllable / Unavoidable.
+
+Representative Remarks must come directly from the Current Investigation.
+
+---
+
+# Strategic Recommendations
+
+Present recommendations as a table.
+
+| Stakeholder | Recommendation | Supporting Evidence | Expected Business Impact |
+
+Stakeholders:
+
+- Renewal Managers
+- Relationship Managers
+- Branch Operations
+- Product Team
+- Regional Management
+
+Maximum TWO recommendations per stakeholder.
+
+---
+
+# WRITING RULES
+
+- Every insight must be supported by evidence from the Current Investigation.
+- Use tables for numerical information.
+- Use bullet points for insights.
+- Do not repeat observations.
+- Do not repeat statistics already shown in tables.
+- Focus on business impact and actionable insights.
+- Never fabricate facts, statistics, IMD codes, historical remarks or competitor names.
+- Output ONLY the final report in GitHub-Flavoured Markdown.
+
+# MARKDOWN FORMAT
+
+Use valid GitHub-Flavoured Markdown.
+
+Correct heading syntax:
+
+# Main Heading
+
+## Section Heading
+
+### Subsection Heading
+
+Do NOT wrap headings in bold.
+
+Correct:
+## Executive Summary
+
+Incorrect:
+## **Executive Summary**
+
+Incorrect:
+# **Motor Insurance Renewal Strategy Audit**
+
+Use bold only within normal paragraphs or table cells.
+
+All tables must follow valid GitHub Markdown syntax.
+
+Leave one blank line before and after every heading and table.
+    """
+
+    if "channel_reports" not in st.session_state:
+        st.session_state.channel_reports = {}
+
 
     if st.button("🤖 AI Channel Analysis",key= f"ai_analysis_{channel}", use_container_width=True):
         with st.spinner("Analyzing channel performance..."):
-            channel_analysis = requests.post(
-                "http://localhost:11434/api/generate",
-                json={
-                    "model": "qwen2.5:7b",
-                    "prompt": prompt,
-                    "stream": False,
-                    "options": {
-                        "temperature": 0.1,
-                        "top_p": 0.8
-                    }
-                },
-                timeout = 300
+            channel_analysis = asyncio.run(
+                agent.generate_report(prompt, imd_channel = channel)
             )
-            channel_analysis.raise_for_status()
 
-            channel_analysis = channel_analysis.json()["response"]
-            st.markdown(channel_analysis)
+            st.session_state.channel_reports[channel] = channel_analysis
 
-    csv = display.to_csv(
+    if channel in st.session_state.channel_reports:
 
-        index=False
+        channel_analysis = st.session_state.channel_reports[channel]
+        channel_analysis = clean_markdown_tables(channel_analysis)
+        channel_analysis = re.sub(
+            r'^(#{1,6})\s+\*\*(.*?)\*\*$',
+            r'\1 \2',
+            channel_analysis,
+            flags=re.MULTILINE
+        )
+                
+        print(repr(channel_analysis[:500]))
 
-    ).encode("utf-8")
+        html = f"""
+        <style>
 
-    st.download_button(
+        body {{
+            background-color: #0E1117;
+            color: white;
+            font-family: "Segoe UI", sans-serif;
+            line-height: 1.7;
+            padding: 20px;
+                }}
 
-        f"⬇ Download {channel} Report",
+        h1 {{
+            color: #4FC3F7;
+            border-bottom: 2px solid #444;
+            padding-bottom: 8px;
+        }}
 
-        data=csv,
+        h2 {{
+            color: #81C784;
+            margin-top: 28px;
+        }}
 
-        file_name=f"{channel}_Analysis.csv",
+        h3 {{
+            color: #BBDEFB;
+        }}
 
-        mime="text/csv",
+        p, li {{
+            color: white;
+        }}
 
-        key=f"download_{channel}"
+        strong {{
+            color: white;
+        }}
 
-    )
+        table {{
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }}
 
-    st.divider()
+        th {{
+            background: #1565C0;
+            color: white;
+            padding: 10px;
+        }}
+
+        td {{
+            color: white;
+            border: 1px solid #555;
+            padding: 8px;
+        }}
+
+        tr:nth-child(even) {{
+            background: #1E1E1E;
+        }}
+
+        code {{
+            color: #FFD54F;
+            background: #2D2D2D;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }}
+
+        blockquote {{
+            border-left: 4px solid #4FC3F7;
+            padding-left: 12px;
+            color: #E0E0E0;
+        }}
+
+        </style>
+
+        {markdown.markdown(
+            channel_analysis,
+            extensions=["tables", "fenced_code", "nl2br"]
+        )}
+                """
+
+        components.html(
+            html,
+            height = 1400,
+            scrolling = True
+        )
+
+        print("CHANNEL ANALYSIS ACTUAL REPORT SENT BY LLM")
+        print(channel_analysis)
+            
+
+    if channel in st.session_state.channel_reports:
+
+        report_for_download = st.session_state.channel_reports[channel]
+
+        word_file = markdown_to_word(
+            report_for_download
+        )
+
+        st.download_button(
+            "⬇ Download AI Report",
+            data=word_file,
+            file_name=f"{channel}_AI_Analysis.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            key=f"download_ai_report_{channel}"
+        )
+
+        st.divider()
 
