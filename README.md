@@ -29,7 +29,8 @@ This project was developed during my Research Internship at **Go Digit General I
 - Suggests actionable renewal strategies
 
 ### AI Channel Analysis
-- AI-powered comparison of IMD performance
+- Uses 2 LLM models, 1 for reasoning and tool calling, 1 for report generation
+- Uses MCP server to allow reasoning model to call custom tools in Postgres
 - Identifies why some IMDs outperform others
 - Detects common behavioural patterns
 - Analyses historical renewal remarks
